@@ -1,5 +1,8 @@
 .eventoCardLeyenda{
     display: flex;
+    color: #2F353A;
+    font-family: 'Libre Franklin';
+    flex-wrap: wrap;
 }
 
 .eventoCardFecha {
@@ -7,22 +10,23 @@
    flex-direction: column;
    justify-content: center;
    align-items: center;
-   margin: 25px 0; 
-   width: 84px; 
-   color: #414141;
+   margin: 10px 0; 
+   height: 95px;
 }
 
 .eventoCardFecha div:first-child {
-    font-family: 'Libre Franklin';
-    font-size: 1.7rem;
+    font-size: 1.3rem;
     font-weight: 700;
-    height: 32px;
+    height: 25px;
 }
 .eventoCardFecha div:last-child {
-    font-family: 'Libre Franklin';
     font-weight: 600;
+    font-size: 0.8rem;
 }
 .eventoCardDescripcion {
-    height: 125px;
+    font-size: 0.7rem;
+    font-weight: 600;
     padding-left: 5px;
+    flex: 1 1;
+    margin-top: 10px;
 }
