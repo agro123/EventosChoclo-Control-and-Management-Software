@@ -1,28 +1,60 @@
+import { useState } from "react";
+
 import CardDate from "../../components/cardDate";
 import { Input, Button } from "antd";
 import { DatePicker } from "antd";
+import { Typography } from "antd";
+
+const inicio = {
+  semana: "Lunes",
+  dia: 24,
+  mes: "Marzo",
+  año: "2021",
+  hora: "12:31 PM",
+};
+const cierre = {
+  semana: "Jueves",
+  dia: 27,
+  mes: "Marzo",
+  año: "2021",
+  hora: "05:31 PM",
+};
 
 export default function CrearEventos() {
+  const [fecha, setFecha] = useState({
+    inicio: { ...inicio },
+    cierre: { ...cierre },
+  });
+
+  const { Title } = Typography;
   const { TextArea } = Input;
-  const { RangePicker } = DatePicker;
-  const inicio = {
-    semana: "Lunes",
-    dia: 24,
-    mes: "Marzo",
-    año: "2021",
-    hora: "12:31 PM",
+
+  const convertDate = (date) => {
+    const convertDate = String({ ...date }._d).split(" ");
+    const dates = {
+      semana: convertDate[0],
+      mes: convertDate[1],
+      dia: convertDate[2],
+      año: convertDate[3],
+      hora: convertDate[4],
+    };
+    return dates;
   };
-  const cierre = {
-    semana: "Jueves",
-    dia: 27,
-    mes: "Marzo",
-    año: "2021",
-    hora: "05:31 PM",
+  const onChangeInicio = (date) => {
+    const dates = convertDate(date);
+
+    setFecha({ ...fecha, inicio: { ...dates } });
   };
+  const onChangeCierre = (date) => {
+    const dates = convertDate(date);
+
+    setFecha({ ...fecha, cierre: { ...dates } });
+  };
+
   return (
     <div className="crearEV_Container">
       <div className="titulo">
-        <h2>Crear Eventos</h2>
+        <Title level={2}>Crear Eventos</Title>
       </div>
       <div className="contend">
         <form className="form-eventos">
@@ -31,21 +63,41 @@ export default function CrearEventos() {
           <div className="cont-options">
             <div className="cont-options-img"></div>
             <div className="options-right">
-              <div className="options-right-h3">
-                <div className="right-date">
-                  <h3>Inicio</h3>
+              <div className="options-right-h3 ">
+                <div className="right-date card1">
+                  <Title level={4}>Inicio</Title>
 
-                  <CardDate {...inicio} />
+                  <CardDate {...fecha.inicio} />
                 </div>
-                <div></div>
-                <div className="right-date">
-                  <h3>Cierre</h3>
 
-                  <CardDate {...cierre} />
+                <div className="date-pick">
+                  <div className="fecha">
+                    <DatePicker
+                      name="inicio"
+                      onChange={onChangeInicio}
+                      className="place"
+                      placeholder="Fecha Incial"
+                      showTime
+                    />
+                  </div>
+                  <div>
+                    <DatePicker
+                      name="cierre"
+                      onChange={onChangeCierre}
+                      className="place"
+                      placeholder="Fecha Cierre"
+                      showTime
+                    />
+                  </div>
+                </div>
+                <div className="right-date card2">
+                  <Title level={4}>Cierre</Title>
+
+                  <CardDate {...fecha.cierre} />
                 </div>
               </div>
               <div className="right-inputs">
-                <h3>Información General</h3>
+                <Title level={3}>Información General</Title>
                 <div className="contenedor-inputs">
                   <div className="inputs-info">
                     <div className="inputs-info-right">
@@ -76,7 +128,7 @@ export default function CrearEventos() {
                   <TextArea
                     className="input-textarea"
                     placeholder="Descripción"
-                    rows={2}
+                    rows={1}
                   />
                 </div>
               </div>
