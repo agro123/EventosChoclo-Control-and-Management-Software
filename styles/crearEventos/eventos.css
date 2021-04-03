@@ -51,7 +51,27 @@
 
 .cont-options-img {
   height: 100%;
-  background: chocolate;
+  background: #f1f1f1be;
+  display: grid;
+  border: 2px solid #f1f1f1;
+  border-radius: 10px;
+  grid-template-rows: 90% 10%;
+}
+.input-img {
+  width: 100%;
+  align-self: flex-end;
+  color: #3b424894;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.ant-image-img {
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.cont-img {
+  height: 100%;
 }
 
 .options-right {
@@ -63,8 +83,14 @@
 }
 
 .options-right-h3 {
-  display: grid;
-  grid-template-columns: 35% 30% 35%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.contenedorDate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .right-date {
@@ -72,14 +98,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.card1 {
-  justify-self: flex-start;
-}
-
-.card2 {
-  justify-self: flex-end;
 }
 
 .right-date > h3 {
@@ -105,7 +123,20 @@
   align-self: center;
 }
 
-.place::placeholder {
+.fecha {
+  width: 85%;
+}
+
+.anticon-calendar {
+  color: rgba(99, 92, 92, 0.788);
+}
+.ant-picker-input > input::placeholder {
+  color: rgba(99, 92, 92, 0.616);
+  font-weight: 600;
+}
+
+.ant-picker-input > input {
+  color: rgba(99, 92, 92, 0.521);
   font-weight: 600;
 }
 

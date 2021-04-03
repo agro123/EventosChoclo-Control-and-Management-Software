@@ -1,26 +1,18 @@
 import { useState } from "react";
-
-import CardDate from "../../components/cardDate";
-import { Input, Button } from "antd";
+import CardDate from "../../components/Dates/cardDate";
+import {
+  inicio,
+  cierre,
+  convertirSemana,
+  convertirMes,
+} from "../../components/Dates/manejoFechas";
+import { Input } from "antd";
 import { DatePicker } from "antd";
 import { Typography } from "antd";
-
-const inicio = {
-  semana: "Lunes",
-  dia: 24,
-  mes: "Marzo",
-  año: "2021",
-  hora: "12:31 PM",
-};
-const cierre = {
-  semana: "Jueves",
-  dia: 27,
-  mes: "Marzo",
-  año: "2021",
-  hora: "05:31 PM",
-};
+import { Image } from "antd";
 
 export default function CrearEventos() {
+  const [imagen, setImagen] = useState(null);
   const [fecha, setFecha] = useState({
     inicio: { ...inicio },
     cierre: { ...cierre },
@@ -32,8 +24,8 @@ export default function CrearEventos() {
   const convertDate = (date) => {
     const convertDate = String({ ...date }._d).split(" ");
     const dates = {
-      semana: convertDate[0],
-      mes: convertDate[1],
+      semana: convertirSemana(convertDate[0]),
+      mes: convertirMes(convertDate[1]),
       dia: convertDate[2],
       año: convertDate[3],
       hora: convertDate[4],
@@ -61,39 +53,61 @@ export default function CrearEventos() {
           <input className="input-title" placeholder="Titulo del Evento" />
           <hr className="event-hr" />
           <div className="cont-options">
-            <div className="cont-options-img"></div>
+            <div className="cont-options-img">
+              <div className="cont-img">
+                <Image
+                  preview={false}
+                  width="100%"
+                  height="100%"
+                  src={imagen}
+                />
+              </div>
+              <input
+                className="input-img"
+                type="file"
+                name="imagen"
+                accept="image/*"
+                onChange={(e) => {
+                  setImagen(URL.createObjectURL(e.target.files[0]));
+                }}
+              />
+            </div>
             <div className="options-right">
               <div className="options-right-h3 ">
-                <div className="right-date card1">
-                  <Title level={4}>Inicio</Title>
+                <div className="contenedorDate">
+                  <div className="right-date">
+                    <Title level={4}>Inicio</Title>
 
-                  <CardDate {...fecha.inicio} />
-                </div>
-
-                <div className="date-pick">
+                    <CardDate {...fecha.inicio} />
+                  </div>
                   <div className="fecha">
                     <DatePicker
                       name="inicio"
                       onChange={onChangeInicio}
-                      className="place"
+                      className="place-pick"
+                      locale="es"
                       placeholder="Fecha Incial"
                       showTime
                     />
                   </div>
-                  <div>
+                </div>
+
+                <div className="contenedorDate">
+                  <div className="right-date">
+                    <Title level={4}>Cierre</Title>
+
+                    <CardDate {...fecha.cierre} />
+                  </div>
+                  <div className="fecha">
                     <DatePicker
                       name="cierre"
                       onChange={onChangeCierre}
                       className="place"
                       placeholder="Fecha Cierre"
                       showTime
+                      locale="es"
                     />
                   </div>
-                </div>
-                <div className="right-date card2">
-                  <Title level={4}>Cierre</Title>
-
-                  <CardDate {...fecha.cierre} />
                 </div>
               </div>
               <div className="right-inputs">

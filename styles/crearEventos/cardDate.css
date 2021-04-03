@@ -8,6 +8,7 @@
   font-weight: 600;
   height: 8em;
   width: 100%;
+  min-width: 120px;
   padding: 15px;
   border: #3b4248 solid 2px;
   display: flex;

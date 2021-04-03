@@ -1,10 +1,17 @@
 import React from "react";
+import { inicio } from "./manejoFechas";
 
-const CardDate = ({ semana, dia, mes, año, hora }) => {
+const CardDate = ({
+  semana = inicio.semana,
+  dia = inicio.dia,
+  mes = inicio.mes,
+  año = inicio.año,
+  hora = inicio.hora,
+}) => {
   return (
     <div>
       <div className="cardEv-date">
-        <p>{semana}</p>
+        <p>{semana == "undefined" ? inicio.semana : semana}</p>
         <p className="dia-cardEv">{dia}</p>
         <p>
           {mes + " "}
