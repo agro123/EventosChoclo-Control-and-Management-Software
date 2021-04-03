@@ -1,12 +1,30 @@
-.ant-card-body {
-    padding: 0px  !important;
+.eventoCard .ant-card-body {
+    padding: 0px  ;
 }
-.ant-card-actions {
+.eventoCard .ant-card-actions {
     background-color: rgba(255, 255, 255, 0);
 }
-.ant-card-head {
-    padding: 0px 0px !important;
+.eventoCard .ant-card-head {
+    padding: 0px 0px ;
 }
-.ant-card-head-title {
+.eventoCard .ant-card-head-title {
     padding: 10px 0;
+}
+
+.carruselEventoAdmin .ant-carousel .slick-dots li.slick-active {
+    width: 300px;
+}
+
+.carruselEventoAdmin .ant-carousel .slick-dots li {
+    width: 290px ;
+}
+
+.carruselEventoAdmin .ant-carousel .slick-dots li button  {
+    height: 10px;
+    background: #F1D41B;
+}
+
+.carruselEventoAdmin .ant-carousel .slick-dots li.slick-active button{
+    background: #3AB54A;
+    height: 12px;
 }

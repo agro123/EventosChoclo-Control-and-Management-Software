@@ -1,11 +1,11 @@
 import React from 'react';
-import EventoCard from '../../components/listarEventos/eventoCard'
+import Carrusel from '../../components/listarEventos/carrusel'
 
 export default function listarEventos() {
+
     return (
         <div>
-            <h1>listarEventos</h1>
-            <EventoCard />
+            <Carrusel />
         </div>
     )
 }

@@ -2,7 +2,6 @@
     display: flex;
     color: #2F353A;
     font-family: 'Libre Franklin';
-    flex-wrap: wrap;
 }
 
 .eventoCardFecha {
@@ -11,7 +10,7 @@
    justify-content: center;
    align-items: center;
    margin: 10px 0; 
-   height: 95px;
+   height: 100px;
 }
 
 .eventoCardFecha div:first-child {
@@ -27,6 +26,33 @@
     font-size: 0.7rem;
     font-weight: 600;
     padding-left: 5px;
-    flex: 1 1;
+    flex: auto ;
     margin-top: 10px;
+}
+.eventoCard {
+    margin: 10px;
+    height: 350px;
+    width: 200px;
+}
+
+.listEventos {
+  display: block;
+  padding-top: 40px;
+}
+
+.list{
+    height: 600px;
+    background: inherit;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+}
+.carruselHeader {
+    display: flex;
+    justify-content: space-around;
+    padding: 0 160px;
+}
+
+.carruselHeader h1 {
+    margin: 0;
 }

@@ -1,24 +1,27 @@
 import React, { useState } from 'react';
 //import { Card } from 'antd';
-import { Skeleton, Switch, Card } from 'antd';
+import { Skeleton, Card } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import propTypes from 'prop-types';
 
 const { Meta } = Card;
 
-export default function EventoCard() {
-    const [loading, setLoading] = useState(false);
-    const onChange = checked => {
-        setLoading(!checked)
+export default function EventoCard({ imagen, titulo, fecha, descripcion }) {
+    const [loading, setLoading] = useState(true);
+
+    const onChange = () => {
+        setLoading(false);
     }
 
+    setTimeout(onChange, 2000);
+
     return (
-        <div>
-            <Switch checked={!loading} onChange={onChange} />
+        <div className="eventoCard">
             <Skeleton loading={loading} active>
                 <Card
                     style={{
-                        width: 200, 
-                        height: 350, 
+                        width: 200,
+                        height: 350,
                         borderRadius: '20px',
                         padding: '10px',
                         border: '1px solid rgba(59, 66, 72, 0.3)'
@@ -29,16 +32,17 @@ export default function EventoCard() {
                     ]}
                     hoverable
                     cover={<img alt="example"
-                        src="https://recasens.com/wp-content/uploads/2017/02/r_095_pvc_1.jpg" />}
-                    title="TITULO DEL EVENTO"
+                        src={imagen || 
+                            "https://recasens.com/wp-content/uploads/2017/02/r_095_pvc_1.jpg"} />}
+                    title={titulo || "Titulo del evento"}
                 >
                     <div className="eventoCardLeyenda">
                         <div className="eventoCardFecha">
-                            <div>20</div>
-                            <div>Septiembre</div>
+                            <div>{fecha || "20"}</div>
+                            <div>{fecha || "Septiembre"}</div>
                         </div>
                         <div className="eventoCardDescripcion">
-                            <p>Descripción: 	<br /></p>
+                            <p>Descripción: 	<br />{descripcion}</p>
                         </div>
                     </div>
                 </Card>
@@ -46,3 +50,8 @@ export default function EventoCard() {
         </div >
     )
 }
+/* EventoCard.propTypes = {
+    titulo: propTypes.string.isRequired,
+    fecha : propTypes.string.isRequired,
+    descripcion: propTypes.string
+ } */
