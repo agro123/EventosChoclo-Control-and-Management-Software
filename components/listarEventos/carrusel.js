@@ -15,7 +15,7 @@ export default function Carrusel() {
         //Pasar la informacion de la bd a el componente EventoCard;
         const cards = [];
         for (let i = 0; i < 10; i++) {
-            cards.push(<EventoCard />)
+            cards.push(<EventoCard key={i}/>)
         }
         return cards;
     }
