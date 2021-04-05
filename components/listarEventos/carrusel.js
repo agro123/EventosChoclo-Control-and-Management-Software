@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Carousel } from "antd";
 import EventoCard from './eventoCard';
+import data from '../data.json'
 
 export default function Carrusel() {
     const contentStyle = {
@@ -9,15 +10,21 @@ export default function Carrusel() {
     };
     const [eventos, setEventos] = useState([]);
     useEffect(() => {
+        generarEventos()
     }, [])
 
     const generarEventos = () => {
         //Pasar la informacion de la bd a el componente EventoCard;
         const cards = [];
-        for (let i = 0; i < 10; i++) {
-            cards.push(<EventoCard key={i}/>)
-        }
-        return cards;
+        data.eventos.map((v,i) => {
+            cards.push(<EventoCard 
+                imagen={v.imagen} 
+                titulo={v.titulo} 
+                fecha={v.fecha_inicial} 
+                descripcion={v.descripcion}
+                key={i}/>)
+        })
+        setEventos(cards);
     }
 
     return (
@@ -28,7 +35,7 @@ export default function Carrusel() {
             <Carousel dotPosition="top" style={{ width: '900px' }}>
                 <div className="listEventos">
                     <div className="list">
-                        {generarEventos()}
+                        {eventos}
                     </div>
                 </div>
                 <div>

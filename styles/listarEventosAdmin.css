@@ -21,12 +21,11 @@
 }
 .eventoCardFecha div:last-child {
     font-weight: 600;
-    font-size: 0.8rem;
+    font-size: 1.1rem;
 }
 .eventoCardDescripcion {
     font-size:s 0.7rem;
     font-weight: 600;
-    flex: auto ;
     margin-top: -120px;
     padding: 5px;
     position: relative;
@@ -34,10 +33,13 @@
     color: #ffffff00;
     background-color: rgba(0, 0, 0, 0);
     transition: background-color .5s;
+    text-align: justify;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .eventoCardDescripcion:hover {
     color: white;
-    background-color: rgba(0, 0, 0, 0.522);;
+    background-color: rgba(0, 0, 0, 0.6);
 }
 .eventoCard {
     margin: 10px;

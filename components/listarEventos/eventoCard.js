@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 import { Skeleton, Card } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import propTypes from 'prop-types';
+let meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto",
+    "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+
 
 export default function EventoCard({ imagen, titulo, fecha, descripcion }) {
     const [loading, setLoading] = useState(true);
@@ -11,7 +14,9 @@ export default function EventoCard({ imagen, titulo, fecha, descripcion }) {
         setLoading(false);
     }
 
-    setTimeout(onChange, 2000);
+    const f = fecha.split('/')
+
+    setTimeout(onChange, 1500);
 
     return (
         <div className="eventoCard">
@@ -39,11 +44,11 @@ export default function EventoCard({ imagen, titulo, fecha, descripcion }) {
                 >
                     <div className="eventoCardLeyenda">
                         <div className="eventoCardDescripcion">
-                            <p>Descripción: 	<br />{descripcion}</p>
+                            <p>{descripcion}</p>
                         </div>
                         <div className="eventoCardFecha">
-                            <div>{fecha || "20"}</div>
-                            <div>{fecha || "Septiembre"}</div>
+                            <div>{f[0] || "20"}</div>
+                            <div>{meses[f[1]] || "Septiembre"}</div>
                         </div>
                     </div>
                 </Card>

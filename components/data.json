@@ -1,0 +1,34 @@
+{
+   "eventos": [
+        {
+            "titulo": "Tomorrow Land",
+            "fecha_inicial": "27/8/2021",
+            "fecha_final": "5/9/2021",
+            "num_boletas": 1000,
+            "descripcion": "Tomorrowland es un festival de y música electrónica de baile celebrado anualmente en la localidad de Boom.",
+            "lugar": "Boom, Amberes",
+            "anfitrion": "El jefaso",
+            "imagen": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Tomorrowland2015.jpg"
+        },
+        {
+            "titulo": "Destroy",
+            "fecha_inicial": "12/6/2021",
+            "fecha_final": "12/7/2021",
+            "num_boletas": 100,
+            "descripcion": "Lugar de lokisa",
+            "lugar": "En alguna parte de Cali",
+            "anfitrion": "Desconocido",
+            "imagen": "https://image.api.playstation.com/cdn/EP0096/CUSA04545_00/hopaVXL7hdFE6lKafM0TibQDlPERggHu.png"
+        },
+        {
+            "titulo": "Final LLA",
+            "fecha_inicial": "4/4/2021",
+            "fecha_final": "4/4/2021",
+            "num_boletas": 1000,
+            "descripcion": "Conoceremos al campeón de la Apertura 2021. Sin duda, esta ha sido una de las temporadas más reñidas que hemos tenido y nadie querrá perderse la definición del campeón. ",
+            "lugar": "Bogota, Movistar Arena",
+            "anfitrion": "League of Legends",
+            "imagen": "https://images.contentstack.io/v3/assets/bltad9188aa9a70543a/blt8d8cc6e0b763f8b8/606943eb9a1d7d1050bd4d2c/Final_LLA_Apertura_2021_1600x900.jpg?width=1600&height=900"
+        }
+    ]
+}
