@@ -3,7 +3,7 @@ export default function Home() {
     <>
     <h1>Pagina de inicio</h1>
     <ul>
-      <li><a href="/eventosAdmin/listarEventos" >listEventos</a></li>
+      <li><a href="/eventosAdmin/listarEventos" >lista de Eventos</a></li>
     </ul>
     </>
   )
