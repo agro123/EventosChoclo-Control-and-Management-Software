@@ -1,20 +1,17 @@
 import React, { useState } from 'react';
-//import { Card } from 'antd';
 import { Skeleton, Card } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import propTypes from 'prop-types';
-let meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto",
-    "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-
+import {useDate} from '../../hooks/useDate';
 
 export default function EventoCard({ imagen, titulo, fecha, descripcion }) {
     const [loading, setLoading] = useState(true);
+    
+    const {day, month} = useDate([fecha]);
 
     const onChange = () => {
         setLoading(false);
     }
-
-    const f = fecha.split('/')
 
     setTimeout(onChange, 1500);
 
@@ -26,7 +23,7 @@ export default function EventoCard({ imagen, titulo, fecha, descripcion }) {
                         width: 200,
                         height: 350,
                         borderRadius: '20px',
-                        padding: '10px',
+                        padding: '4px',
                         border: '1px solid rgba(59, 66, 72, 0.3)'
                     }}
                     actions={[
@@ -47,8 +44,8 @@ export default function EventoCard({ imagen, titulo, fecha, descripcion }) {
                             <p>{descripcion}</p>
                         </div>
                         <div className="eventoCardFecha">
-                            <div>{f[0] || "20"}</div>
-                            <div>{meses[f[1]] || "Septiembre"}</div>
+                            <div>{day(0) || "31"}</div>
+                            <div>{month(0)|| "Septiembre"}</div>
                         </div>
                     </div>
                 </Card>
@@ -56,8 +53,8 @@ export default function EventoCard({ imagen, titulo, fecha, descripcion }) {
         </div >
     )
 }
-/* EventoCard.propTypes = {
+EventoCard.propTypes = {
     titulo: propTypes.string.isRequired,
     fecha : propTypes.string.isRequired,
     descripcion: propTypes.string
- } */
+ } 
