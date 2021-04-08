@@ -10,6 +10,7 @@
 }
 .eventoCard .ant-card-head-title {
     padding: 10px 0;
+    font-weight: 600;
 }
 
 .carruselEventoAdmin .ant-carousel .slick-dots li.slick-active {

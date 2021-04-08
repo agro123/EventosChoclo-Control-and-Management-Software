@@ -20,8 +20,10 @@ export default function Carrusel() {
             cards.push(<EventoCard 
                 imagen={v.imagen} 
                 titulo={v.titulo} 
-                fecha={v.fecha_inicial} 
+                fecha_inicial={v.fecha_inicial}
+                fecha_final={v.fecha_final}
                 descripcion={v.descripcion}
+                lugar={v.lugar}
                 key={i}/>)
         })
         setEventos(cards);

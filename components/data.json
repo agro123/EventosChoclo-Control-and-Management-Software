@@ -13,10 +13,10 @@
         {
             "titulo": "Destroy",
             "fecha_inicial": "12/6/2021",
-            "fecha_final": "12/7/2021",
+            "fecha_final": "12/6/2021",
             "num_boletas": 100,
             "descripcion": "Lugar de lokisa",
-            "lugar": "En alguna parte de Cali",
+            "lugar": "Cali",
             "anfitrion": "Desconocido",
             "imagen": "https://image.api.playstation.com/cdn/EP0096/CUSA04545_00/hopaVXL7hdFE6lKafM0TibQDlPERggHu.png"
         },

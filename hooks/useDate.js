@@ -10,9 +10,18 @@ export const useDate = (date) => { //recibe un arreglo strings que contienen fec
 
     const year = (num) => cut(num)[2];
 
+    const sameDates = () => {
+        let fi = false;
+        date.map((v,i)=>{
+            fi = date[0] === v? true : false; 
+        })
+        return fi;
+    }
+
     return {
         month,
         day,
         year,
+        sameDates
     }
 }
