@@ -3,6 +3,7 @@ import { Skeleton, Card } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import propTypes from 'prop-types';
 import { useDate } from '../../hooks/useDate';
+import SlideAlert from '../materialComponents/slideAlert';
 
 export default function EventoCard({ imagen, titulo,
     fecha_inicial, fecha_final, descripcion, lugar }) {
@@ -25,6 +26,13 @@ export default function EventoCard({ imagen, titulo,
         }
         return u;
     }
+    const [open, setOpen] = useState(false);
+    const onDelete = e => {
+        setOpen(true);
+    }
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     setTimeout(onChange, 1500);
 
@@ -40,7 +48,7 @@ export default function EventoCard({ imagen, titulo,
                         border: '1px solid rgba(59, 66, 72, 0.3)'
                     }}
                     actions={[
-                        <DeleteOutlined key="delete" />,
+                        <DeleteOutlined key="delete" onClick={onDelete} />,
                         <EditOutlined key="edit" />,
                     ]}
                     hoverable
@@ -63,10 +71,11 @@ export default function EventoCard({ imagen, titulo,
                             </div>
                             {mismoDia()}
                         </div>
-                        <p style={{ textAlign: "center" }}>{lugar}</p>
+                        <p style={{ textAlign: "center" }}>{lugar || "SomeWhere"}</p>
                     </div>
                 </Card>
             </Skeleton>
+            <SlideAlert open={open} handleClose={handleClose} />
         </div >
     )
 }
