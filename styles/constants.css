@@ -45,7 +45,7 @@
     height: 150px;
     background-color: #2F353A;
     display: flex;
-    padding: 10px 30px 10px 30px; 
+    padding: 30px; 
 }
 
 .app-logo {
@@ -54,11 +54,26 @@
 }
 
 .logo-title {
-  color:  white;
   font-size: 2em;
   margin: auto;
-  font-weight: 700;
+  font-weight: 700; 
+  /*----*/
+  background: linear-gradient(to right, rgba(158,222,115,1) 0%, rgba(247,234,0,1) 50%, rgba(228,137,0,1) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 100%;
+  background-position: 100%;
+  transition: background-position 275ms ease;
 }
+
+.logo-title:hover {
+    background-position: 0 100%;
+    /* background: linear-gradient(142deg, rgba(158,222,115,1) 0%, rgba(247,234,0,1) 50%, rgba(228,137,0,1) 100%);
+    -webkit-background-clip: text;
+    color: transparent;
+    transition: color .5s; */
+  }
 
 
 .option-menu{
@@ -67,7 +82,10 @@
     font-size: 1.5em;
 }
 .option-menu:hover{
-    color :white;
+    background: linear-gradient(142deg, rgba(158,222,115,1) 0%, rgba(247,234,0,1) 50%, rgba(228,137,0,1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #979A9C;
 }
 .redesS-footer {
     margin-left: auto;
