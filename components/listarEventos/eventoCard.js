@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { Skeleton, Card } from 'antd';
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { EditOutlined } from '@ant-design/icons';
+import DeleteButton from './deleteButton';
 import propTypes from 'prop-types';
 import { useDate } from '../../hooks/useDate';
-import SlideAlert from '../materialComponents/slideAlert';
 
 export default function EventoCard({ imagen, titulo,
-    fecha_inicial, fecha_final, descripcion, lugar }) {
+    fecha_inicial, fecha_final, descripcion, lugar, id }) {
     const [loading, setLoading] = useState(true);
-
     const { day, month, sameDates } = useDate([fecha_inicial, fecha_final]);
 
     const onChange = () => {
@@ -26,14 +25,9 @@ export default function EventoCard({ imagen, titulo,
         }
         return u;
     }
-    const [open, setOpen] = useState(false);
-    const onDelete = e => {
-        setOpen(true);
+    const onClick = e => {
+        console.log("editar")
     }
-    const handleClose = () => {
-        setOpen(false);
-    };
-
     setTimeout(onChange, 1500);
 
     return (
@@ -48,8 +42,8 @@ export default function EventoCard({ imagen, titulo,
                         border: '1px solid rgba(59, 66, 72, 0.3)'
                     }}
                     actions={[
-                        <DeleteOutlined key="delete" onClick={onDelete} />,
-                        <EditOutlined key="edit" />,
+                        <DeleteButton id={id} key="delete"/>,
+                        <EditOutlined key="edit" onClick={onClick} />,
                     ]}
                     hoverable
                     cover={<img alt="example"
@@ -75,7 +69,6 @@ export default function EventoCard({ imagen, titulo,
                     </div>
                 </Card>
             </Skeleton>
-            <SlideAlert open={open} handleClose={handleClose} />
         </div >
     )
 }
@@ -84,5 +77,6 @@ EventoCard.propTypes = {
     fecha_inicial: propTypes.string.isRequired,
     fecha_final: propTypes.string.isRequired,
     descripcion: propTypes.string,
-    lugar: propTypes.string
+    lugar: propTypes.string,
+    id: propTypes.number.isRequired
 }
