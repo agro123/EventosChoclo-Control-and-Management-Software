@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 import { Skeleton, Card } from 'antd';
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { EditOutlined } from '@ant-design/icons';
+import DeleteButton from './deleteButton';
 import propTypes from 'prop-types';
 import { useDate } from '../../hooks/useDate';
 
 export default function EventoCard({ imagen, titulo,
-    fecha_inicial, fecha_final, descripcion, lugar }) {
+    fecha_inicial, fecha_final, descripcion, lugar, id }) {
     const [loading, setLoading] = useState(true);
-
     const { day, month, sameDates } = useDate([fecha_inicial, fecha_final]);
 
-    const onChange = () => {
-        setLoading(false);
-    }
+    const onChange = () => { setLoading(false);}
 
     const mismoDia = () => {
         let u = ""
@@ -25,7 +23,9 @@ export default function EventoCard({ imagen, titulo,
         }
         return u;
     }
-
+    const onClick = e => {
+        console.log("editar")
+    }
     setTimeout(onChange, 1500);
 
     return (
@@ -40,8 +40,8 @@ export default function EventoCard({ imagen, titulo,
                         border: '1px solid rgba(59, 66, 72, 0.3)'
                     }}
                     actions={[
-                        <DeleteOutlined key="delete" />,
-                        <EditOutlined key="edit" />,
+                        <DeleteButton id={id} key="delete"/>,
+                        <EditOutlined key="edit" onClick={onClick} />,
                     ]}
                     hoverable
                     cover={<img alt="example"
@@ -63,7 +63,7 @@ export default function EventoCard({ imagen, titulo,
                             </div>
                             {mismoDia()}
                         </div>
-                        <p style={{ textAlign: "center" }}>{lugar}</p>
+                        <p style={{ textAlign: "center" }}>{lugar || "SomeWhere"}</p>
                     </div>
                 </Card>
             </Skeleton>
@@ -75,5 +75,6 @@ EventoCard.propTypes = {
     fecha_inicial: propTypes.string.isRequired,
     fecha_final: propTypes.string.isRequired,
     descripcion: propTypes.string,
-    lugar: propTypes.string
+    lugar: propTypes.string,
+    id: propTypes.number.isRequired
 }

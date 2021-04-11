@@ -1,33 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Carousel } from "antd";
-import EventoCard from './eventoCard';
-import data from '../data.json'
+import { cardContext } from '../../context/cardContext';
 
 export default function Carrusel() {
     const contentStyle = {
         height: "600px",
         background: "inherit",
     };
-    const [eventos, setEventos] = useState([]);
-    useEffect(() => {
-        generarEventos()
-    }, [])
-
-    const generarEventos = () => {
-        //Pasar la informacion de la bd a el componente EventoCard;
-        const cards = [];
-        data.eventos.map((v,i) => {
-            cards.push(<EventoCard 
-                imagen={v.imagen} 
-                titulo={v.titulo} 
-                fecha_inicial={v.fecha_inicial}
-                fecha_final={v.fecha_final}
-                descripcion={v.descripcion}
-                lugar={v.lugar}
-                key={i}/>)
-        })
-        setEventos(cards);
-    }
+    const { eventos } = useContext(cardContext);
 
     return (
         <div className="carruselEventoAdmin">
