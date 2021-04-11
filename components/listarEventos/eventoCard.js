@@ -10,9 +10,7 @@ export default function EventoCard({ imagen, titulo,
     const [loading, setLoading] = useState(true);
     const { day, month, sameDates } = useDate([fecha_inicial, fecha_final]);
 
-    const onChange = () => {
-        setLoading(false);
-    }
+    const onChange = () => { setLoading(false);}
 
     const mismoDia = () => {
         let u = ""
