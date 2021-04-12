@@ -26,7 +26,7 @@ export default function EventoCard({ imagen, titulo,
     const onClick = e => {
         console.log("editar")
     }
-    setTimeout(onChange, 1500);
+    setTimeout(onChange, 1000);
 
     return (
         <div className="eventoCard">
