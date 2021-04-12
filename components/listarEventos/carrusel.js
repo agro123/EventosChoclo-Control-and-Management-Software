@@ -3,12 +3,12 @@ import { Carousel } from "antd";
 import { cardContext } from '../../context/cardContext';
 
 export default function Carrusel() {
+    const { eventos } = useContext(cardContext);
+
     const contentStyle = {
         height: "600px",
         background: "inherit",
     };
-    const { eventos } = useContext(cardContext);
-
     return (
         <div className="carruselEventoAdmin">
             <div className="carruselHeader">
