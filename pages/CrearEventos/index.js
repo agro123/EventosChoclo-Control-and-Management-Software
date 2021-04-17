@@ -1,46 +1,88 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import CardDate from "../../components/Dates/cardDate";
 import {
   inicio,
   cierre,
-  convertirSemana,
-  convertirMes,
+  convertDate,
+  convertirImagen,
+  fechaActual,
+  fechaMas1,
+  validarFecha,
 } from "../../components/Dates/manejoFechas";
-import { Input } from "antd";
 import { DatePicker } from "antd";
 import { Typography } from "antd";
 import { Image } from "antd";
 
 export default function CrearEventos() {
   const [imagen, setImagen] = useState(null);
+  const [formImagen, setFormImagen] = useState(null);
   const [fecha, setFecha] = useState({
     inicio: { ...inicio },
+    inicioFormt: fechaActual,
     cierre: { ...cierre },
+    cierreFormt: fechaMas1,
+    error: false,
   });
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
   const { Title } = Typography;
-  const { TextArea } = Input;
 
-  const convertDate = (date) => {
-    const convertDate = String({ ...date }._d).split(" ");
-    const dates = {
-      semana: convertirSemana(convertDate[0]),
-      mes: convertirMes(convertDate[1]),
-      dia: convertDate[2],
-      año: convertDate[3],
-      hora: convertDate[4],
-    };
-    return dates;
-  };
   const onChangeInicio = (date) => {
     const dates = convertDate(date);
 
-    setFecha({ ...fecha, inicio: { ...dates } });
+    setFecha({ ...fecha, inicio: { ...dates }, inicioFormt: date._d });
   };
   const onChangeCierre = (date) => {
     const dates = convertDate(date);
 
-    setFecha({ ...fecha, cierre: { ...dates } });
+    setFecha({ ...fecha, cierre: { ...dates }, cierreFormt: date._d });
+  };
+
+  const valFecha = () => {
+    if (!validarFecha(fecha.inicio, fecha.cierre)) {
+      setFecha({
+        ...fecha,
+        error: true,
+      });
+      return false;
+    } else {
+      setFecha({
+        ...fecha,
+        error: false,
+      });
+      return true;
+    }
+  };
+
+  const onSubmit = (data, e) => {
+    const valida = valFecha();
+    if (!valida) {
+      return;
+    }
+    console.log(data);
+    console.log(fecha.inicioFormt);
+    console.log(fecha.cierreFormt);
+    const algo = convertirImagen(formImagen);
+    console.log(formImagen);
+    console.log(algo);
+    resetValues(e);
+  };
+
+  const resetValues = (e) => {
+    setImagen(null);
+    setFormImagen(null);
+    setFecha({
+      ...fecha,
+      inicio: { ...inicio },
+      cierre: { ...cierre },
+    });
+    e.target.reset();
   };
 
   return (
@@ -49,8 +91,21 @@ export default function CrearEventos() {
         <Title level={2}>Crear Eventos</Title>
       </div>
       <div className="contend">
-        <form className="form-eventos">
-          <input className="input-title" placeholder="Titulo del Evento" />
+        <form
+          className="form-eventos"
+          id="formEvento"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <input
+            className="input-title"
+            placeholder="Titulo del Evento"
+            {...register("titulo", { required: true })}
+          />
+          {errors.titulo && (
+            <span className="spanError errorTitle">
+              Este campo es obligatorio
+            </span>
+          )}
           <hr className="event-hr" />
           <div className="cont-options">
             <div className="cont-options-img">
@@ -68,6 +123,7 @@ export default function CrearEventos() {
                 name="imagen"
                 accept="image/*"
                 onChange={(e) => {
+                  setFormImagen(e.target.files[0]);
                   setImagen(URL.createObjectURL(e.target.files[0]));
                 }}
               />
@@ -91,7 +147,11 @@ export default function CrearEventos() {
                     />
                   </div>
                 </div>
-
+                {fecha.error && (
+                  <span className="spanError">
+                    La fecha inicial debe ser antes de la de cierre
+                  </span>
+                )}
                 <div className="contenedorDate">
                   <div className="right-date">
                     <Title level={4}>Cierre</Title>
@@ -115,34 +175,82 @@ export default function CrearEventos() {
                 <div className="contenedor-inputs">
                   <div className="inputs-info">
                     <div className="inputs-info-right">
-                      <label htmlFor="lugar">{"Lugar: "}</label>
-                      <input id="lugar" className="inputs-Eventos" />
-                      <label htmlFor="tematica">{"Tematica: "}</label>
-                      <input id="tematica" className="inputs-Eventos" />
+                      <label htmlFor="lugar">{"Lugar: (*)"}</label>
+                      <input
+                        id="lugar"
+                        name="lugar"
+                        className="inputs-Eventos"
+                        {...register("lugar", { required: true })}
+                      />
+                      {errors.lugar && (
+                        <span className="spanError">
+                          Este campo es obligatorio
+                        </span>
+                      )}
+                      <label htmlFor="tematica">{"Tematica: (*)"}</label>
+                      <input
+                        id="tematica"
+                        name="tematica"
+                        className="inputs-Eventos"
+                        {...register("tematica", { required: true })}
+                      />
+                      {errors.tematica && (
+                        <span className="spanError">
+                          Este campo es obligatorio
+                        </span>
+                      )}
                       <label htmlFor="direccion">{"Dirección: "}</label>
-                      <input id="direccion" className="inputs-Eventos" />
+                      <input
+                        id="direccion"
+                        name="direccion"
+                        className="inputs-Eventos"
+                        {...register("direccion")}
+                      />
                     </div>
                     <div className="inputs-info-left">
-                      <label htmlFor="anfitrion">{"Anfitrión: "}</label>
-                      <input id="anfitrion" className="inputs-Eventos" />
-                      <label htmlFor="aforo">{"Aforo: "}</label>
+                      <label htmlFor="aforo">{"Aforo: (*)"}</label>
                       <input
                         id="aforo"
                         className="inputs-Eventos"
                         type="number"
+                        name="aforo"
+                        {...register("aforo", { required: true })}
                       />
-                      <label htmlFor="boletas">{"Boletas Permitidas: "}</label>
+                      {errors.aforo && (
+                        <span className="spanError">
+                          Este campo es obligatorio
+                        </span>
+                      )}
+                      <label htmlFor="boletas">
+                        {"Boletas Permitidas: (*)"}
+                      </label>
                       <input
                         id="boletas"
                         className="inputs-Eventos"
                         type="number"
+                        name="boletas"
+                        {...register("boletas", { required: true })}
+                      />
+                      {errors.boletas && (
+                        <span className="spanError">
+                          Este campo es obligatorio
+                        </span>
+                      )}
+
+                      <label htmlFor="anfitrion">{"Anfitrión: "}</label>
+                      <input
+                        id="anfitrion"
+                        name="anfitrion"
+                        className="inputs-Eventos"
+                        {...register("anfitrion")}
                       />
                     </div>
                   </div>
-                  <TextArea
+                  <textarea
                     className="input-textarea"
                     placeholder="Descripción"
-                    rows={1}
+                    name="descripcion"
+                    {...register("descripcion")}
                   />
                 </div>
               </div>
@@ -150,7 +258,12 @@ export default function CrearEventos() {
           </div>
         </form>
       </div>
-      <button className="button-crearEv" type="primary" size="small">
+      <button
+        className="button-crearEv"
+        type="submit"
+        size="small"
+        form="formEvento"
+      >
         Crear Evento
       </button>
     </div>

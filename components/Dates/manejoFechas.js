@@ -1,16 +1,97 @@
+const fechaActual = new Date();
+
+let fechaMas1 = new Date();
+
+fechaMas1.setHours(fechaMas1.getHours() + 1);
+
+const agregar0 = (hora) => {
+  let hora0;
+  if (String(hora).length == 1) {
+    hora0 = "0" + hora;
+  } else {
+    hora0 = hora;
+  }
+  return hora0;
+};
+const horaActual = (tipo) => {
+  const horaI = `${agregar0(fechaActual.getHours())}:${agregar0(
+    fechaActual.getMinutes()
+  )}:${agregar0(fechaActual.getSeconds())}`;
+  const horaF = `${agregar0(fechaMas1.getHours())}:${agregar0(
+    fechaMas1.getMinutes()
+  )}:${agregar0(fechaMas1.getSeconds())}`;
+  return tipo ? horaI : horaF;
+};
+
+const semanaAc = (num) => {
+  let dia = num;
+  if (dia + 1 > 8) {
+    dia = 1;
+  }
+  switch (dia) {
+    case 1:
+      return "Lunes";
+    case 2:
+      return "Martes";
+    case 3:
+      return "Miercoles";
+    case 4:
+      return "Jueves";
+    case 5:
+      return "Viernes";
+    case 6:
+      return "Sabado";
+    case 7:
+      return "Domingo";
+  }
+};
+
+const mesAc = (num) => {
+  let mes = num;
+  if (mes + 1 > 12) {
+    mes = 1;
+  }
+  switch (mes) {
+    case 0:
+      return "Enero";
+    case 1:
+      return "Febrero";
+    case 2:
+      return "Marzo";
+    case 3:
+      return "Abril";
+    case 4:
+      return "Mayo";
+    case 5:
+      return "Junio";
+    case 6:
+      return "Julio";
+    case 7:
+      return "Agosto";
+    case 8:
+      return "Septiembre";
+    case 9:
+      return "Octubre";
+    case 10:
+      return "Noviembre";
+    case 11:
+      return "Diciembre";
+  }
+};
+
 const inicio = {
-  semana: "Lunes",
-  dia: 24,
-  mes: "Marzo",
-  año: "2021",
-  hora: "12:31:34",
+  semana: semanaAc(fechaActual.getDay()),
+  dia: fechaActual.getDate(),
+  mes: mesAc(fechaActual.getMonth()),
+  año: fechaActual.getFullYear(),
+  hora: horaActual(true),
 };
 const cierre = {
-  semana: "Jueves",
-  dia: 27,
-  mes: "Marzo",
-  año: "2021",
-  hora: "14:31:27",
+  semana: semanaAc(fechaMas1.getDay()),
+  dia: fechaMas1.getDate(),
+  mes: mesAc(fechaMas1.getMonth()),
+  año: fechaMas1.getFullYear(),
+  hora: horaActual(false),
 };
 
 const convertirSemana = (semana) => {
@@ -61,4 +142,88 @@ const convertirMes = (mes) => {
   }
 };
 
-export { convertirSemana, cierre, inicio, convertirMes };
+const convertirMesNum = (mes) => {
+  switch (mes) {
+    case "Enero":
+      return 1;
+    case "Febrero":
+      return 2;
+    case "Marzo":
+      return 3;
+    case "Abril":
+      return 4;
+    case "Mayo":
+      return 5;
+    case "Junio":
+      return 6;
+    case "Julio":
+      return 7;
+    case "Agosto":
+      return 8;
+    case "Septiembre":
+      return 9;
+    case "Octubre":
+      return 10;
+    case "Noviembre":
+      return 11;
+    case "Diciembre":
+      return 12;
+  }
+};
+
+const convertDate = (date) => {
+  const convertDate = String({ ...date }._d).split(" ");
+  const dates = {
+    semana: convertirSemana(convertDate[0]),
+    mes: convertirMes(convertDate[1]),
+    dia: convertDate[2],
+    año: convertDate[3],
+    hora: convertDate[4],
+  };
+  return dates;
+};
+
+const convertirImagen = (imagen) => {
+  const formdata = new FormData();
+  formdata.append("image", imagen);
+  return formdata;
+};
+
+const validarFecha = (fechaI, fechaF) => {
+  if (parseInt(fechaF.año) < parseInt(fechaI.año)) {
+    return false;
+  } else if (convertirMesNum(fechaF.mes) < convertirMesNum(fechaI.mes)) {
+    return false;
+  } else if (parseInt(fechaF.dia) < parseInt(fechaI.dia)) {
+    return false;
+  } else if (
+    parseInt(fechaF.hora.substr(0, 2)) < parseInt(fechaI.hora.substr(0, 2))
+  ) {
+    return false;
+  } else if (
+    parseInt(fechaF.hora.substr(3, 2)) < parseInt(fechaI.hora.substr(3, 2))
+  ) {
+    return false;
+  } else if (
+    parseInt(fechaF.hora.substr(6, 2)) < parseInt(fechaI.hora.substr(6, 2))
+  ) {
+    return false;
+  } else {
+    return true;
+  }
+};
+
+/*dia: fechaActual.getDate(),
+  mes: mesAc(fechaActual.getMonth()),
+  año: fechaActual.getFullYear(),
+  hora: horaActual(true),*/
+
+export {
+  cierre,
+  inicio,
+  convertDate,
+  convertirImagen,
+  fechaActual,
+  fechaMas1,
+  validarFecha,
+};
