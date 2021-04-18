@@ -2,34 +2,35 @@ import React, { useState, useContext } from 'react';
 import { Popconfirm, message } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 import propTypes from 'prop-types';
-import { cardContext } from '../../context/cardContext';
-import data from '../data.json'; //simulacion de bd
+import { CardContext } from '../../context/cardContext';
+import { deleteEvento } from '../database/eventosCrud'
 
 export default function DeleteButton({ id }) {
     const [visible, setVisible] = useState(false);
 
-    const { generarEventos } = useContext(cardContext);
+    const { generarEventos } = useContext(CardContext);
 
     const showPopconfirm = () => {//
         setVisible(true);
     };
 
-    const borrar = () => {
-        //peticion a servidor para eleminiar un elemento
-        data.eventos.map((v, i) => {
-            if (v.id === id) { data.eventos.splice(i, 1) }
-        })
-    }
-
-    const handleOk = () => {
-        const config = { key: 'deleteEvent', style: {marginTop: '15vh'}}
+    const handleOk = async () => {
+        const config = { key: 'deleteEvent', style: { marginTop: '15vh' } }
         message.loading({ content: 'Eliminando evento...', ...config });
-        setTimeout(() => {
+        //peticion a servidor para eleminiar un elemento
+        try {
+            const resp = await deleteEvento(id);
+            if (resp) {
+                console.log('El evento fue eliminado');
+                setVisible(false);
+                generarEventos();
+                message.success({ content: 'Evento eliminado', duration: 2, ...config });
+            }
+        } catch (e) {
+            console.log(e);
             setVisible(false);
-            borrar();
-            generarEventos(); //temporalmente mientras se termina el servidor
-            message.success({ content: 'Evento eliminado', duration: 2, ...config });
-        }, 2000);
+            message.error({ content: 'El Evento no pudo ser eliminado', duration: 2, ...config });
+        }
     };
 
     const handleCancel = () => {

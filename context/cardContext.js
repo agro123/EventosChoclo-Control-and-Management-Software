@@ -1,42 +1,37 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState } from 'react';
 import EventoCard from '../components/listarEventos/eventoCard';
-import data from '../components/data.json'; // simulacion bd
 
-export const cardContext = createContext();
+export const CardContext = createContext();
 
 export const CardProvider = ({ children }) => {
     const [eventos, setEventos] = useState([]);
-    useEffect(() => {
-        generarEventos()
-    }, [])
+    const [data, setData] = useState([]);
 
-    const generarEventos = () => {
-        //traer la informacion de la bd a el componente EventoCard;
-        const cards = [];
-        data.eventos.map((v, i) => {
-            cards.push(
+    const generarEventos = (d = data) => {
+        let cards = [];
+        d.map((v, i) => {
+            cards = [...cards, (
                 <EventoCard
-                    imagen={v.imagen}
-                    titulo={v.titulo}
-                    fecha_inicial={v.fecha_inicial}
-                    fecha_final={v.fecha_final}
-                    descripcion={v.descripcion}
-                    lugar={v.lugar}
-                    id={v.id}
+                    info={v}
                     key={i}
-                />)
+                />)]
         })
         setEventos(cards);
     }
+    const changeData = d => {
+        setData(d);
+        generarEventos(d);
+    }
+
     return (
-        <cardContext.Provider value={
+        <CardContext.Provider value={
             {
                 eventos,
-                setEventos,
-                generarEventos
+                generarEventos,
+                changeData,
             }
         }>
-            { children}
-        </cardContext.Provider>
+            {children}
+        </CardContext.Provider>
     )
 }

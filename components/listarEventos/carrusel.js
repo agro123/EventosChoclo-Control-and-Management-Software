@@ -1,14 +1,28 @@
-import React, { useContext } from 'react';
+import React, { useContext,useEffect } from 'react';
 import { Carousel } from "antd";
-import { cardContext } from '../../context/cardContext';
+import { CardContext } from '../../context/cardContext';
+import { getEventos } from '../database/eventosCrud';
 
+const contentStyle = {
+    height: "600px",
+    background: "inherit",
+};
 export default function Carrusel() {
-    const { eventos } = useContext(cardContext);
+    const { eventos, changeData } = useContext(CardContext);
+    
+    useEffect(async () => {
+        try {
+            const data = await getEventos();
+            if (data) {
+                console.log("Informacion cargada:", data)
+                changeData(data);
+            }
+        } catch (e) {
+            console.log("Ocurrio un error:", e)
+        }
+    }, [])
+    
 
-    const contentStyle = {
-        height: "600px",
-        background: "inherit",
-    };
     return (
         <div className="carruselEventoAdmin">
             <div className="carruselHeader">
