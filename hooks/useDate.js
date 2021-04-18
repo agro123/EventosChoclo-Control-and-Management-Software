@@ -1,6 +1,7 @@
-export const useDate = (date) => { //recibe un arreglo strings que contienen fechas en formato dd/mm/aa y retorna un dato especifico de las fechas
-    const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto",
+const meses = ["no","Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto",
         "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+
+export const useDate = (date) => { //recibe un arreglo strings que contienen fechas en formato dd/mm/aa y retorna un dato especifico de las fechas
 
     const cut = (num) => date[num].split('/');
     
@@ -22,6 +23,6 @@ export const useDate = (date) => { //recibe un arreglo strings que contienen fec
         month,
         day,
         year,
-        sameDates
+        sameDates,
     }
 }

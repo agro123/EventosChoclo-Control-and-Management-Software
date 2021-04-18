@@ -1,33 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext,useEffect } from 'react';
 import { Carousel } from "antd";
-import EventoCard from './eventoCard';
-import data from '../data.json'
+import { CardContext } from '../../context/cardContext';
+import { getEventos } from '../database/eventosCrud';
 
+const contentStyle = {
+    height: "600px",
+    background: "inherit",
+};
 export default function Carrusel() {
-    const contentStyle = {
-        height: "600px",
-        background: "inherit",
-    };
-    const [eventos, setEventos] = useState([]);
-    useEffect(() => {
-        generarEventos()
+    const { eventos, changeData } = useContext(CardContext);
+    
+    useEffect(async () => {
+        try {
+            const data = await getEventos();
+            if (data) {
+                console.log("Informacion cargada:", data)
+                changeData(data);
+            }
+        } catch (e) {
+            console.log("Ocurrio un error:", e)
+        }
     }, [])
-
-    const generarEventos = () => {
-        //Pasar la informacion de la bd a el componente EventoCard;
-        const cards = [];
-        data.eventos.map((v,i) => {
-            cards.push(<EventoCard 
-                imagen={v.imagen} 
-                titulo={v.titulo} 
-                fecha_inicial={v.fecha_inicial}
-                fecha_final={v.fecha_final}
-                descripcion={v.descripcion}
-                lugar={v.lugar}
-                key={i}/>)
-        })
-        setEventos(cards);
-    }
+    
 
     return (
         <div className="carruselEventoAdmin">
