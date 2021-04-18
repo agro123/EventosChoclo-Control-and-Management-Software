@@ -1,5 +1,6 @@
 import React from "react";
 import { inicio } from "./manejoFechas";
+import PropTypes from "prop-types";
 
 const CardDate = ({
   semana = inicio.semana,
@@ -22,6 +23,14 @@ const CardDate = ({
       </div>
     </div>
   );
+};
+
+CardDate.propTypes = {
+  semana: PropTypes.string.isRequired,
+  dia: PropTypes.number.isRequired,
+  mes: PropTypes.string.isRequired,
+  año: PropTypes.number.isRequired,
+  hora: PropTypes.string.isRequired,
 };
 
 export default CardDate;
