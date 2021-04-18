@@ -28,18 +28,18 @@ describe('Probando DeleteButton', () => {
     //pos puede ser 0 para cancelar o 1 para confirmar
     const clickConfirm = (pos) => wrapper.find('button').at(pos).simulate('click')
 
-    test('Boton confirmar', async () => {
+    /* test('Boton confirmar', async () => {
         clickDelete();
         expect(wrapper.find('DeleteButton')).toMatchSnapshot()
-        /* clickConfirm(1);
+        clickConfirm(1);
         expect(wrapper.find('button').at(1)).toMatchSnapshot()
         const found = await getEventoById(123);
         console.log(found)
-        /* clickConfirm(1); */
-        /* const found = await getEventoById(123);
+        clickConfirm(1); 
+        const found = await getEventoById(123);
         expect(found).toMatch('Not found')
-        wrapper.unmount(); */
-    })
+        wrapper.unmount(); 
+    }) */
     /* test('Boton cancelar', async () => {
         expect(wrapper.find('DeleteButton')).toMatchSnapshot()
         clickDelete();
