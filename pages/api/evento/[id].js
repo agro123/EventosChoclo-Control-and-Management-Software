@@ -16,7 +16,8 @@ export default async (req, res) => {
       nom_imagen, 
       tipo, 
       datos, 
-      tematica},
+      tematica, 
+      direccion},
   } = req
       
     switch (method) {
@@ -37,6 +38,7 @@ export default async (req, res) => {
           tipo = '${tipo}', 
           datos = '${datos}', 
           tematica = '${tematica}'
+          direccion = '${direccion}'
           WHERE id_evento = ${id}`
         );
         res.status(200).json('hiciste un put');

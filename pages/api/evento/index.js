@@ -42,7 +42,8 @@ apiRoute.post(async(req, res) => {
       descripcion,
       lugar,
       anfitrion,
-      tematica },
+      tematica,
+      direccion },
   } = req
 
   
@@ -52,9 +53,9 @@ apiRoute.post(async(req, res) => {
   console.log(file, nom_imagen, tipo, datos)
   await pool.query(
     `INSERT INTO hola (titulo, fecha_inicial, fecha_final, num_boletas, descripcion,
-      lugar, anfitrion, nom_imagen, tipo, datos, tematica)
+      lugar, anfitrion, nom_imagen, tipo, datos, tematica, direccion)
       VALUES('${titulo}', '${fecha_inicial}', '${fecha_final}', ${num_boletas}, '${descripcion}',
-        '${lugar}', '${anfitrion}', '${nom_imagen}', '${tipo}', ${datos}, '${tematica}')`
+        '${lugar}', '${anfitrion}', '${nom_imagen}', '${tipo}', ${datos}, '${tematica}', '${direccion})`
   );
   res.status(200).json('hiciste un post');
 
