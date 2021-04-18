@@ -8,6 +8,16 @@ body {
   font-family: 'Libre Franklin',-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
+:root {
+  --black: #222831;
+  --gray: #393E46;
+  --midGray: #979A9C;
+  --white: #EEEEEE;
+  --green: #9EDE73;
+  --yellow: #F7EA00;
+  --orange: #E48900;
+  --red: #BE0000;
+}
 
 a {
   color: inherit;

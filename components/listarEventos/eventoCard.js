@@ -7,11 +7,11 @@ import { useDate } from '../../hooks/useDate';
 
 export default function EventoCard({ info }) {
     const { imagen, titulo,fecha_inicial, fecha_final, descripcion, lugar, id } = info;
-
-    const [loading, setLoading] = useState(true);
+    
     const { day, month, sameDates } = useDate([fecha_inicial, fecha_final]);
-
-    const onChange = () => { setLoading(false); }
+    
+    /* const [loading, setLoading] = useState(true);
+    const onChange = () => { setLoading(false); } */
 
     const mismoDia = () => {
         let u = ""
@@ -27,11 +27,11 @@ export default function EventoCard({ info }) {
     const onClick = e => {
         console.log("editar")
     }
-    setTimeout(onChange, 1000);
+/*     setTimeout(onChange, 1000); */
 
     return (
         <div className="eventoCard">
-            <Skeleton loading={loading} active>
+            {/* <Skeleton loading={loading} active> */}
                 <Card
                     style={{
                         width: 200,
@@ -67,7 +67,7 @@ export default function EventoCard({ info }) {
                         <p style={{ textAlign: "center" }}>{lugar || "SomeWhere"}</p>
                     </div>
                 </Card>
-            </Skeleton>
+            {/* </Skeleton> */}
         </div >
     )
 }

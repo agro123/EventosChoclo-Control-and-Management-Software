@@ -2,7 +2,7 @@
     padding: 0px  ;
 }
 .eventoCard .ant-card-actions {
-    background-color: rgba(255, 255, 255, 0);
+    background-color: transparent;
 }
 .eventoCard .ant-card-head {
     padding: 0px 0px ;
@@ -23,10 +23,10 @@
 
 .carruselEventoAdmin .ant-carousel .slick-dots li button  {
     height: 10px;
-    background: #F7EA00;
+    background: var(--yellow);
 }
 
 .carruselEventoAdmin .ant-carousel .slick-dots li.slick-active button{
-    background: #9EDE73;
+    background: var(--green);
     height: 12px;
 }
