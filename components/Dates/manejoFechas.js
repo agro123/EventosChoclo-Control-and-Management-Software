@@ -25,10 +25,13 @@ const horaActual = (tipo) => {
 
 const semanaAc = (num) => {
   let dia = num;
-  if (dia + 1 > 8) {
-    dia = 1;
+
+  if (dia + 1 > 7) {
+    dia = 0;
   }
   switch (dia) {
+    case 0:
+      return "Domingo";
     case 1:
       return "Lunes";
     case 2:
@@ -41,8 +44,6 @@ const semanaAc = (num) => {
       return "Viernes";
     case 6:
       return "Sabado";
-    case 7:
-      return "Domingo";
   }
 };
 
@@ -190,33 +191,30 @@ const convertirImagen = (imagen) => {
 };
 
 const validarFecha = (fechaI, fechaF) => {
-  if (parseInt(fechaF.año) < parseInt(fechaI.año)) {
-    return false;
-  } else if (convertirMesNum(fechaF.mes) < convertirMesNum(fechaI.mes)) {
-    return false;
-  } else if (parseInt(fechaF.dia) < parseInt(fechaI.dia)) {
-    return false;
-  } else if (
-    parseInt(fechaF.hora.substr(0, 2)) < parseInt(fechaI.hora.substr(0, 2))
-  ) {
-    return false;
-  } else if (
-    parseInt(fechaF.hora.substr(3, 2)) < parseInt(fechaI.hora.substr(3, 2))
-  ) {
-    return false;
-  } else if (
-    parseInt(fechaF.hora.substr(6, 2)) < parseInt(fechaI.hora.substr(6, 2))
-  ) {
-    return false;
-  } else {
+  console.log("Inicial", fechaI);
+  console.log("Final", fechaF);
+  if (parseInt(fechaF.año) > parseInt(fechaI.año)) {
     return true;
+  } else if (convertirMesNum(fechaF.mes) > convertirMesNum(fechaI.mes)) {
+    return true;
+  } else if (parseInt(fechaF.dia) > parseInt(fechaI.dia)) {
+    return true;
+  } else if (
+    parseInt(fechaF.hora.substr(0, 2)) > parseInt(fechaI.hora.substr(0, 2))
+  ) {
+    return true;
+  } else if (
+    parseInt(fechaF.hora.substr(3, 2)) > parseInt(fechaI.hora.substr(3, 2))
+  ) {
+    return true;
+  } else if (
+    parseInt(fechaF.hora.substr(6, 2)) > parseInt(fechaI.hora.substr(6, 2))
+  ) {
+    return true;
+  } else {
+    return false;
   }
 };
-
-/*dia: fechaActual.getDate(),
-  mes: mesAc(fechaActual.getMonth()),
-  año: fechaActual.getFullYear(),
-  hora: horaActual(true),*/
 
 export {
   cierre,

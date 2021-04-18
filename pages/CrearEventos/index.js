@@ -24,6 +24,11 @@ export default function CrearEventos() {
     cierreFormt: fechaMas1,
     error: false,
   });
+
+  const [inputFecha, setInputFecha] = useState({
+    inicio: null,
+    cierre: null,
+  });
   const {
     register,
     handleSubmit,
@@ -36,16 +41,32 @@ export default function CrearEventos() {
   const onChangeInicio = (date) => {
     const dates = convertDate(date);
 
-    setFecha({ ...fecha, inicio: { ...dates }, inicioFormt: date._d });
+    setFecha({
+      ...fecha,
+      inicio: date ? { ...dates } : inicio,
+      inicioFormt: date ? date._d : fechaActual,
+    });
+    setInputFecha({
+      ...inputFecha,
+      inicio: date ? date : null,
+    });
   };
   const onChangeCierre = (date) => {
     const dates = convertDate(date);
-
-    setFecha({ ...fecha, cierre: { ...dates }, cierreFormt: date._d });
+    setFecha({
+      ...fecha,
+      cierre: date ? { ...dates } : cierre,
+      cierreFormt: date ? date._d : fechaMas1,
+    });
+    setInputFecha({
+      ...inputFecha,
+      cierre: date ? date : null,
+    });
   };
 
   const valFecha = () => {
-    if (!validarFecha(fecha.inicio, fecha.cierre)) {
+    const valida = validarFecha(fecha.inicio, fecha.cierre);
+    if (!valida) {
       setFecha({
         ...fecha,
         error: true,
@@ -80,7 +101,13 @@ export default function CrearEventos() {
     setFecha({
       ...fecha,
       inicio: { ...inicio },
+      inicioFormt: fechaActual,
       cierre: { ...cierre },
+      cierreFormt: fechaMas1,
+    });
+    setInputFecha({
+      inicio: null,
+      cierre: null,
     });
     e.target.reset();
   };
@@ -138,7 +165,9 @@ export default function CrearEventos() {
                   </div>
                   <div className="fecha">
                     <DatePicker
+                      id="fechaInicio"
                       name="inicio"
+                      value={inputFecha.inicio}
                       onChange={onChangeInicio}
                       className="place-pick"
                       locale="es"
@@ -160,7 +189,9 @@ export default function CrearEventos() {
                   </div>
                   <div className="fecha">
                     <DatePicker
+                      id="fechaCierre"
                       name="cierre"
+                      value={inputFecha.cierre}
                       onChange={onChangeCierre}
                       className="place"
                       placeholder="Fecha Cierre"
