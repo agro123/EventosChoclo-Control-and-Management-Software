@@ -13,10 +13,14 @@ import {
 import { DatePicker } from "antd";
 import { Typography } from "antd";
 import { Image } from "antd";
+import axios from "axios";
 
 export default function CrearEventos() {
+  //Estado de la imagen como URL para mostrarla
   const [imagen, setImagen] = useState(null);
+  //Estado de la imagen formateada para enviarla
   const [formImagen, setFormImagen] = useState(null);
+  //Estado de fecha tanto formateada como para las Cards
   const [fecha, setFecha] = useState({
     inicio: { ...inicio },
     inicioFormt: fechaActual,
@@ -24,11 +28,12 @@ export default function CrearEventos() {
     cierreFormt: fechaMas1,
     error: false,
   });
-
+  //Estado del input de fecha solo para mostrarlo
   const [inputFecha, setInputFecha] = useState({
     inicio: null,
     cierre: null,
   });
+  //Hook Form con el estado de todos los inputs del formulario
   const {
     register,
     handleSubmit,
@@ -37,7 +42,7 @@ export default function CrearEventos() {
   } = useForm();
 
   const { Title } = Typography;
-
+  //SetValue de la fecha de incio, tanto la del input como para la Card
   const onChangeInicio = (date) => {
     const dates = convertDate(date);
 
@@ -51,6 +56,7 @@ export default function CrearEventos() {
       inicio: date ? date : null,
     });
   };
+  //SetValue de la fecha de cierre, tanto la del input como para la Card
   const onChangeCierre = (date) => {
     const dates = convertDate(date);
     setFecha({
@@ -64,6 +70,7 @@ export default function CrearEventos() {
     });
   };
 
+  //Se valida ue la fecha inicial sea menor ue la final
   const valFecha = () => {
     const valida = validarFecha(fecha.inicio, fecha.cierre);
     if (!valida) {
@@ -81,20 +88,45 @@ export default function CrearEventos() {
     }
   };
 
-  const onSubmit = (data, e) => {
+  //Envio de datos del evento
+  const onSubmit = async (data, e) => {
     const valida = valFecha();
     if (!valida) {
       return;
     }
-    console.log(data);
-    console.log(fecha.inicioFormt);
-    console.log(fecha.cierreFormt);
-    const algo = convertirImagen(formImagen);
-    console.log(formImagen);
-    console.log(algo);
-    resetValues(e);
-  };
 
+    const formdata = convertirImagen(formImagen);
+
+    try {
+      const idImagen = await axios.post("/api/imagen", formdata);
+
+      if (idImagen.status === 200) {
+        const body = {
+          titulo: data.titulo,
+          fecha_inicial: fecha.inicioFormt,
+          fecha_final: fecha.cierreFormt,
+          num_boletas: parseInt(data.boletas),
+          aforo: parseInt(data.aforo),
+          descripcion: data.descripcion,
+          lugar: data.lugar,
+          anfitrion: data.anfitrion,
+          tematica: data.tematica,
+          direccion: data.direccion,
+          id_imagen: idImagen.data.id_imagen,
+        };
+
+        const respuesta = await axios.post("/api/evento", body);
+
+        alert(respuesta.data);
+        resetValues(e);
+      } else {
+        alert("No se pudo enviar la imagen, intente de nuevo");
+      }
+    } catch (e) {
+      alert(e);
+    }
+  };
+  //Reset de todos los datos
   const resetValues = (e) => {
     setImagen(null);
     setFormImagen(null);
@@ -141,7 +173,11 @@ export default function CrearEventos() {
                   preview={false}
                   width="100%"
                   height="100%"
-                  src={imagen}
+                  src={
+                    imagen ||
+                    "https://i.pinimg.com/originals/50/f6/0a/50f60a6eb9966f0cbbfa8ef052b0d3ed.jpg"
+                  }
+                  alt="Imagen del Evento"
                 />
               </div>
               <input

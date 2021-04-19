@@ -184,15 +184,13 @@ const convertDate = (date) => {
   return dates;
 };
 
-const convertirImagen = (imagen) => {
+const convertirImagen = (file) => {
   const formdata = new FormData();
-  formdata.append("image", imagen);
+  formdata.append("image", file);
   return formdata;
 };
 
 const validarFecha = (fechaI, fechaF) => {
-  console.log("Inicial", fechaI);
-  console.log("Final", fechaF);
   if (parseInt(fechaF.año) > parseInt(fechaI.año)) {
     return true;
   } else if (convertirMesNum(fechaF.mes) > convertirMesNum(fechaI.mes)) {
@@ -217,6 +215,9 @@ const validarFecha = (fechaI, fechaF) => {
 };
 
 export {
+  agregar0,
+  semanaAc,
+  convertirMes,
   cierre,
   inicio,
   convertDate,
