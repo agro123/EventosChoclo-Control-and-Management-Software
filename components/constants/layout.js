@@ -19,17 +19,17 @@ export default function MyLayout({ children }) {
           <header className='header'>
             <Logo />
             <div className="menu-header">
-              <Option label="Inicio" url="./" />
-              <Option label="Item" url="./" />
-              <Option label="Item" url="./" />
-              <Option label="Item" url="./" />
-              <Option label="Item" url="./" />
+              <Option label="Inicio" url="/" />
+              <Option label="Item" url="/" />
+              <Option label="Item" url="/" />
+              <Option label="Item" url="/" />
+              <Option label="Item" url="/" />
             </div>
             <Link href="https://www.youtube.com/">
               <div className="login-header">
                 <Image preview={false}
-                  width="70px"
-                  height="70px"
+                  width="50px"
+                  height="50px"
                   src="https://img.icons8.com/cotton/2x/login-rounded-right--v2.png"
                 />
                 <Option label="Ingresar" url="https://www.youtube.com/" />
