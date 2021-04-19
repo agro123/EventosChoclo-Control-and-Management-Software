@@ -8,7 +8,7 @@ const contentStyle = {
     height: "600px",
     background: "inherit",
 };
-const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+const antIcon = <LoadingOutlined style={{ fontSize: 72 }} spin />;
 
 export default function Carrusel() {
     const { eventos, changeData } = useContext(CardContext);
