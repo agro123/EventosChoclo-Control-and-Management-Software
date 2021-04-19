@@ -35,17 +35,20 @@ apiRoute.post(async(req, res) => {
 
   const nom_imagen = file.originalname;
   const tipo = file.mimetype;
-  const datos = fs.readFileSync( `./public/imagenes/${file.filename}`);
+  const datos = fs.readFileSync( `./imagenes/${file.filename}`);
   console.log(datos)
+
   const response = await pool.query(
     `INSERT INTO imagenes (nom_imagen, tipo, datos)
-      VALUES($1, $2, $3) returning id_imagen `,[nom_imagen, tipo, datos]
+      VALUES($1, $2, $3) returning id_imagen`,[nom_imagen, tipo, datos]
   );
-  res.status(200).json(response.rows[0]);
 
+  res.status(200).json(response.rows[0]);
 });
 
+
 export default apiRoute;
+
 
 export const config = {
   api: {

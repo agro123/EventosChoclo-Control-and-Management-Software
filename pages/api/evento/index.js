@@ -13,7 +13,8 @@ export default async (req, res) => {
         anfitrion,
         id_imagen,
         tematica,
-        direccion},
+        direccion,
+      aforo},
     } = req
 
     switch (method) {
@@ -23,10 +24,21 @@ export default async (req, res) => {
         break
       case 'POST':
         await pool.query(
-          `INSERT INTO hola (titulo, fecha_inicial, fecha_final, num_boletas, descripcion,
-            lugar, anfitrion, id_imagen, tematica, direccion)
-            VALUES('${titulo}', '${fecha_inicial}', '${fecha_final}', ${num_boletas}, '${descripcion}',
-              '${lugar}', '${anfitrion}', ${id_imagen},'${tematica}', '${direccion}')`
+          `INSERT INTO evento (titulo, fecha_inicial, fecha_final, num_boletas, descrip,
+            lugar, anfitrion, id_imagen, tematica, direccion, aforo)
+            VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`, 
+            [
+              titulo,
+              fecha_inicial,
+              fecha_final,
+              num_boletas,
+              descripcion,
+              lugar,
+              anfitrion,
+              id_imagen,
+              tematica,
+              direccion,
+              aforo]
         );
         res.status(200).json(`Se REGISTRO el evento ${titulo}`);
         break
