@@ -20,21 +20,13 @@ export default async (req, res) => {
           email='${email}' , celular='${celular}', direccion='${direccion}', password='${password}',
           rol=${rol}, saldo=${saldo} WHERE id_usuario = ${id}`
         );
-        res.status(200).json('hiciste un put');
-        break
-      case 'POST':
-        await pool.query(
-          `INSERT INTO usuario (cedula, apellido, nombre, email, celular, direccion, password, rol, saldo) 
-          VALUES('${cedula}', '${apellido}', '${nombre}', '${email}', '${celular}', '${direccion}', 
-          '${password}', ${rol}, ${saldo})`
-        );
-        res.status(200).json('hiciste un post');
+        res.status(200).json('Usuario ACTUALIZADO con exito');
         break
       case 'DELETE':
         await pool.query(
           `DELETE FROM usuario WHERE id_usuario = ${id}`
         );
-        res.status(200).json('hiciste un delete');
+        res.status(200).json('Usuario ELIMINADO con exito');
         break
     }
   } catch (e) {

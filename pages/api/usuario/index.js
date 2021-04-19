@@ -14,11 +14,11 @@ export default async (req, res) => {
         break
       case 'POST':
         await pool.query(
-          `INSERT INTO hola (cedula, apellido, nombre, email, celular, direccion, password, rol, saldo) 
+          `INSERT INTO usuario (cedula, apellido, nombre, email, celular, direccion, password, rol, saldo) 
           VALUES('${cedula}', '${apellido}', '${nombre}', '${email}', '${celular}', '${direccion}', 
           '${password}', ${rol}, ${saldo})`
         );
-        res.status(200).json('hiciste un post');
+        res.status(200).json('Usuario REGISTRADO con exito');
         break
       default:
         res.setHeader('Allow', ['GET', 'POST']);

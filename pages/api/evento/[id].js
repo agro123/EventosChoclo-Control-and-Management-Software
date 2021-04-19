@@ -1,6 +1,5 @@
 import pool from "../../../lib/bd";
 
-
 export default async (req, res) => {
   try {
     const {
@@ -12,17 +11,14 @@ export default async (req, res) => {
       num_boletas, 
       descripcion, 
       lugar, 
-      anfitrion, 
-      nom_imagen, 
-      tipo, 
-      datos, 
+      anfitrion,
       tematica, 
       direccion},
   } = req
       
     switch (method) {
       case 'GET':
-        const evento = await pool.query(`SELECT * FROM evento where id_evento = ${id}`);
+        const evento = await pool.query(`select * from evento natural join imagenes where id_evento = ${id}`);
         res.status(200).json(evento.rows);
         break
       case 'PUT':
@@ -34,20 +30,17 @@ export default async (req, res) => {
           descripcion = '${descripcion}', 
           lugar = '${lugar}', 
           anfitrion = '${anfitrion}', 
-          nom_imagen = '${nom_imagen}', 
-          tipo = '${tipo}', 
-          datos = '${datos}', 
           tematica = '${tematica}'
           direccion = '${direccion}'
           WHERE id_evento = ${id}`
         );
-        res.status(200).json('hiciste un put');
+        res.status(200).json('Evento ACTUALIZADO');
         break
       case 'DELETE':
         await pool.query(
           `DELETE FROM evento WHERE id_evento = ${id}`
         );
-        res.status(200).json('hiciste un delete');
+        res.status(200).json('Evento ELIMINADO');
         break
     } 
     //res.status(200).json('hola');

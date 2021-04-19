@@ -19,19 +19,13 @@ export default async (req, res) => {
           `UPDATE boleta SET  id_usuario = ${id_usuario}, id_evento= ${id_evento}
           WHERE id_boleta = ${id}`
         );
-        res.status(200).json('hiciste un put')
-        break
-      case 'POST':
-        await pool.query(
-          `INSERT INTO boleta (id_usuario, id_evento) VALUES(${id_usuario}, ${id_evento})`
-        );
-        res.status(200).json('hiciste un post')
+        res.status(200).json(`Se a ACTUALIZADO la boleta #${id}`)
         break
       case 'DELETE':
         await pool.query(
           `DELETE FROM boleta WHERE id_boleta = ${id}`
         )
-        res.status(200).json('hiciste un delete')
+        res.status(200).json(`Se a ELIMINADO la boleta #${id}`)
         break
     } 
   } catch (e) {

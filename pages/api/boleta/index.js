@@ -14,10 +14,11 @@ export default async (req, res) => {
         res.status(200).json(boleta.rows);
         break
       case 'POST':
-        await pool.query(
-          `INSERT INTO boleta (id_usuario, id_evento) VALUES(${id_usuario}, ${id_evento})`
+        const response = await pool.query(
+          `INSERT INTO boleta (id_usuario, id_evento) VALUES(${id_usuario}, ${id_evento}) returning id_boleta`
         );
-        res.status(200).json('hiciste un post');
+        const idBole = response.rows[0]
+        res.status(200).json(`Se REGISTRO la boleta #${idBole}`);
         break
       default:
         res.setHeader('Allow', ['GET', 'POST'])
