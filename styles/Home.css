@@ -1,5 +1,5 @@
 .title a {
-    color: #0070f3;
+    color: #08f300;
     text-decoration: none;
 }
 
@@ -42,7 +42,7 @@
     margin-top: 3rem;
 }
 
-.card {
+/* .card {
     margin: 1rem;
     flex-basis: 45%;
     padding: 1.5rem;
@@ -71,7 +71,7 @@
     font-size: 1.25rem;
     line-height: 1.5;
 }
-
+ */
 @media (max-width: 600px) {
     .grid {
         width: 100%;

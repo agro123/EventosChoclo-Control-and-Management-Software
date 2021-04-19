@@ -1,6 +1,9 @@
 import "../styles/globals.css";
 import "../styles/Home.css";
 import "../styles/constants.css";
+import '../styles/listarEventosAdmin.css';
+import '../styles/antdMod.css';
+import 'antd/dist/antd.css';
 import "../styles/crearEventos/eventos.css";
 import "../styles/crearEventos/cardDate.css";
 import Layout from "../components/constants/layout";
