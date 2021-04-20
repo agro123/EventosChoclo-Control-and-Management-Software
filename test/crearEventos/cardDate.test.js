@@ -20,6 +20,6 @@ describe("Comprueba si los se estan pasando bien los datos", () => {
 
   test("Debe coincidir la prop semana", () => {
     const hora = wrapper.find("p").at(3).text();
-    expect(hora).toBe("12:39:12");
+    expect(hora).toBe("12:39");
   });
 });
