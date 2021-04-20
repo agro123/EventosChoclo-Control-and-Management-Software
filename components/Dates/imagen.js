@@ -23,7 +23,7 @@ const ImagenEvento = ({ imagen, setFormImagen, setImagen, name }) => {
           alt="Imagen del Evento"
         />
       </div>
-      <label class="custom-file-upload">
+      <label className="custom-file-upload">
         <input
           className="input-img"
           type="file"

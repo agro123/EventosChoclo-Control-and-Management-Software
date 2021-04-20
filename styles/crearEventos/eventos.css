@@ -17,11 +17,13 @@
 .contend {
   display: flex;
   height: 100%;
-  width: 80%;
+  width: 100%;
   background: #ffff;
   border-radius: 20px;
   padding: 3%;
   min-width: 670px;
+  justify-content: center;
+  align-items: center;
 }
 
 .form-eventos {
