@@ -179,7 +179,7 @@ const convertDate = (date) => {
     mes: convertirMes(convertDate[1]),
     dia: parseInt(convertDate[2]),
     año: parseInt(convertDate[3]),
-    hora: convertDate[4],
+    hora: convertDate[4] ? convertDate[4].substr(0, 5) : convertDate[4],
   };
   return dates;
 };

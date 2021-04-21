@@ -54,6 +54,7 @@ const FechasEvento = ({
               placeholder="Fecha Cierre"
               showTime
               locale="es"
+              format="YYYY-MM-DD HH:mm Z"
             />
           </div>
         </div>

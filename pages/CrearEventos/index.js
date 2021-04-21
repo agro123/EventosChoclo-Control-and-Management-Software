@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { Spin, Button } from "antd";
 
 import {
   inicio,
@@ -10,14 +11,16 @@ import {
   fechaMas1,
   validarFecha,
 } from "../../components/Dates/manejoFechas";
-import { Button } from "antd";
 
 import axios from "axios";
+import { success, error, antIcon } from "../../components/alert/alert";
 import FormularioEventos from "../../components/Dates/inputs";
 import ImagenEvento from "../../components/Dates/imagen";
 import FechasEvento from "../../components/Dates/fechasEvento";
 
 export default function CrearEventos() {
+  const [loading, setLoading] = useState(false);
+
   //Estado de la imagen como URL para mostrarla
   const [imagen, setImagen] = useState(null);
   //Estado de la imagen formateada para enviarla
@@ -99,8 +102,8 @@ export default function CrearEventos() {
     const formdata = convertirImagen(formImagen);
 
     try {
+      setLoading(true);
       const idImagen = await axios.post("/api/imagen", formdata);
-
       if (idImagen.status === 200) {
         const body = {
           titulo: data.titulo,
@@ -118,13 +121,13 @@ export default function CrearEventos() {
 
         const respuesta = await axios.post("/api/evento", body);
 
-        alert(respuesta.data);
+        setLoading(false);
         resetValues(e);
-      } else {
-        alert("No se pudo enviar la imagen, intente de nuevo");
+        success(data.titulo);
       }
-    } catch (e) {
-      alert(e);
+    } catch (err) {
+      setLoading(false);
+      error();
     }
   };
   //Reset de todos los datos
@@ -137,6 +140,7 @@ export default function CrearEventos() {
       inicioFormt: fechaActual,
       cierre: { ...cierre },
       cierreFormt: fechaMas1,
+      error: false,
     });
     setInputFecha({
       inicio: null,
@@ -147,58 +151,59 @@ export default function CrearEventos() {
 
   return (
     <div className="contend">
-      <form
-        className="form-eventos"
-        id="formEvento"
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <div>
-          <input
-            className="input-title"
-            placeholder="Titulo del Evento"
-            {...register("titulo", { required: true })}
-          />
-          {errors.titulo && (
-            <span className="spanError errorTitle">
-              Este campo es obligatorio
-            </span>
-          )}
-          <hr className="event-hr" />
-          <div className="cont-options">
-            <div className="cont-options-img">
-              <ImagenEvento
-                imagen={imagen}
-                setFormImagen={setFormImagen}
-                setImagen={setImagen}
-                name={formImagen && formImagen.name}
-              />
-            </div>
-            <div className="options-right">
-              <FechasEvento
-                fecha={fecha}
-                inputFecha={inputFecha}
-                onChangeInicio={onChangeInicio}
-                onChangeCierre={onChangeCierre}
-              />
-              <div className="right-inputs">
-                <FormularioEventos register={register} errors={errors} />
+      <Spin spinning={loading} indicator={antIcon}>
+        <form
+          className="form-eventos"
+          id="formEvento"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <div>
+            <input
+              className="input-title"
+              placeholder="Titulo del Evento"
+              {...register("titulo", { required: true })}
+            />
+            {errors.titulo && (
+              <span className="spanError errorTitle">
+                Este campo es obligatorio
+              </span>
+            )}
+            <hr className="event-hr" />
+            <div className="cont-options">
+              <div className="cont-options-img">
+                <ImagenEvento
+                  imagen={imagen}
+                  setFormImagen={setFormImagen}
+                  setImagen={setImagen}
+                  name={formImagen && formImagen.name}
+                />
+              </div>
+              <div className="options-right">
+                <FechasEvento
+                  fecha={fecha}
+                  inputFecha={inputFecha}
+                  onChangeInicio={onChangeInicio}
+                  onChangeCierre={onChangeCierre}
+                />
+                <div className="right-inputs">
+                  <FormularioEventos register={register} errors={errors} />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className="cont-button">
-          <Button
-            className="button-crearEv"
-            htmlType="submit"
-            block
-            size="small"
-            shape="round"
-            form="formEvento"
-          >
-            Crear Evento
-          </Button>
-        </div>
-      </form>
+          <div className="cont-button">
+            <Button
+              className="button-crearEv"
+              htmlType="submit"
+              block
+              size="small"
+              shape="round"
+            >
+              Crear Evento
+            </Button>
+          </div>
+        </form>
+      </Spin>
     </div>
   );
 }
