@@ -16,10 +16,10 @@ const agregar0 = (hora) => {
 const horaActual = (tipo) => {
   const horaI = `${agregar0(fechaActual.getHours())}:${agregar0(
     fechaActual.getMinutes()
-  )}:${agregar0(fechaActual.getSeconds())}`;
+  )}`;
   const horaF = `${agregar0(fechaMas1.getHours())}:${agregar0(
     fechaMas1.getMinutes()
-  )}:${agregar0(fechaMas1.getSeconds())}`;
+  )}`;
   return tipo ? horaI : horaF;
 };
 
@@ -177,9 +177,9 @@ const convertDate = (date) => {
   const dates = {
     semana: convertirSemana(convertDate[0]),
     mes: convertirMes(convertDate[1]),
-    dia: convertDate[2],
-    año: convertDate[3],
-    hora: convertDate[4],
+    dia: parseInt(convertDate[2]),
+    año: parseInt(convertDate[3]),
+    hora: convertDate[4] ? convertDate[4].substr(0, 5) : convertDate[4],
   };
   return dates;
 };
@@ -203,10 +203,6 @@ const validarFecha = (fechaI, fechaF) => {
     return true;
   } else if (
     parseInt(fechaF.hora.substr(3, 2)) > parseInt(fechaI.hora.substr(3, 2))
-  ) {
-    return true;
-  } else if (
-    parseInt(fechaF.hora.substr(6, 2)) > parseInt(fechaI.hora.substr(6, 2))
   ) {
     return true;
   } else {

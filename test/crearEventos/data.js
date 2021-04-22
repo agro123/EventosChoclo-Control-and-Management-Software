@@ -3,7 +3,7 @@ const date = {
   dia: 18,
   mes: "Abril",
   año: 2021,
-  hora: "12:39:12",
+  hora: "12:39",
 };
 
 const dateF = {
@@ -11,7 +11,7 @@ const dateF = {
   dia: 19,
   mes: 4,
   año: 2021,
-  hora: "12:39:12",
+  hora: "12:39",
 };
 
 const dateI = {
@@ -19,7 +19,7 @@ const dateI = {
   dia: 18,
   mes: 4,
   año: 2021,
-  hora: "12:39:12",
+  hora: "12:39",
 };
 
 export { date, dateF, dateI };

@@ -1,7 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Spin, Button } from "antd";
-
 import {
   inicio,
   cierre,
@@ -11,20 +9,23 @@ import {
   fechaMas1,
   validarFecha,
 } from "../../components/Dates/manejoFechas";
-
+import { Spin, Button } from "antd";
 import axios from "axios";
+import { useRouter } from "next/router";
 import { success, error, antIcon } from "../../components/alert/alert";
+import moment from "moment";
 import FormularioEventos from "../../components/Dates/inputs";
 import ImagenEvento from "../../components/Dates/imagen";
 import FechasEvento from "../../components/Dates/fechasEvento";
 
-export default function CrearEventos() {
-  const [loading, setLoading] = useState(false);
-
+const ModificarEvento = ({ id_evento = 2 }) => {
   //Estado de la imagen como URL para mostrarla
   const [imagen, setImagen] = useState(null);
+  const [evento, setEvento] = useState(null);
   //Estado de la imagen formateada para enviarla
   const [formImagen, setFormImagen] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const router = useRouter();
   //Estado de fecha tanto formateada como para las Cards
   const [fecha, setFecha] = useState({
     inicio: { ...inicio },
@@ -33,6 +34,7 @@ export default function CrearEventos() {
     cierreFormt: fechaMas1,
     error: false,
   });
+
   //Estado del input de fecha solo para mostrarlo
   const [inputFecha, setInputFecha] = useState({
     inicio: null,
@@ -43,10 +45,60 @@ export default function CrearEventos() {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors },
   } = useForm();
 
-  //SetValue de la fecha de incio, tanto la del input como para la Card
+  const iniciarFecha = (dateI, dateF) => {
+    const dateConvI = convertDate(dateI);
+    const dateConvF = convertDate(dateF);
+    setFecha({
+      inicio: dateI ? { ...dateConvI } : inicio,
+      inicioFormt: dateI ? dateI._d : fechaActual,
+      cierre: dateF ? { ...dateConvF } : cierre,
+      cierreFormt: dateF ? dateF._d : fechaMas1,
+      error: false,
+    });
+  };
+
+  useEffect(async () => {
+    setLoading(true);
+    try {
+      const respuesta = await axios.get(`/api/evento/${id_evento}`);
+      const dataEvento = respuesta.data[0];
+      setEvento(dataEvento);
+
+      setLoading(false);
+    } catch (e) {
+      setError(e);
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (evento) {
+      setValue("titulo", evento.titulo);
+      setValue("lugar", evento.lugar);
+      setValue("tematica", evento.tematica);
+      setValue("direccion", evento.direccion);
+      setValue("aforo", evento.aforo);
+      setValue("boletas", evento.num_boletas);
+      setValue("anfitrion", evento.anfitrion);
+      setValue("descripcion", evento.descrip);
+      let fInicial, fFinal;
+      fInicial = moment(evento.fecha_inicial, "YYYY-MM-DD hh:mm Z");
+      fInicial.add(1, "days");
+      fFinal = moment(evento.fecha_final, "YYYY-MM-DD HH:mm Z");
+      fFinal.add(1, "days");
+      setInputFecha({
+        inicio: fInicial,
+        cierre: fFinal,
+      });
+
+      iniciarFecha(fInicial, fFinal);
+    }
+  }, [evento]);
+
   const onChangeInicio = (date) => {
     const dates = convertDate(date);
 
@@ -74,7 +126,6 @@ export default function CrearEventos() {
     });
   };
 
-  //Se valida ue la fecha inicial sea menor ue la final
   const valFecha = () => {
     const valida = validarFecha(fecha.inicio, fecha.cierre);
     if (!valida) {
@@ -92,45 +143,24 @@ export default function CrearEventos() {
     }
   };
 
-  //Envio de datos del evento
-  const onSubmit = async (data, e) => {
+  const onSubmit = (data, e) => {
     const valida = valFecha();
     if (!valida) {
       return;
     }
-
-    const formdata = convertirImagen(formImagen);
-
     try {
       setLoading(true);
-      const idImagen = await axios.post("/api/imagen", formdata);
-      if (idImagen.status === 200) {
-        const body = {
-          titulo: data.titulo,
-          fecha_inicial: fecha.inicioFormt,
-          fecha_final: fecha.cierreFormt,
-          num_boletas: parseInt(data.boletas),
-          aforo: parseInt(data.aforo),
-          descripcion: data.descripcion,
-          lugar: data.lugar,
-          anfitrion: data.anfitrion,
-          tematica: data.tematica,
-          direccion: data.direccion,
-          id_imagen: idImagen.data.id_imagen,
-        };
-
-        const respuesta = await axios.post("/api/evento", body);
-
-        setLoading(false);
-        resetValues(e);
-        success(data.titulo);
-      }
+      console.log(data);
+      setLoading(false);
+      success(data.titulo);
+      resetValues(e);
+      router.push("/eventosAdmin");
     } catch (err) {
       setLoading(false);
       error();
     }
   };
-  //Reset de todos los datos
+
   const resetValues = (e) => {
     setImagen(null);
     setFormImagen(null);
@@ -198,12 +228,15 @@ export default function CrearEventos() {
               block
               size="small"
               shape="round"
+              form="formEvento"
             >
-              Crear Evento
+              Modificar Evento
             </Button>
           </div>
         </form>
       </Spin>
     </div>
   );
-}
+};
+
+export default ModificarEvento;
