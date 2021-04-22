@@ -1,3 +1,4 @@
+
 .eventoCardLeyenda {
   display: flex;
   flex-direction: column;
@@ -51,6 +52,7 @@
   margin: 10px;
   height: 320px;
   width: 200px;
+
 }
 
 .listEventos {
