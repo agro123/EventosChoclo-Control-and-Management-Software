@@ -1,12 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React from 'react';
 import Carrusel from '../../components/listarEventos/carrusel'
-import { CardProvider } from '../../context/cardContext';
-
+import { ReloadProvider } from '../../context/reloadContext'
 
 export default function listarEventos() {
     return (
-        <CardProvider>  
-                <Carrusel />
-        </CardProvider>
+        <ReloadProvider>
+            <Carrusel />
+        </ReloadProvider>
     )
 }

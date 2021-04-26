@@ -5,8 +5,7 @@ export default function Home() {
     <>
     <h1>Pagina de inicio</h1>
     <ul>
-      <li><Link href="/eventosAdmin"><a  >lista de Eventos</a></ Link></li>
-      <li><Link href="/CrearEventos"><a  >crear eventos</a></ Link></li>
+      <li><Link href="/eventosAdmin"><a  >listar/crear/editar/borrar de Eventos</a></ Link></li>
     </ul>
     </>
   )

@@ -1,32 +1,32 @@
 .eventoCard .ant-card-body {
-    padding: 0px  ;
+  padding: 0px;
 }
 .eventoCard .ant-card-actions {
-    background-color: transparent;
+  background-color: transparent;
 }
 .eventoCard .ant-card-head {
-    padding: 0px 0px ;
-    text-align: center;
+  padding: 0px 0px;
+  text-align: center;
 }
 .eventoCard .ant-card-head-title {
-    padding: 10px 0;
-    font-weight: 600;
+  padding: 10px 0;
+  font-weight: 600;
 }
 
 .carruselEventoAdmin .ant-carousel .slick-dots li.slick-active {
-    width: 300px;
+  width: 300px;
 }
 
 .carruselEventoAdmin .ant-carousel .slick-dots li {
-    width: 290px ;
+  width: 290px;
 }
 
-.carruselEventoAdmin .ant-carousel .slick-dots li button  {
-    height: 10px;
-    background: var(--yellow);
+.carruselEventoAdmin .ant-carousel .slick-dots li button {
+  height: 10px;
+  background: var(--yellow);
 }
 
-.carruselEventoAdmin .ant-carousel .slick-dots li.slick-active button{
-    background: var(--green);
-    height: 12px;
+.carruselEventoAdmin .ant-carousel .slick-dots li.slick-active button {
+  background: var(--green);
+  height: 12px;
 }
