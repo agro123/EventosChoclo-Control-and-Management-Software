@@ -16,7 +16,7 @@ const FechasEvento = ({
       <div className="options-right-h3 ">
         <div className="contenedorDate">
           <div className="right-date">
-            <Title level={4}>Inicio</Title>
+            {/* <Title level={4}>Inicio</Title> */}
 
             <CardDate {...fecha.inicio} />
           </div>
@@ -28,7 +28,7 @@ const FechasEvento = ({
               onChange={onChangeInicio}
               className="place-pick"
               locale="es"
-              placeholder="Fecha Incial"
+              placeholder="Fecha Inicial"
               showTime
               format="YYYY-MM-DD HH:mm Z"
             />
@@ -41,7 +41,7 @@ const FechasEvento = ({
         )}
         <div className="contenedorDate">
           <div className="right-date">
-            <Title level={4}>Cierre</Title>
+            {/* <Title level={4}>Cierre</Title> */}
             <CardDate {...fecha.cierre} />
           </div>
           <div className="fecha">

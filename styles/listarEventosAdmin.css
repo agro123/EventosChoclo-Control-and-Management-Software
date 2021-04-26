@@ -30,7 +30,7 @@
   font-size: 12px;
 }
 .eventoCardDescripcion {
-  font-size: s 0.7rem;
+  font-size: 0.7rem;
   font-weight: 600;
   flex: auto;
   margin-top: -120px;
@@ -61,7 +61,7 @@
 }
 
 .list {
-  height: 600px;
+  height: 700px;
   background: inherit;
   display: flex;
   flex-wrap: wrap;

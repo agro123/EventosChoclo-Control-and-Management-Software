@@ -4,8 +4,9 @@ import '../styles/constants.css';
 import '../styles/listarEventosAdmin.css';
 import '../styles/antdMod.css';
 import 'antd/dist/antd.css';
-import "../styles/crearEventos/eventos.css";
+/* import "../styles/crearEventos/eventos.css"; */
 import "../styles/crearEventos/cardDate.css";
+import "../styles/crearEventos/eventosByCristian.css";
 import Layout from '../components/constants/layout';
 import { ConfigProvider } from 'antd';
 import es_ES from 'antd/lib/locale/es_ES';

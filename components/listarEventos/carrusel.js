@@ -1,33 +1,29 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { Carousel, Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
-import { CardContext } from "../../context/cardContext";
-import { getEventos } from "../database/eventosCrud";
-import CrearEventos from "../../pages/CrearEventos";
+import CrearEventos from "../../pages/crearEvento";
+import useGetData from '../../hooks/useGetData';
+import EventoCard from './eventoCard';
+import { ReloadContext } from '../../context/reloadContext';
 
-const contentStyle = {
-  height: "600px",
-  background: "inherit",
-};
 const antIcon = <LoadingOutlined style={{ fontSize: 72 }} spin />;
 
 export default function Carrusel() {
-  const { eventos, changeData } = useContext(CardContext);
-  const [loading, setLoading] = useState(true);
+  const { reload } = useContext(ReloadContext);
 
-  useEffect(async () => {
-    try {
-      const data = await getEventos();
-      if (data) {
-        console.log("Informacion cargada:", data);
-        changeData(data);
-        setLoading(false);
-      }
-    } catch (e) {
-      console.log("Ocurrio un error:", e);
-      setLoading(false);
-    }
-  }, []);
+  const { data, loading } = useGetData("evento", reload);
+
+  const generarEventos = (info) => {
+    let cards = [];
+    info.map((v, i) => {
+      cards = [...cards, (
+        <EventoCard
+          info={v}
+          key={i}
+        />)]
+    })
+    return cards
+  }
 
   return (
     <div className="carruselEventoAdmin">
@@ -38,7 +34,9 @@ export default function Carrusel() {
       <Carousel dotPosition="top" style={{ width: "900px" }}>
         <div className="listEventos">
           <Spin spinning={loading} indicator={antIcon}>
-            <div className="list">{eventos}</div>
+            <div className="list">
+              {generarEventos(data)}
+            </div>
           </Spin>
         </div>
         <div>

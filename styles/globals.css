@@ -15,8 +15,20 @@ body {
   --white: #EEEEEE;
   --green: #9EDE73;
   --yellow: #F7EA00;
-  --orange: #E48900;
+  --orange: #ff9100;
   --red: #BE0000;
+  --font:'Libre Franklin';
+  --gradient: linear-gradient(
+    140deg,
+    var(--green) 0%,
+    var(--yellow) 50%,
+    var(--orange) 100%
+  );
+  --gradient-two:linear-gradient(
+    140deg,
+    var(--yellow) 50%,
+    var(--orange) 100%
+  );
 }
 
 a {
