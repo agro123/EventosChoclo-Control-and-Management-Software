@@ -34,7 +34,8 @@
 }
 
 .main {
-  padding: 5rem 0;
+  height: 100%;
+  width: 100%;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -80,6 +81,19 @@
   color: var(--midGray);
   font-weight: 700;
   font-size: 1.5em;
+}
+.option-button {
+  color: var(--midGray);
+  font-weight: 700;
+  font-size: 1.5em;
+  background: none;
+  border: none;
+}
+.option-button:hover {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--midGray);
 }
 .option-menu:hover {
   background: var(--gradient);
