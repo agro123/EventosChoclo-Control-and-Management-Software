@@ -36,7 +36,7 @@ const InputLogin = () => {
     setErrorEmail(false);
     console.log(data);
     setLoading(false);
-    message.info(`Bienvenido: ${data.email}`);
+    message.success(`Bienvenido: ${data.email}`);
     reset(e);
     router.push("/");
   };

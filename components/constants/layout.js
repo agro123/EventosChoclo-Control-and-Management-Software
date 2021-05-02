@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Layout } from "antd";
 import Link from "next/link";
 import Logo from "./logo";
