@@ -43,12 +43,13 @@ const InputLogin = () => {
   return (
     <form className="form-login" onSubmit={handleSubmit(onSubmit)}>
       <div className="inputsFormLogin">
-        <label htmlFor="lugar">
+        <label htmlFor="email">
           <h2 className="h2input">{"Correo Electronico"}</h2>
         </label>
         <input
           className="inputsLogin"
           name="email"
+          id="email"
           type="text"
           {...register("email", { required: true })}
         />
@@ -62,12 +63,13 @@ const InputLogin = () => {
         )}
       </div>
       <div className="inputsFormLogin">
-        <label htmlFor="lugar">
+        <label htmlFor="contra">
           <h2 className="h2input">{"Contraseña"}</h2>
         </label>
         <input
           className="inputsLogin"
           name="contra"
+          id="contra"
           type="password"
           {...register("contra", { required: true })}
         />

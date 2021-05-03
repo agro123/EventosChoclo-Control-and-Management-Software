@@ -4,6 +4,7 @@ import "../styles/constants.css";
 import "../styles/listarEventosAdmin.css";
 import "../styles/antdMod.css";
 import "../styles/Login/Login.css";
+import "../styles/Login/Register.css";
 import "antd/dist/antd.css";
 /* import "../styles/crearEventos/eventos.css"; */
 import "../styles/crearEventos/cardDate.css";
