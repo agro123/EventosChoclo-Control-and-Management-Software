@@ -2,11 +2,12 @@ import { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { arrayInputs, arrayInputsDerecha } from "./arraysNameInputs";
 import Input from "./Input";
-import { Button } from "antd";
+import { Button, Image } from "antd";
 import { useRouter } from "next/router";
 import { message } from "antd";
 import { validarEmail, validarTel, validarContra } from "../validador";
 import UserContext from "../../../context/User/userContext";
+import InputImage from "./inputImage";
 
 const InputRegister = () => {
   const router = useRouter();
@@ -15,6 +16,8 @@ const InputRegister = () => {
   const [errorContra, setErrorContra] = useState(false);
   const [errorTel, setErrorTel] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [avatar, setAvatar] = useState(null);
+  const [formImagen, setFormImagen] = useState(null);
 
   const {
     register,
@@ -87,6 +90,26 @@ const InputRegister = () => {
             />
           ))}
         </div>
+      </div>
+      <div className="cont-avatar">
+        <InputImage
+          setFormImagen={setFormImagen}
+          setAvatar={setAvatar}
+          name={formImagen && formImagen.name}
+        />
+
+        <Image
+          className="img-avatar"
+          preview={false}
+          width="60px"
+          height="60px"
+          style={{ borderRadius: "50%" }}
+          src={
+            avatar ||
+            "https://i.pinimg.com/originals/50/f6/0a/50f60a6eb9966f0cbbfa8ef052b0d3ed.jpg"
+          }
+          alt="Perfil Avatar"
+        />
       </div>
       <div>
         <Button
