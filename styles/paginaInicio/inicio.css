@@ -1,0 +1,95 @@
+.slider {
+    background-color: rgb(209, 223, 218);
+    width: 100%;
+    height: 400px;
+    display: flex;
+}
+.eventos {
+    margin: 2% 20%;
+    
+}
+
+.listaDeEventos {
+    width: 100%;
+    height: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    justify-content: center;
+}
+.masEventos {
+    margin-top: 2%;
+}
+
+.eventoBigCard {
+    width: 400px;
+    height: 400px;
+    background-color: rgba(255, 123, 113, 0.637);
+    border-radius: 20px;
+    filter: drop-shadow(5px 4px 4px rgba(0, 0, 0, 0.25));
+    position: absolute;
+    border: 1px solid black;
+}
+.eventoHomeCard {
+    width: 220px;
+    height: 320px;
+    background-color: #EEEEEE;
+    border-radius: 20px;
+    filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.25));
+    margin: 2%;
+    transition: filter 0.5s;
+    padding: 1%;
+    display: flex;
+    flex-direction: column;
+    
+}
+.display {
+    width: 100%;
+    height: 45%;
+    background-color: aquamarine;
+    border-radius: 20px;
+}
+
+.titleCard {
+    font-family: var(--font);
+    text-align: center;
+    color: var(--gray);
+    font-size: 24px;
+    font-weight: 600;
+}
+
+
+.eventoHomeCard:hover {
+    filter: drop-shadow(0px 0px 7px rgba(0, 0, 0, 0.39));
+}
+.boletasDisponibles {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.boletas {
+    font-family: var(--font);
+    height: 100%;
+    width: 30%;
+    background: var(--gradient-two);
+    border: transparent;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.6s;
+    color: var(--gray);
+}
+
+.boletas:hover {
+    background: var(--gradient-two);
+    color: var(--gray);
+    transform: scale(1.05);
+}
+@media (max-width: 1024px) {
+    .eventos {
+        margin: 2% 2%;
+    }
+}
+

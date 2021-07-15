@@ -10,22 +10,11 @@ export default function EventoCard({ info }) {
 
     const soloFecha = (fecha) => fecha.slice(0, 10);// esta funcion es necesaria debido a que la fecha que se recibe de la forma aa-mm-ddT000000....
 
-    const { day, month, sameDates } = useDate([soloFecha(fecha_inicial), soloFecha(fecha_final)]);
+    const { sameDates } = useDate([soloFecha(fecha_inicial), soloFecha(fecha_final)]);
 
     const [loading, setLoading] = useState(true);
     const onChange = () => { setLoading(false); }
 
-    const mismoDia = () => {
-        let u = ""
-        if (!sameDates()) {
-            u =
-                (<div className="fecha">
-                    <div className="dia">{day(1) || "31"}</div>
-                    <div className="mes">{month(1) || "Septiembre"}</div>
-                </div>)
-        }
-        return u;
-    }
     const onClick = e => {
         console.log("editar")
     }
@@ -60,11 +49,7 @@ export default function EventoCard({ info }) {
                         <p>{descrip}</p>
                     </div>
                     <div className="eventoCardFecha">
-                        <div className="fecha">
-                            <div className="dia">{day(0) || "31"}</div>
-                            <div className="mes">{month(0) || "Septiembre"}</div>
-                        </div>
-                        {mismoDia()}
+                        {sameDates()}
                     </div>
                     <p style={{ textAlign: "center" }}>{lugar || "SomeWhere"}</p>
                 </div>

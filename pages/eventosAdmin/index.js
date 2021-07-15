@@ -5,7 +5,9 @@ import { ReloadProvider } from '../../context/reloadContext'
 export default function listarEventos() {
     return (
         <ReloadProvider>
-            <Carrusel />
+            <div className='carrusel'>
+                <Carrusel />
+            </div>
         </ReloadProvider>
     )
 }
