@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Slider from '../components/paginaDeInicio/slider';
 import ListEventos from '../components/paginaDeInicio/listEventos';
+import EventoHomeCard from '../components/paginaDeInicio/eventoHomeCard';
 
 export default function Home() {
   return (
@@ -11,13 +12,18 @@ export default function Home() {
     </ul> */}
       <Slider />
       <div className="eventos">
-        <h1>¡En Eventos Choclo tenemos los mejores eventos!</h1>
+        <h1 className="title-home">¡En EventosChoclo tenemos los mejores eventos!</h1>
         <div>
-          <h2>Destacado</h2>
-          <ListEventos />
+          <h2 className="title-home">Destacado</h2>
+          <div className="destacado">
+            <EventoHomeCard />
+            <EventoHomeCard />
+            <EventoHomeCard />
+            <EventoHomeCard />
+          </div>
         </div>
         <div className="masEventos">
-          <h2>Mas Eventos</h2>
+          <h2 className="title-home">Mas Eventos</h2>
           <ListEventos />
         </div>
       </div>

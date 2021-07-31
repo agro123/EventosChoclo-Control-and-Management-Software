@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import EventoHomeCard from './eventoHomeCard';
 
 function listEventos({listaEventos}) {
@@ -17,17 +17,6 @@ function listEventos({listaEventos}) {
             <EventoHomeCard />
             <EventoHomeCard />
             <EventoHomeCard />
-            <EventoHomeCard />
-            <EventoHomeCard />
-            <EventoHomeCard />
-            <EventoHomeCard />
-            <EventoHomeCard />
-            <EventoHomeCard />
-            <EventoHomeCard />
-            <EventoHomeCard />
-            <EventoHomeCard />
-            <EventoHomeCard />
-          
         </div>
     )
 }

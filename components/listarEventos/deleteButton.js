@@ -1,4 +1,4 @@
-import React, { useState,useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { Popconfirm, message } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 import propTypes from 'prop-types';
@@ -16,7 +16,7 @@ export default function DeleteButton({ id }) {
     };
 
     const handleOk = async () => {
-       
+
         message.loading({ content: 'Eliminando evento...', ...config });
         //peticion a servidor para eleminiar un elemento
         try {
@@ -47,7 +47,9 @@ export default function DeleteButton({ id }) {
                 onConfirm={handleOk}
                 onCancel={handleCancel}
             >
-                <DeleteOutlined className="deleteButton" onClick={showPopconfirm} />
+                <div>
+                    <DeleteOutlined className="deleteButton" onClick={showPopconfirm}/>
+                </div>
             </Popconfirm>
         </>
     )
