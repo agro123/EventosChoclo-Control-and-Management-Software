@@ -1,16 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useDate } from '../../hooks/useDate';
 
-function DateDisplay(props) {
+function DateDisplay({ day, month, year, dayName, hour, last=false, unique }) {
+
     return (
         <div className="dateContainer">
-            <div className="dateRange">Del</div>
+            {unique? <></> : <div className="dateRange">{last?"Al":"Del"}</div>}
             <div className="dateDisplay">
-                <div>Domingo</div>
-                <div>14</div>
-                <div>Septiembre 2021</div>
+                <div>{dayName}</div>
+                <div>{day}</div>
+                <div>{`${month} ${year}`}</div>
                 <div className="line "></div>
-                <div>8:00 pm</div>
+                <div>{hour} {parseInt(hour.slice(0,2))>=12? 'pm':'am'}</div>
             </div>
         </div>
     )

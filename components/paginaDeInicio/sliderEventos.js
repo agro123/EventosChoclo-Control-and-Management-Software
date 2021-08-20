@@ -1,28 +1,55 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import FechasEvento from '../Dates/fechasEvento'
-import DateDisplay from './dateDisplay'
+import React from 'react';
+import PropTypes from 'prop-types';
+import FechasEvento from '../Dates/fechasEvento';
+import DateDisplay from './dateDisplay';
+import { useDate } from '../../hooks/useDate';
+const defEvento = {
+    titulo: "BIENVENIDO A EVENTOSCHOLO :D",
+    imagen: '/defaultImg.jpg',
+    fecha_inicial: "2000-02-29T02:00:00",
+    fecha_final: "2000-02-29T02:00:00",
+    descrip: "Eventos Choclo...",
+    lugar: "EventosChoclo",
+    id_evento: 10000,
+}
 
-function SliderEventos(props) {
+
+function SliderEventos({ info = defEvento }) {
+    const { titulo, imagen, fecha_inicial, fecha_final, descrip, lugar, id_evento } = info;
+
+    const soloFecha = fecha => fecha.slice(0, 10);
+    const soloHora = hora => hora.slice(11, 16);
+
+    const { isSameDates, day, month, year, dayName } = useDate([soloFecha(fecha_inicial), soloFecha(fecha_final)]);
     return (
         <div className="sliderEventos">
             <div className="background-slider">
                 <div className="background-img"
-                    style={{ backgroundImage: "url(https://valledelpacifico.co/wp-content/uploads/2019/12/cevp-home2.jpg)" }}
+                    style={{ backgroundImage: `url(${imagen})` }}
                 ></div>
                 <div className="slider-card">
-                    <div 
+                    <div
                         className="slider-img"
-                        style={{ backgroundImage: "url(https://valledelpacifico.co/wp-content/uploads/2019/12/cevp-home2.jpg)" }}
+                        style={{ backgroundImage: `url(${imagen})` }}
                     ></div>
                     <div className="slider-text">
-                        <h2 >Titulo del Evento</h2>
-                        <p>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
-                        </p>
+                        <h2 >{titulo}</h2>
+                        {/*<p>{'descripcion' || description} </p> */}
                     </div>
-                    <DateDisplay key="1" />
-                    <DateDisplay key="2" />
+                    {isSameDates() ?
+                        <DateDisplay day={day(0)} month={month(0)} year={year(0)}
+                            dayName={dayName(0)} hour={soloHora(fecha_inicial)}
+                            unique={true} key="1" />
+                        :
+                        <>
+                            <DateDisplay day={day(0)} month={month(0)} year={year(0)}
+                                dayName={dayName(0)} hour={soloHora(fecha_inicial)} 
+                                last={false} key="1" />
+                            <DateDisplay day={day(1)} month={month(1)} year={year(1)}
+                                dayName={dayName(1)} hour={soloHora(fecha_final)}
+                                last={true} key="2" />
+                        </>
+                    }
                 </div>
             </div>
         </div>

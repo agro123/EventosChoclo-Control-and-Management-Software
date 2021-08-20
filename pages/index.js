@@ -1,7 +1,6 @@
 import Link from 'next/link';
-import Slider from '../components/paginaDeInicio/slider';
-import ListEventos from '../components/paginaDeInicio/listEventos';
-import EventoHomeCard from '../components/paginaDeInicio/eventoHomeCard';
+import Inicio from '../components/paginaDeInicio/Inicio';
+import { EventosProvider } from '../context/EventosContext'
 
 export default function Home() {
   return (
@@ -10,23 +9,9 @@ export default function Home() {
     <ul>
       <li><Link href="/eventosAdmin"><a  >listar/crear/editar/borrar de Eventos</a></ Link></li>
     </ul> */}
-      <Slider />
-      <div className="eventos">
-        <h1 className="title-home">¡En EventosChoclo tenemos los mejores eventos!</h1>
-        <div>
-          <h2 className="title-home">Destacado</h2>
-          <div className="destacado">
-            <EventoHomeCard />
-            <EventoHomeCard />
-            <EventoHomeCard />
-            <EventoHomeCard />
-          </div>
-        </div>
-        <div className="masEventos">
-          <h2 className="title-home">Mas Eventos</h2>
-          <ListEventos />
-        </div>
-      </div>
+      <EventosProvider>
+        <Inicio />
+      </EventosProvider>
     </>
   )
 }

@@ -2,17 +2,24 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types';
 import { Skeleton } from 'antd';
 import { useDate } from '../../hooks/useDate';
-
+const defEvento = {
+    titulo: "BIENVENIDO A EVENTOSCHOLO :D",
+    imagen: '/defaultImg.jpg',
+    fecha_inicial: "29-02-2000",
+    fecha_final: "29-02-2000",
+    descrip: "EventosChoclo...",
+    lugar: "EventosChoclo",
+    id_evento: 10000,
+}
 function eventoHomeCard({ info }) {
+
+    const { imagen, titulo, fecha_inicial, fecha_final, descrip, lugar, id_evento } = info;
+
     const [loading, setLoading] = useState(true);
     const onChange = () => { setLoading(false); }
     setTimeout(onChange, 500);
 
     const boletas = 200;
-
-    let fecha_inicial = "2021-09-20";
-
-    let fecha_final = "2021-11-21"
 
     const soloFecha = (fecha) => fecha.slice(0, 10);
     const { sameDates } = useDate([soloFecha(fecha_inicial), soloFecha(fecha_final)]);
@@ -22,16 +29,16 @@ function eventoHomeCard({ info }) {
             <Skeleton loading={loading} active>
                 <div className="display">
                     <img alt="example"
-                        src={
+                        src={imagen ||
                             "https://valledelpacifico.co/wp-content/uploads/2019/12/cevp-home2.jpg"}
                         className="imagen"
                     />
                     <div className="eventoCardDescripcion">
-                        <p>Hola</p>
+                        <p>{descrip}</p>
                     </div>
                 </div>
                 <div className="titleCard">
-                    Un super titulo
+                    {titulo}
                 </div>
                 <div className="eventoCardFecha">
                     {sameDates()}
@@ -39,7 +46,7 @@ function eventoHomeCard({ info }) {
                 <div className="boletasDisponibles">
                     Boletas disponibles
                     <div className="boletas">
-                        {boletas}
+                        {lugar}
                     </div>
                 </div>
             </Skeleton>

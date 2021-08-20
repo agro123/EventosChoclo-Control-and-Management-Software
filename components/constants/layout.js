@@ -10,7 +10,6 @@ import {
   WhatsAppOutlined, MailOutlined
 } from '@ant-design/icons';
 import Head from 'next/head'
-
 export default function MyLayout({ children }) {
   return (
     <>

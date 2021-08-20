@@ -4,8 +4,16 @@ import { EditOutlined } from '@ant-design/icons';
 import DeleteButton from './deleteButton';
 /* import propTypes from 'prop-types'; */
 import { useDate } from '../../hooks/useDate';
-
-export default function EventoCard({ info }) {
+const defEvento = {
+    titulo: "BIENVENIDO A EVENTOSCHOLO :D",
+    imagen: '/defaultImg.jpg',
+    fecha_inicial: "29-02-2000",
+    fecha_final: "29-02-2000",
+    descrip: "EventosChoclo...",
+    lugar: "EventosChoclo",
+    id_evento: 10000,
+}
+export default function EventoCard({ info=defEvento }) {
     const { imagen, titulo, fecha_inicial, fecha_final, descrip, lugar, id_evento } = info; //problema con la imagen :"u
 
     const soloFecha = (fecha) => fecha.slice(0, 10);// esta funcion es necesaria debido a que la fecha que se recibe de la forma aa-mm-ddT000000....
@@ -25,8 +33,7 @@ export default function EventoCard({ info }) {
             <Skeleton loading={loading} active>
                 <div className="display">
                     <img alt="example"
-                        src={imagen ||
-                            "https://www.bbva.com/wp-content/uploads/2017/08/holi-party-1024x423.png"}
+                        src={imagen}
                         className="imagen"
                     />
                     <div className="eventoCardDescripcion">

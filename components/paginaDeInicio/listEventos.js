@@ -5,6 +5,7 @@ function listEventos({listaEventos}) {
     
     return (
         <div className='listaDeEventos'>
+            {/* <EventoHomeCard />
             <EventoHomeCard />
             <EventoHomeCard />
             <EventoHomeCard />
@@ -15,8 +16,7 @@ function listEventos({listaEventos}) {
             <EventoHomeCard />
             <EventoHomeCard />
             <EventoHomeCard />
-            <EventoHomeCard />
-            <EventoHomeCard />
+            <EventoHomeCard /> */}
         </div>
     )
 }
