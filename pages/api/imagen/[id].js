@@ -24,23 +24,35 @@ const apiRoute = nextConnect({
 });
 
 apiRoute.get(async (req, res) => {
-  const {id} = req.query
+  const { id } = req.query
   const evento = await pool.query(`SELECT * FROM imagenes WHERE id_imagen = ${id}`);
   res.status(200).json(evento.rows);
 })
 
 apiRoute.use(fileUpLoad.single('image'));
 
-apiRoute.put(async(req, res) => {
-  const {file, query: {id}} = req
+apiRoute.put(async (req, res) => {
+  const { file, query: { id } } = req
 
+  const url_imagen = `public/imagenes/${file.filename}`
   const nom_imagen = file.originalname;
-  const tipo = file.mimetype;
-  const datos = fs.readFileSync( `./public/imagenes/${file.filename}`);
-  await pool.query(
-    `UPDATE imagenes SET nom_imagen = $1, tipo = $2, datos = $3 WHERE id_imagen = $4`,
-    [nom_imagen, tipo, datos, id]
-  );
+  const tipo_imagen = file.mimetype;
+  const response = await pool.query(
+    `UPDATE imagenes SET nom_imagen = $1, tipo_imagen = $2, url_imagen = $3 WHERE id_imagen = $4
+    returning id_imagen, url_imagen, (
+      select url_imagen from imagenes WHERE id_imagen = $4
+    ) as old_url`, [nom_imagen, tipo_imagen, url_imagen, id]);
+
+  const old_url = response.rows[0].old_url;
+
+  /*if (old_url) {
+    try {
+      fs.unlinkSync(`./${old_url}`);
+      console.log('File removed');
+    } catch (err) {
+      console.error('error al eliminar el archivo.', err);
+    }
+  }*/
   res.status(200).json('Imagen Actualizada');
 
 });
