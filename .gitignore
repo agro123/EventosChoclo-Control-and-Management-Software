@@ -1,3 +1,6 @@
 /node_modules
 .next
+/coverage
+/imagenes
 dev.js
+
