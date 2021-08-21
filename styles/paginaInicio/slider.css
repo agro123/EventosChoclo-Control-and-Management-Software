@@ -1,0 +1,123 @@
+.slider-card {
+    width: 50%;
+    height: 95%;
+    position: absolute;
+    border-radius: 0px 0px 20px 20px;
+    filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.932));
+}
+
+.sliderEventos {
+    height: 400px;
+}
+.background-slider {
+    Cursor : pointer;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.slider-text {
+    color: var(--white);
+    font-family: var(--font);
+    width: 50%;
+    height: 55%;
+    position: absolute;
+    top: 40%;
+    left: 1.5%;
+    bottom: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.slider-text h2{
+    color: var(--white);
+    font-family: var(--font);
+    font-size: 46px;
+    font-weight: 700;
+    text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.651);
+    margin: 0;
+}
+.slider-text p{
+    text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.651);
+    font-size: 14px;
+    margin: 0;
+    text-align: justify;
+}
+
+.slider-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 0px 0px 20px 20px;
+    background-position: center center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	position: relative; 
+}
+.slider-img:before {
+	content:'';
+	position: absolute;
+    top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+    border-radius: 0px 0px 20px 20px;
+	background-color: rgba(0, 0, 0, 0.205);
+}
+.dateContainer {
+    height: 140px;
+    width: 110px;   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: var(--font);
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--gray);
+}
+.dateDisplay {
+    width: 100%;
+    height: 95%;
+    border-radius: 5px;
+    background-color: #EEEEEE;   
+    filter: drop-shadow(0px 4px 2px rgba(0, 0, 0, 0.466));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.sliderEventos .dateRange {
+    font-family:  var(--font);
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--white);
+    text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.801);
+}
+.dateDisplay div:nth-child(2) {
+    font-size: 28px;
+    color: var(--orange);
+    line-height : 30px;
+}
+.line {
+    width: 90%;
+    border: 1px solid var(--gray);
+    background-color:  var(--gray);
+    margin: 3%;
+}
+.sliderEventos .dateContainer  {
+    left: 60%;
+    position: absolute;
+    top: 50%;
+}
+.sliderEventos .dateContainer:last-of-type  {
+    left: 80%;
+}
+
+@media (max-width: 1550px) {
+    .eventos {
+        margin: 1% 2%;
+    }
+    .slider-card {
+        width: 70%;
+    }
+}
