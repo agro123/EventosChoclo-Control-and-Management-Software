@@ -39,14 +39,6 @@
   background-image: url('/fd.png');
 }
 
-.footer {
-  width: 100%;
-  height: 100px;
-  background-color: var(--black);
-  display: flex;
-  padding: 10px 30px;
-}
-
 .app-logo {
   margin: auto;
   display: flex;
@@ -85,18 +77,16 @@
   -webkit-text-fill-color: transparent;
   color: var(--midGray);
 }
-.redesS-footer {
-  margin-left: auto;
-}
-.informacion-footer p {
+.footer {
+  width: 100%;
+  height: 100px;
+  background-color: var(--black);
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 30px;
   color: var(--midGray);
   font-weight: 600;
-}
-
-.redesS-footer p {
-  color: var(--midGray);
-  font-weight: 600;
-  font-size: 1.5em;
+  font-size: 14px;
 }
 
 .redesS-footer div {

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { Skeleton } from 'antd';
 import { useDate } from '../../hooks/useDate';
+
 const defEvento = {
     titulo: "BIENVENIDO A EVENTOSCHOLO :D",
     imagen: '/defaultImg.jpg',
@@ -13,6 +14,7 @@ const defEvento = {
     id_evento: 10000,
     boletas: 1000,
 }
+
 function eventoHomeCard({ info = defEvento }) {
     const { imagen, titulo, fecha_inicial, fecha_final, descrip, lugar, id_evento } = info;
 

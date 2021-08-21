@@ -11,6 +11,8 @@ import {
 } from '@ant-design/icons';
 import Head from 'next/head'
 export default function MyLayout({ children }) {
+
+  const styleIcon = { fontSize: '40px', color: '#979A9C' }
   return (
     <>
       <Layout>
@@ -42,15 +44,21 @@ export default function MyLayout({ children }) {
               <p>Todos los derechos reservados {<CopyrightOutlined style={{ fontSize: '20px', color: '#979A9C' }} />}</p>
               <p>Contactanos +57 323 313 5959</p>
             </div>
+            <div>
+              <div>
+              Desarrollado por: El Equipo Dinamita
+              </div>
+              Santiago - Victor - Leonardo - Cristian
+            </div>
             <div className="redesS-footer">
               <p>Nuestras Redes sociales:</p>
               <div>
-                <MailOutlined style={{ fontSize: '40px', color: '#979A9C' }} />
-                <QrcodeOutlined style={{ fontSize: '40px', color: '#979A9C' }} />
-                <TwitterOutlined style={{ fontSize: '40px', color: '#979A9C' }} />
-                <WhatsAppOutlined style={{ fontSize: '40px', color: '#979A9C' }} />
-                <InstagramOutlined style={{ fontSize: '40px', color: '#979A9C' }} />
-                <FacebookOutlined style={{ fontSize: '40px', color: '#979A9C' }} />
+                <MailOutlined style={styleIcon} />
+                <QrcodeOutlined style={styleIcon} />
+                <TwitterOutlined style={styleIcon} />
+                <WhatsAppOutlined style={styleIcon} />
+                <InstagramOutlined style={styleIcon} />
+                <FacebookOutlined style={styleIcon} />
               </div>
             </div>
           </footer>

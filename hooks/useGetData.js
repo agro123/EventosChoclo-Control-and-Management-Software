@@ -11,6 +11,7 @@ const useGetData = (url, change ) => { //retorna la informacion de una lista
             const {status, data} = await resp;
             if (status == 200) {
                 console.log("Petición GET exitosa");
+                console.log(data)
                 setResult({data, loading:false});
             }
         } catch (e) {

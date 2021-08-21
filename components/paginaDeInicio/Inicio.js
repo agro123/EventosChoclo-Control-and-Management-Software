@@ -4,7 +4,6 @@ import ListEventos from './listEventos';
 import EventoHomeCard from './eventoHomeCard';
 import { Divider } from 'antd';
 
-
 export default function Inicio() {
     return (
         <>
