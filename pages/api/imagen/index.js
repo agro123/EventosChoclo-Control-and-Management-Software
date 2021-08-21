@@ -4,7 +4,7 @@ const multer = require('multer');
 const fs = require('fs');
 
 const diskStorage = multer.diskStorage({
-  destination: './imagenes',
+  destination: './public/imagenes',
   filename: (req, file, cb) => {
     cb(null, `${Date.now()}-${file.originalname}`);
   }
@@ -23,27 +23,26 @@ const apiRoute = nextConnect({
   },
 });
 
+apiRoute.use(fileUpLoad.single('image'));
+
 apiRoute.get(async (req, res) => {
   const evento = await pool.query('SELECT * FROM imagenes');
   res.status(200).json(evento.rows);
 })
 
-apiRoute.use(fileUpLoad.single('image'));
-
 apiRoute.post(async(req, res) => {
   const {file } = req
 
+  const url_imagen = `public/imagenes/${file.filename}`
   const nom_imagen = file.originalname;
-  const tipo = file.mimetype;
-  const datos = fs.readFileSync( `./imagenes/${file.filename}`);
-  console.log(datos)
+  const tipo_imagen = file.mimetype;
 
   const response = await pool.query(
-    `INSERT INTO imagenes (nom_imagen, tipo, datos)
-      VALUES($1, $2, $3) returning id_imagen`,[nom_imagen, tipo, datos]
+    `INSERT INTO imagenes (nom_imagen, tipo_imagen, url_imagen)
+      VALUES($1, $2, $3) returning id_imagen`,[nom_imagen, tipo_imagen, url_imagen]
   );
 
-  res.status(200).json(response.rows[0]);
+  //res.status(200).json(response.rows[0]);
 });
 
 
