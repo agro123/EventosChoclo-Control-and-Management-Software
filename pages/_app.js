@@ -7,7 +7,7 @@ import 'antd/dist/antd.css';
 /* import "../styles/crearEventos/eventos.css"; */
 import "../styles/crearEventos/cardDate.css";
 import "../styles/crearEventos/eventosByCristian.css";
-import"../styles/paginaInicio/inicio.css";
+import "../styles/paginaInicio/inicio.css";
 import "../styles/eventoCard.css";
 import "../styles/paginaInicio/paginaEvento.css";
 import "../styles/paginaInicio/slider.css";
@@ -20,13 +20,14 @@ function MyApp({ Component, pageProps }) {
 
     return <>
         <Head>
-            <title > Eventos Choclo </title> 
+            <link rel="shortcut icon" href="/logocon.ico" />
+            <title > EventosChoclo </title>
         </Head>
         <ConfigProvider locale={es_ES} >
             <Layout >
                 <Component {...pageProps} />
             </Layout>
-        </ConfigProvider> 
+        </ConfigProvider>
     </>
 }
 
