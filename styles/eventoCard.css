@@ -1,6 +1,6 @@
 .eventoHomeCard {
-    width: 220px;
-    height: 320px;
+    width: 230px;
+    height: 350px;
     background-color: #EEEEEE;
     border-radius: 10px;
     filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.25));
@@ -9,7 +9,7 @@
     padding: 0;
     display: flex;
     flex-direction: column;
-    
+    Cursor : pointer;  
 }
 .display {
     width: 100%;
@@ -26,8 +26,9 @@
     font-family: var(--font);
     text-align: center;
     color: var(--gray);
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 600;
+  line-height: 20px;
 }
 
 
@@ -62,13 +63,16 @@
     justify-content: space-around;
     height: 64px;
     color: var(--gray);
-    margin-bottom: 10px;
+    margin: 8px 20px;
   }
   .fecha {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 0 6px;
+    border: 2px solid var(--midGray);
+    border-radius: 5px;
+    width: 60px;
   }
   
   .eventoCardFecha .dia {
@@ -78,7 +82,7 @@
   }
   .eventoCardFecha .mes {
     font-weight: 600;
-    font-size: 12px;
+    font-size: 14px;
   }
   .eventoCardDescripcion {
     border-radius: 10px 10px 0 0;
@@ -136,3 +140,6 @@
     transform: scale(0.95);
   }
 /* ##-------------------------------------------- */
+.descripHC {
+  padding: 10px 5px;
+}

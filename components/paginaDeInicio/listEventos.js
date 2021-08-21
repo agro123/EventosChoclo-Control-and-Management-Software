@@ -1,29 +1,31 @@
-import PropTypes from 'prop-types';
 import EventoHomeCard from './eventoHomeCard';
+import { EventosContext } from '../../context/EventosContext';
+import React, { useContext } from 'react';
+import {  Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 
-function listEventos({listaEventos}) {
-    
+const antIcon = <LoadingOutlined style={{ fontSize: 72 }} spin />;
+
+export default function listEventos() {
+
+    const { data,loading } = useContext(EventosContext);
+
+    const generarEventos = (info) => {
+        let cards = [];
+        info.map((v, i) => {
+            cards = [...cards, (
+                <EventoHomeCard
+                    info={v}
+                    key={i}
+                />)]
+        })
+        return cards
+    }
     return (
-        <div className='listaDeEventos'>
-            {/* <EventoHomeCard />
-            <EventoHomeCard />
-            <EventoHomeCard />
-            <EventoHomeCard />
-            <EventoHomeCard />
-            <EventoHomeCard />
-            <EventoHomeCard />
-            <EventoHomeCard />
-            <EventoHomeCard />
-            <EventoHomeCard />
-            <EventoHomeCard />
-            <EventoHomeCard /> */}
-        </div>
+        <Spin spinning={loading} indicator={antIcon}>
+            <div className='listaDeEventos'>
+                {generarEventos(data)}
+            </div>
+        </Spin>
     )
 }
-
-listEventos.propTypes = {
-
-}
-
-export default listEventos
-

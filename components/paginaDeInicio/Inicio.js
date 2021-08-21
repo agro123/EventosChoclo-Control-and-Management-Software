@@ -4,6 +4,7 @@ import ListEventos from './listEventos';
 import EventoHomeCard from './eventoHomeCard';
 import { Divider } from 'antd';
 
+
 export default function Inicio() {
     return (
         <>
@@ -13,10 +14,10 @@ export default function Inicio() {
                 <div>
                     <h2 className="title-home">Destacado</h2>
                     <div className="destacado">
-                        {/* <EventoHomeCard />
                         <EventoHomeCard />
                         <EventoHomeCard />
-                        <EventoHomeCard /> */}
+                        <EventoHomeCard />
+                        <EventoHomeCard />
                     </div>
                     <Divider orientation="left" plain />
                 </div>

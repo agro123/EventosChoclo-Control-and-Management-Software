@@ -1,6 +1,10 @@
-import React from 'react'
+import React from 'react';
+import { useRouter } from 'next/router';
 
 export default function Evento() {
+    const router = useRouter();
+    const {id_evento} = router.query;
+    
     return (
         <>
             <div className="background-evento">
@@ -12,7 +16,7 @@ export default function Evento() {
                     src={
                         "https://valledelpacifico.co/wp-content/uploads/2019/12/cevp-home2.jpg"}
                 />
-                <h1>Titulo del Evento</h1>
+                <h1>name</h1>
             </div>
             <div className="eventos">
                 <div className="descripcion-evento">

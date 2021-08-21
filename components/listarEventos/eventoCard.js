@@ -7,8 +7,8 @@ import { useDate } from '../../hooks/useDate';
 const defEvento = {
     titulo: "BIENVENIDO A EVENTOSCHOLO :D",
     imagen: '/defaultImg.jpg',
-    fecha_inicial: "29-02-2000",
-    fecha_final: "29-02-2000",
+    fecha_inicial: "2000-02-29",
+    fecha_final: "2000-02-29",
     descrip: "EventosChoclo...",
     lugar: "EventosChoclo",
     id_evento: 10000,
