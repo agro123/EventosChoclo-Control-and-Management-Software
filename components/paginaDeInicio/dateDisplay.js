@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useDate } from '../../hooks/useDate';
 
 function DateDisplay({ day, month, year, dayName, hour, last=false, unique }) {
 

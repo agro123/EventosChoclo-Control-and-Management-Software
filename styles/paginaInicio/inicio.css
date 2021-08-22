@@ -39,4 +39,10 @@
     }
 
 }
+@media (max-width: 360px) {
+    .eventos {
+        margin: 1% 2%;
+    }
+
+}
 

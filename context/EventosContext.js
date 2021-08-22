@@ -1,16 +1,20 @@
 import { createContext, useState } from 'react';
-import useGetData from '../hooks/useGetData'
+
 
 export const EventosContext = createContext();
 
 export const EventosProvider = ({ children }) => {
-    const { data, loading } = useGetData("evento", "3");
+    const [eventos, setEventos] = useState([]);
+
+    const addEventos = (e) => {
+        setEventos(e)
+    }
 
     return (
         <EventosContext.Provider value={
             {
-                data,
-                loading
+                eventos,
+                addEventos
             }
         }>
             {children}

@@ -53,8 +53,6 @@ export default function MyLayout({ children }) {
             <div className="redesS-footer">
               <p>Nuestras Redes sociales:</p>
               <div>
-                <MailOutlined style={styleIcon} />
-                <QrcodeOutlined style={styleIcon} />
                 <TwitterOutlined style={styleIcon} />
                 <WhatsAppOutlined style={styleIcon} />
                 <InstagramOutlined style={styleIcon} />
