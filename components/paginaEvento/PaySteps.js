@@ -1,10 +1,25 @@
-import React from 'react'
-import { Button, Steps, message, Form, Input, Cascader, Divider } from 'antd';
-import {  CheckCircleTwoTone } from '@ant-design/icons';
+import React, { useState, useContext, useEffect } from 'react'
+import {
+    Button, Steps, message, Form,
+    Input, Cascader, Divider, Select,
+    InputNumber
+} from 'antd';
+import { CheckCircleTwoTone } from '@ant-design/icons';
+import { EventosContext } from '../../context/EventosContext';
 const { Step } = Steps;
 
 //--------------------Componentes Steps
 const FormStep1 = () => {
+    const { paymentInfo, editPaymentInfo } = useContext(EventosContext);
+
+    const selectBefore = (
+        <Select disabled defaultValue="+57" className="select-before">
+            <Select.Option value="+57">+57</Select.Option>
+        </Select>
+    );
+    const onChange = e => {
+        editPaymentInfo({ [e.target.name]: e.target.value });
+    };
     return (
         <>
             <h2>Informacion de contacto:</h2>
@@ -13,17 +28,28 @@ const FormStep1 = () => {
                 layout="horizontal"
             >
                 <Form.Item label="Nombre y Apellidos" required>
-                    <Input allowClear />
+                    <Input allowClear value={paymentInfo.name} name="name" onChange={onChange} />
                 </Form.Item>
-                <Form.Item label="Número de Télefono" required>
-                    <Cascader
-                        options={[{ value: '+57', label: '+57' }]}
-                        disabled
-                        defaultValue={['+57']}
-                    /> <Input allowClear />
+                <Form.Item label="Número de celular" required>
+                    <Input
+                        name="phoneNumber"
+                        value={paymentInfo.phoneNumber} onChange={onChange}
+                        addonBefore={selectBefore}
+                        allowClear
+                        type='number'
+                    />
                 </Form.Item>
                 <Form.Item label="E-mail" required>
-                    <Input allowClear />
+                    <Input
+                        name="email"
+                        value={paymentInfo.email} onChange={onChange}
+                        allowClear
+                        type='email'
+                        pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+                    />
+                </Form.Item>
+                <Form.Item label="Número de boletas">
+                    <InputNumber type='number' style={{width: '70px'}} min={1} max={100000} defaultValue={1} />
                 </Form.Item>
             </Form>
         </>
@@ -68,7 +94,7 @@ const FormStep3 = () => {
             <p>Número:</p>
             <Divider>Información de contacto</Divider>
             <p>Nombre:</p>
-            <p>Télefono:</p>
+            <p>Celular:</p>
             <p>E-mail:</p>
         </>
     )
@@ -109,7 +135,7 @@ const steps = [
 
 //--------------------------Componente Principal
 export default function PaySteps() {
-    const [current, setCurrent] = React.useState(0);
+    const [current, setCurrent] = useState(0);
 
     const next = () => {
         setCurrent(current + 1);
