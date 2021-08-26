@@ -17,7 +17,7 @@ export default async (req, res) => {
       case 'PUT':
         await pool.query(
           `UPDATE usuario SET nombre = '${nombre}', apellido= '${apellido}', cedula = '${cedula}',
-          email='${email}' , celular='${celular}', direccion='${direccion}', password='${password}',
+          email='${email}' , celular='${celular}', direccion_usu='${direccion}', password='${password}',
           rol=${rol}, saldo=${saldo} WHERE id_usuario = ${id}`
         );
         res.status(200).json('Usuario ACTUALIZADO con exito');

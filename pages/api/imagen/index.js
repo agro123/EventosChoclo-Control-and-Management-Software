@@ -42,7 +42,7 @@ apiRoute.post(async(req, res) => {
       VALUES($1, $2, $3) returning id_imagen`,[nom_imagen, tipo_imagen, url_imagen]
   );
 
-  //res.status(200).json(response.rows[0]);
+  res.status(200).json(response.rows[0]);
 });
 
 
