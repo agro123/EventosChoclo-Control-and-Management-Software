@@ -16,15 +16,18 @@ export default async (req, res) => {
       },
     } = req;
 
+    const cliente = await pool.connect();
+
     switch (method) {
       case "GET":
-        const compra = await pool.query(
+        const compra = await cliente.query(
           `select * from compra where id_compra = ${id}`
         );
         res.status(200).json(compra.rows);
+        cliente.release();
         break;
       case "PUT":
-        await pool.query(
+        await cliente.query(
           `UPDATE compra SET id_usuario = $1,
           id_evento = $2,
           fecha_compra = $3,
@@ -45,10 +48,12 @@ export default async (req, res) => {
           ]
         );
         res.status(200).json("Compra ACTUALIZADA");
+        cliente.release();
         break;
       case "DELETE":
-        await pool.query(`DELETE FROM compra WHERE id_compra = ${id}`);
+        await cliente.query(`DELETE FROM compra WHERE id_compra = ${id}`);
         res.status(200).json("Compra ELIMINADA");
+        cliente.release();
         break;
     }
   } catch (e) {

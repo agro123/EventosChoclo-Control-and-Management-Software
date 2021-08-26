@@ -15,13 +15,16 @@ export default async (req, res) => {
       },
     } = req;
 
+    const cliente = await pool.connect();
+
     switch (method) {
       case "GET":
-        const evento = await pool.query("select * from compra");
+        const evento = await cliente.query("select * from compra");
         res.status(200).json(evento.rows);
+        cliente.release();
         break;
       case "POST":
-        const compra = await pool.query(
+        const compra = await cliente.query(
           `INSERT INTO compra (id_usuario,
             id_evento,
             fecha_compra,
@@ -40,12 +43,14 @@ export default async (req, res) => {
             apellido_cli,
           ]
         );
-        const {id_compra} = compra.rows[0]
-        res.status(201).json({id_compra, mensage:`Compra exitosa`});
+        const { id_compra } = compra.rows[0];
+        res.status(201).json({ id_compra, mensage: `Compra exitosa` });
+        cliente.release();
         break;
       default:
         res.setHeader("Allow", ["GET", "POST"]);
         res.status(405).end(`Metodo ${method} Invalido`);
+        cliente.release();
     }
   } catch (e) {
     res.status(e.status || 500).end(e.message);

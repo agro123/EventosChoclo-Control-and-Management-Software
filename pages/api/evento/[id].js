@@ -5,7 +5,8 @@ export default async (req, res) => {
     const {
       query: { id },
       method,
-      body: { titulo,
+      body: {
+        titulo,
         fecha_inicial,
         fecha_final,
         num_boletas,
@@ -15,16 +16,22 @@ export default async (req, res) => {
         tematica,
         direccion,
         aforo,
-      id_imagen },
-    } = req
+        id_imagen,
+      },
+    } = req;
+
+    const cliente = await pool.connect();
 
     switch (method) {
-      case 'GET':
-        const evento = await pool.query(`select * from evento_imagen where id_evento = ${id}`);
+      case "GET":
+        const evento = await cliente.query(
+          `select * from evento_imagen where id_evento = ${id}`
+        );
         res.status(200).json(evento.rows);
-        break
-      case 'PUT':
-        await pool.query(
+        cliente.release();
+        break;
+      case "PUT":
+        await cliente.query(
           `UPDATE evento SET titulo = $1, 
           fecha_inicial = $2, 
           fecha_final = $3, 
@@ -37,19 +44,31 @@ export default async (req, res) => {
           aforo = $10
           id_imagen = $11
           WHERE id_evento = $12`,
-          [titulo, fecha_inicial, fecha_final, num_boletas, descripcion,
-            lugar, anfitrion, tematica, direccion, aforo, id_imagen, id]
+          [
+            titulo,
+            fecha_inicial,
+            fecha_final,
+            num_boletas,
+            descripcion,
+            lugar,
+            anfitrion,
+            tematica,
+            direccion,
+            aforo,
+            id_imagen,
+            id,
+          ]
         );
-        res.status(200).json('Evento ACTUALIZADO');
-        break
-      case 'DELETE':
-        await pool.query(
-          `DELETE FROM evento WHERE id_evento = ${id}`
-        );
-        res.status(200).json('Evento ELIMINADO');
-        break
+        res.status(200).json("Evento ACTUALIZADO");
+        cliente.release();
+        break;
+      case "DELETE":
+        await cliente.query(`DELETE FROM evento WHERE id_evento = ${id}`);
+        res.status(200).json("Evento ELIMINADO");
+        cliente.release();
+        break;
     }
   } catch (e) {
-    res.status(e.status || 500).end(e.message)
+    res.status(e.status || 500).end(e.message);
   }
-}
+};
