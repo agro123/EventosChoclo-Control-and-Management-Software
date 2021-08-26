@@ -3,29 +3,15 @@ import pool from "../../../lib/bd";
 
 export default async (req, res) => {
   try {
-    const {
-    method,
-    body: {id_evento, id_usuario},
-  } = req
+    const { method } = req;
 
-    switch (method) {
-      case 'GET':
-        const boleta = await pool.query('SELECT * FROM boleta');
-        res.status(200).json(boleta.rows);
-        break
-      case 'POST':
-        const response = await pool.query(
-          `INSERT INTO boleta (id_usuario, id_evento) VALUES(${id_usuario}, ${id_evento}) returning id_boleta`
-        );
-        const idBole = response.rows[0]
-        res.status(200).json(`Se REGISTRO la boleta #${idBole}`);
-        break
-      default:
-        res.setHeader('Allow', ['GET', 'POST'])
-        res.status(405).end(`Metodo ${method} Invalido`)
+    if (method === "GET") {
+      const evento = await pool.query("select * from boleta_completa");
+      return res.status(200).json(evento.rows);
     }
+    res.setHeader("Allow", "GET");
+    res.status(405).end(`Metodo ${method} Invalido`);
   } catch (e) {
-    res.status(e.status || 500).end(e.message)
+    res.status(e.status || 500).end(e.message);
   }
-}
-
+};
