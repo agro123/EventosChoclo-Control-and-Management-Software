@@ -14,12 +14,13 @@ export default async (req, res) => {
         anfitrion,
         tematica,
         direccion,
-        aforo },
+        aforo,
+      id_imagen },
     } = req
 
     switch (method) {
       case 'GET':
-        const evento = await pool.query(`select * from evento natural join imagenes where id_evento = ${id}`);
+        const evento = await pool.query(`select * from evento_imagen where id_evento = ${id}`);
         res.status(200).json(evento.rows);
         break
       case 'PUT':
@@ -34,9 +35,10 @@ export default async (req, res) => {
           tematica = $8, 
           direccion = $9,
           aforo = $10
-          WHERE id_evento = $11`,
+          id_imagen = $11
+          WHERE id_evento = $12`,
           [titulo, fecha_inicial, fecha_final, num_boletas, descripcion,
-            lugar, anfitrion, tematica, direccion, aforo, id]
+            lugar, anfitrion, tematica, direccion, aforo, id_imagen, id]
         );
         res.status(200).json('Evento ACTUALIZADO');
         break
