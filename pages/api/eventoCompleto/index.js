@@ -7,7 +7,7 @@ export default async (req, res) => {
     const cliente = await pool.connect();
 
     if (method === "GET") {
-      const evento = await cliente.query("select * from boleta_completa");
+      const evento = await cliente.query("select * from evento_completo");
       cliente.release();
       return res.status(200).json(evento.rows);
     }

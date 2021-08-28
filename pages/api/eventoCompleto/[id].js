@@ -2,12 +2,17 @@ import pool from "../../../lib/bd";
 
 export default async (req, res) => {
   try {
-    const { method } = req;
+    const {
+      query: { id },
+      method,
+    } = req;
 
     const cliente = await pool.connect();
 
     if (method === "GET") {
-      const evento = await cliente.query("select * from boleta_completa");
+      const evento = await cliente.query(
+        `select * from evento_completo where id_evento = ${id}`
+      );
       cliente.release();
       return res.status(200).json(evento.rows);
     }
