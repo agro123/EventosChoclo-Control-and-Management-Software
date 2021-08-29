@@ -30,7 +30,7 @@ const FormStep1 = () => {
                 <Form.Item label="Nombre y Apellidos" required>
                     <Input allowClear value={paymentInfo.name} name="name" onChange={onChange} />
                 </Form.Item>
-                <Form.Item label="Número de celular" required>
+                {/* <Form.Item label="Número de celular" required>
                     <Input
                         name="phoneNumber"
                         value={paymentInfo.phoneNumber} onChange={onChange}
@@ -47,9 +47,9 @@ const FormStep1 = () => {
                         type='email'
                         pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
                     />
-                </Form.Item>
+                </Form.Item> */}
                 <Form.Item label="Número de boletas">
-                    <InputNumber type='number' style={{width: '70px'}} min={1} max={100000} defaultValue={1} />
+                    <InputNumber type='number' style={{ width: '70px' }} min={1} max={100000} defaultValue={1} />
                 </Form.Item>
             </Form>
         </>

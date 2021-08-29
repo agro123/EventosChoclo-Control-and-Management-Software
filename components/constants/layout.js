@@ -46,7 +46,7 @@ export default function MyLayout({ children }) {
             </div>
             <div>
               <div>
-              Desarrollado por: El Equipo Dinamita
+              Desarrollado por el Equipo Dinamita c:
               </div>
               Santiago - Victor - Leonardo - Cristian
             </div>
