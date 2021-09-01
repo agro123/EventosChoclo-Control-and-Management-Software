@@ -5,21 +5,16 @@ import Logo from "./logo";
 import Option from "./menuOption";
 import { Image } from "antd";
 import {
-  CopyrightOutlined,
-  QrcodeOutlined,
-  TwitterOutlined,
-  InstagramOutlined,
-  FacebookOutlined,
-  WhatsAppOutlined,
-  MailOutlined,
-} from "@ant-design/icons";
-import Head from "next/head";
+  CopyrightOutlined, QrcodeOutlined, TwitterOutlined,
+  InstagramOutlined, FacebookOutlined,
+  WhatsAppOutlined, MailOutlined
+} from '@ant-design/icons';
 import UserContext from "../../context/User/userContext";
 import Logout from "./logout";
 
 export default function MyLayout({ children }) {
   const user = useContext(UserContext);
-
+  const styleIcon = { fontSize: '40px', color: '#979A9C' }
   return (
     <>
       <Layout>
@@ -46,10 +41,9 @@ export default function MyLayout({ children }) {
             ) : (
               <Link href="/Login">
                 <div className="login-header">
-                  <Image
-                    preview={false}
-                    width="50px"
-                    height="50px"
+                  <Image preview={false}
+                    width="40px"
+                    height="40px"
                     src="https://img.icons8.com/cotton/2x/login-rounded-right--v2.png"
                   />
                   <Option label="Login" url="/Login" />
@@ -58,38 +52,25 @@ export default function MyLayout({ children }) {
             )}
           </header>
           <main className="main">{children}</main>
-          <footer className="footer">
+          <footer className='footer'>
             <div className="informacion-footer">
               <p>EventosChoclo S.A.</p>
-              <p>
-                Todos los derechos reservados{" "}
-                {
-                  <CopyrightOutlined
-                    style={{ fontSize: "20px", color: "#979A9C" }}
-                  />
-                }
-              </p>
+              <p>Todos los derechos reservados {<CopyrightOutlined style={{ fontSize: '20px', color: '#979A9C' }} />}</p>
               <p>Contactanos +57 323 313 5959</p>
+            </div>
+            <div>
+              <div>
+                Desarrollado por el Equipo Dinamita c:
+              </div>
+              Santiago - Victor - Leonardo - Cristian
             </div>
             <div className="redesS-footer">
               <p>Nuestras Redes sociales:</p>
               <div>
-                <MailOutlined style={{ fontSize: "40px", color: "#979A9C" }} />
-                <QrcodeOutlined
-                  style={{ fontSize: "40px", color: "#979A9C" }}
-                />
-                <TwitterOutlined
-                  style={{ fontSize: "40px", color: "#979A9C" }}
-                />
-                <WhatsAppOutlined
-                  style={{ fontSize: "40px", color: "#979A9C" }}
-                />
-                <InstagramOutlined
-                  style={{ fontSize: "40px", color: "#979A9C" }}
-                />
-                <FacebookOutlined
-                  style={{ fontSize: "40px", color: "#979A9C" }}
-                />
+                <TwitterOutlined style={styleIcon} />
+                <WhatsAppOutlined style={styleIcon} />
+                <InstagramOutlined style={styleIcon} />
+                <FacebookOutlined style={styleIcon} />
               </div>
             </div>
           </footer>
