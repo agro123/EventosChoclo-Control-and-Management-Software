@@ -1,60 +1,3 @@
-
-.eventoCardLeyenda {
-  display: flex;
-  flex-direction: column;
-  font-family: "Libre Franklin";
-  justify-content: center;
-  height: 100px;
-}
-
-.eventoCardFecha {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  height: 64px;
-  color: var(--gray);
-}
-.fecha {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.eventoCardFecha .dia {
-  font-size: 26px;
-  font-weight: 700;
-  height: 35px;
-}
-.eventoCardFecha .mes {
-  font-weight: 600;
-  font-size: 12px;
-}
-.eventoCardDescripcion {
-  font-size: 0.7rem;
-  font-weight: 600;
-  flex: auto;
-  margin-top: -120px;
-  padding: 7px 5px;
-  position: relative;
-  height: 120px;
-  color: transparent;
-  background-color: transparent;
-  transition: background-color 0.5s;
-  text-align: justify;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-.eventoCardDescripcion:hover {
-  color: var(--white);
-  background-color: rgba(34, 40, 49, 0.75);
-}
-.eventoCard {
-  margin: 10px;
-  height: 320px;
-  width: 200px;
-
-}
-
 .listEventos {
   display: block;
   padding-top: 40px;
@@ -76,4 +19,10 @@
 .carruselHeader h1 {
   margin: 0;
   color: var(--black);
+}
+.carrusel {
+  padding: 2% 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

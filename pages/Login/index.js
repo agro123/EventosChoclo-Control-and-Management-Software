@@ -14,29 +14,31 @@ export default function LoginAndRegister() {
     }
   }, [user]);
   return (
-    <div className="conteinerLogReg">
-      <div className="carruselEventoAdmin">
-        <div className="carruselHeader">
-          <h1>Iniciar Sesión</h1>
-          <h1>Registro</h1>
+    <div className="carrusel-container">
+      <div className="conteinerLogReg">
+        <div className="carruselEventoAdmin">
+          <div className="carruselHeader">
+            <h1>Iniciar Sesión</h1>
+            <h1>Registro</h1>
+          </div>
+          <Carousel
+            dotPosition="top"
+            style={{ width: "1000px", height: "590px" }}
+          >
+            <div className="changeLogin">
+              <div className="conteinerLR">
+                <Login />
+              </div>
+            </div>
+            <div className="changeLogin">
+              <div className="conteinerLR">
+                <Register />
+              </div>
+            </div>
+          </Carousel>
         </div>
-        <Carousel
-          dotPosition="top"
-          style={{ width: "1000px", height: "590px" }}
-        >
-          <div className="changeLogin">
-            <div className="conteinerLR">
-              <Login />
-            </div>
-          </div>
-
-          <div className="changeLogin">
-            <div className="conteinerLR">
-              <Register />
-            </div>
-          </div>
-        </Carousel>
       </div>
     </div>
+
   );
 }

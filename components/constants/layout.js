@@ -23,10 +23,8 @@ export default function MyLayout({ children }) {
             <Logo />
             <div className="menu-header">
               <Option label="Inicio" url="/" />
-              <Option label="Item" url="/" />
-              <Option label="Item" url="/" />
-              <Option label="Item" url="/" />
-              <Option label="Item" url="/" />
+              <Option label="Destacados" url="/" />
+              <Option label="Cerca de mí" url="/" />
             </div>
             {user.user.isAuth ? (
               <div className="login-header">

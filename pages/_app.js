@@ -1,16 +1,14 @@
 import "../styles/globals.css";
 import "../styles/Home.css";
 import "../styles/constants.css";
-import "../styles/listarEventosAdmin.css";
-import "../styles/antdMod.css";
-import "../styles/Login/Login.css";
-import "../styles/Login/Register.css";
 import '../styles/globals.css';
 import '../styles/Home.css';
 import '../styles/constants.css';
 import '../styles/listarEventosAdmin.css';
 import '../styles/antdMod.css';
 import 'antd/dist/antd.css';
+/* import "../styles/crearEventos/eventos.css"; */
+import "../styles/crearEventos/cardDate.css";
 import "../styles/crearEventos/eventosByCristian.css";
 import "../styles/paginaInicio/inicio.css";
 import "../styles/eventoCard.css";
@@ -26,16 +24,18 @@ import Head from "next/head";
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <ConfigProvider locale={es_ES}>
-        <UserState>
-          <Head>
-            <title> Eventos Choclo </title>
-          </Head>
+
+      <UserState>
+        <Head>
+          <link rel="shortcut icon" href="/logocon.ico" />
+          <title > EventosChoclo </title>
+        </Head>
+        <ConfigProvider locale={es_ES}>
           <Layout>
             <Component {...pageProps} />
           </Layout>
-        </UserState>
-      </ConfigProvider>
+        </ConfigProvider>
+      </UserState>
     </>
   );
 }
