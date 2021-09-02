@@ -28,10 +28,9 @@ export default function MyLayout({ children }) {
             </div>
             {user.user.isAuth ? (
               <div className="login-header">
-                <Image
-                  preview={false}
-                  width="50px"
-                  height="50px"
+                <Image preview={false}
+                  width="40px"
+                  height="40px"
                   src="https://img.icons8.com/cotton/2x/login-rounded-right--v2.png"
                 />
                 <Logout />

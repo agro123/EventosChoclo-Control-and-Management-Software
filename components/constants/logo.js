@@ -11,7 +11,7 @@ export default function Logo() {
                         <Image preview={false}
                             width="50px"
                             height="50px"
-                            src="https://cdn.pixabay.com/photo/2017/11/16/15/10/corn-2954888_960_720.png"
+                            src="/logo-prev.png"
                         />
                     </a>
                 </Link>

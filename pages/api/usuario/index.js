@@ -25,13 +25,14 @@ export default async (req, res) => {
         await pool.query(
           `INSERT INTO usuario (cedula, apellido, nombre, email, celular, direccion, password, rol, saldo) 
           VALUES('${cedula}', '${apellido}', '${nombre}', '${email}', '${celular}', '${direccion}', 
-          '${password}', ${rol}, ${saldo})`
+          '${password}', ${rol}, ${saldo}) returning id_usuario`
         );
         res.status(200).json("Usuario REGISTRADO con exito");
         break;
       default:
         res.setHeader("Allow", ["GET", "POST"]);
         res.status(405).end(`Metodo ${method} Invalido`);
+        cliente.release();
     }
   } catch (e) {
     res.status(e.status || 500).end(e.message);
