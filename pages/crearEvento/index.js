@@ -1,7 +1,7 @@
 import { useState, useContext } from "react"; // Cristian hizo un cambio aquí
 import { useForm } from "react-hook-form";
 import { Spin, Button } from "antd";
-import { ReloadContext } from "../../context/reloadContext"; //Cristian añadió esta linea
+//import { ReloadContext } from "../../context/reloadContext"; //Cristian añadió esta linea
 import {
   inicio,
   cierre,
@@ -19,7 +19,7 @@ import FechasEvento from "../../components/Dates/fechasEvento";
 
 export default function CrearEventos() {
   const [loading, setLoading] = useState(false);
-  const { onChange } = useContext(ReloadContext); // Cristian añadió esta linea
+  //const { onChange } = useContext(ReloadContext); // Cristian añadió esta linea
 
   //Estado de la imagen como URL para mostrarla
   const [imagen, setImagen] = useState(null);
@@ -100,10 +100,12 @@ export default function CrearEventos() {
     }
 
     const formdata = convertirImagen(formImagen);
-
+    
+    
     try {
       setLoading(true);
       const idImagen = await axios.post("/api/imagen", formdata);
+      console.log(idImagen)
       if (idImagen.status === 200) {
         const body = {
           titulo: data.titulo,
@@ -116,12 +118,13 @@ export default function CrearEventos() {
           anfitrion: data.anfitrion,
           tematica: data.tematica,
           direccion: data.direccion,
+          precio_boleta: data.precioBol,
           id_imagen: idImagen.data.id_imagen,
         };
-
+        console.log(body)
         const respuesta = await axios.post("/api/evento", body);
 
-        onChange(); //Cristian añadió esta linea
+        //onChange(); //Cristian añadió esta linea
         setLoading(false);
         resetValues(e);
         success(data.titulo);
@@ -152,13 +155,13 @@ export default function CrearEventos() {
 
   return (
     <div className="contend">
-      <Spin spinning={loading} indicator={antIcon}>
+      <Spin spinning={loading} indicator={antIcon} wrapperClassName='spin'>
         <form
           className="form-eventos"
           id="formEvento"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <div>
+          <div className='cont-Inputs'>
             <input
               className="input-title"
               placeholder="Titulo del Evento"

@@ -5,6 +5,8 @@ import '../styles/globals.css';
 import '../styles/Home.css';
 import '../styles/constants.css';
 import '../styles/listarEventosAdmin.css';
+import "../styles/Login/Login.css";
+import "../styles/Login/Register.css";
 import '../styles/antdMod.css';
 import 'antd/dist/antd.css';
 /* import "../styles/crearEventos/eventos.css"; */

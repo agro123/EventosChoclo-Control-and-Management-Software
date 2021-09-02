@@ -36,7 +36,20 @@ const FormularioEventos = ({ register, errors }) => {
               className="inputs-Eventos"
               {...register("direccion")}
             />
+
+            <label htmlFor="precioBol">{"Precio por Boleta: (*)"}</label>
+            <input
+              id="precioBol"
+              className="inputs-Eventos"
+              type="number"
+              name="precioBol"
+              {...register("precioBol", { required: true })}
+            />
+            {errors.precioBol && (
+              <span className="spanError">Este campo es obligatorio</span>
+            )}
           </div>
+          
           <div className="inputs-info-left">
             <label htmlFor="aforo">{"Aforo: (*)"}</label>
             <input
