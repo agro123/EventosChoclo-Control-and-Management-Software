@@ -105,7 +105,7 @@ export default function CrearEventos() {
     try {
       setLoading(true);
       const idImagen = await axios.post("/api/imagen", formdata);
-      console.log(idImagen)
+      
       if (idImagen.status === 200) {
         const body = {
           titulo: data.titulo,
@@ -121,7 +121,7 @@ export default function CrearEventos() {
           precio_boleta: data.precioBol,
           id_imagen: idImagen.data.id_imagen,
         };
-        console.log(body)
+        
         const respuesta = await axios.post("/api/evento", body);
 
         //onChange(); //Cristian añadió esta linea

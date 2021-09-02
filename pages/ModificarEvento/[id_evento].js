@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import {
   inicio,
   cierre,
@@ -18,14 +18,16 @@ import FormularioEventos from "../../components/Dates/inputs";
 import ImagenEvento from "../../components/Dates/imagen";
 import FechasEvento from "../../components/Dates/fechasEvento";
 
-const ModificarEvento = ({ id_evento = 2 }) => {
+const ModificarEvento = () => {
   //Estado de la imagen como URL para mostrarla
   const [imagen, setImagen] = useState(null);
   const [evento, setEvento] = useState(null);
+  const [id,setId] = useState(null);
   //Estado de la imagen formateada para enviarla
   const [formImagen, setFormImagen] = useState(null);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
+  const path = require('path')
   //Estado de fecha tanto formateada como para las Cards
   const [fecha, setFecha] = useState({
     inicio: { ...inicio },
@@ -35,6 +37,9 @@ const ModificarEvento = ({ id_evento = 2 }) => {
     error: false,
   });
 
+  useEffect(()=>{
+     router && router.query && setId(router.query.id_evento);
+  },[router])
   //Estado del input de fecha solo para mostrarlo
   const [inputFecha, setInputFecha] = useState({
     inicio: null,
@@ -64,16 +69,16 @@ const ModificarEvento = ({ id_evento = 2 }) => {
   useEffect(async () => {
     setLoading(true);
     try {
-      const respuesta = await axios.get(`/api/evento/${id_evento}`);
+      const respuesta = await axios.get(`/api/evento/${id}`);
       const dataEvento = respuesta.data[0];
       setEvento(dataEvento);
-
+      console.log(evento)
       setLoading(false);
     } catch (e) {
-      setError(e);
+      //setError(e);
       setLoading(false);
     }
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     if (evento) {
@@ -84,12 +89,15 @@ const ModificarEvento = ({ id_evento = 2 }) => {
       setValue("aforo", evento.aforo);
       setValue("boletas", evento.num_boletas);
       setValue("anfitrion", evento.anfitrion);
-      setValue("descripcion", evento.descrip);
+      setValue("descripcion", evento.descripcion);
+      setValue("precioBol", evento.precio_boleta);
+      setImagen(path.join(__dirname,evento.url_imagen))
+      
       let fInicial, fFinal;
       fInicial = moment(evento.fecha_inicial, "YYYY-MM-DD hh:mm Z");
-      fInicial.add(1, "days");
+      
       fFinal = moment(evento.fecha_final, "YYYY-MM-DD HH:mm Z");
-      fFinal.add(1, "days");
+      
       setInputFecha({
         inicio: fInicial,
         cierre: fFinal,
@@ -143,18 +151,37 @@ const ModificarEvento = ({ id_evento = 2 }) => {
     }
   };
 
-  const onSubmit = (data, e) => {
+  const onSubmit = async (data, e) => {
     const valida = valFecha();
     if (!valida) {
       return;
     }
+    
     try {
+
+      const body = {
+          titulo : data.titulo, 
+          fecha_inicial : fecha.inicioFormt, 
+          fecha_final : fecha.cierreFormt, 
+          num_boletas : data.boletas, 
+          descripcion : data.descripcion, 
+          lugar : data.lugar, 
+          anfitrion : data.anfitrion, 
+          tematica : data.tematica, 
+          direccion : data.direccion,
+          aforo : data.aforo,
+          //id_imagen = $11,
+          precio_boleta : data.precioBol,
+
+      }
+      
       setLoading(true);
-      console.log(data);
+      //await axios.put(`/api/evento/${evento.id_evento}`, body);;
+      console.log(body)
       setLoading(false);
       success(data.titulo);
-      resetValues(e);
-      router.push("/eventosAdmin");
+      //resetValues(e);
+      //router.push("/eventosAdmin");
     } catch (err) {
       setLoading(false);
       error();
