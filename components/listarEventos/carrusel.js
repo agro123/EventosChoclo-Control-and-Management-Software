@@ -26,25 +26,28 @@ export default function Carrusel() {
   }
 
   return (
-    <div className="carruselEventoAdmin">
-      <div className="carruselHeader">
-        <h1>Eventos Actuales</h1>
-        <h1>Crear Evento</h1>
-      </div>
-      <Carousel dotPosition="top" style={{ width: "900px" }}>
-        <div className="listEventos">
-          <Spin spinning={loading} indicator={antIcon}>
-            <div className="list">
-              {generarEventos(data)}
-            </div>
-          </Spin>
+    <div className="carrusel-container">
+      <div className="carruselEventoAdmin">
+        <div className="carruselHeader">
+          <h1>Eventos Actuales</h1>
+          <h1>Crear Evento</h1>
         </div>
-        <div>
+        <Carousel dotPosition="top" style={{ width: "900px" }}>
           <div className="listEventos">
-            <CrearEventos />
+            <Spin spinning={loading} indicator={antIcon}>
+              <div className="list">
+                {generarEventos(data)}
+              </div>
+            </Spin>
           </div>
-        </div>
-      </Carousel>
+          <div>
+            <div className="listEventos">
+              <CrearEventos />
+            </div>
+          </div>
+        </Carousel>
+      </div>
     </div>
+
   );
 }

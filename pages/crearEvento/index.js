@@ -1,7 +1,7 @@
-import { useState,useContext } from "react";// Cristian hizo un cambio aquí
+import { useState, useContext } from "react"; // Cristian hizo un cambio aquí
 import { useForm } from "react-hook-form";
 import { Spin, Button } from "antd";
-import { ReloadContext } from '../../context/reloadContext'; //Cristian añadió esta linea
+import { ReloadContext } from "../../context/reloadContext"; //Cristian añadió esta linea
 import {
   inicio,
   cierre,
@@ -19,8 +19,7 @@ import FechasEvento from "../../components/Dates/fechasEvento";
 
 export default function CrearEventos() {
   const [loading, setLoading] = useState(false);
-
-  const { onChange } = useContext(ReloadContext);// Cristian añadió esta linea
+  const { onChange } = useContext(ReloadContext); // Cristian añadió esta linea
 
   //Estado de la imagen como URL para mostrarla
   const [imagen, setImagen] = useState(null);
@@ -198,8 +197,8 @@ export default function CrearEventos() {
               className="button-crearEv"
               htmlType="submit"
               block
-              size="small"
-              /* shape="round" */ /* Cristian cambio algo aquí */
+              size="small" /* Cristian cambio algo aquí */
+              /* shape="round" */
             >
               Crear Evento
             </Button>

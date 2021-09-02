@@ -1,3 +1,6 @@
+import "../styles/globals.css";
+import "../styles/Home.css";
+import "../styles/constants.css";
 import '../styles/globals.css';
 import '../styles/Home.css';
 import '../styles/constants.css';
@@ -11,24 +14,31 @@ import "../styles/paginaInicio/inicio.css";
 import "../styles/eventoCard.css";
 import "../styles/paginaEvento/paginaEvento.css";
 import "../styles/paginaInicio/slider.css";
-import Layout from '../components/constants/layout';
-import { ConfigProvider } from 'antd';
-import es_ES from 'antd/lib/locale/es_ES';
-import Head from 'next/head';
+
+import UserState from "../context/User/userState";
+import Layout from "../components/constants/layout";
+import { ConfigProvider } from "antd";
+import es_ES from "antd/lib/locale/es_ES";
+import Head from "next/head";
+
 
 function MyApp({ Component, pageProps }) {
+  return (
+    <>
 
-    return <>
+      <UserState>
         <Head>
-            <link rel="shortcut icon" href="/logocon.ico" />
-            <title > EventosChoclo </title>
+          <link rel="shortcut icon" href="/logocon.ico" />
+          <title > EventosChoclo </title>
         </Head>
-        <ConfigProvider locale={es_ES} >
-            <Layout >
-                <Component {...pageProps} />
-            </Layout>
+        <ConfigProvider locale={es_ES}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
         </ConfigProvider>
+      </UserState>
     </>
+  );
 }
 
-export default MyApp
+export default MyApp;

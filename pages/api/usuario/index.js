@@ -16,26 +16,18 @@ export default async (req, res) => {
         saldo,
       },
     } = req;
-
-    const cliente = await pool.connect();
-
     switch (method) {
       case "GET":
-        const usuario = await cliente.query("SELECT * FROM usuario");
+        const usuario = await pool.query("SELECT * FROM usuario");
         res.status(200).json(usuario.rows);
-        cliente.release();
         break;
       case "POST":
-        const response = await cliente.query(
-          `INSERT INTO usuario (cedula, apellido, nombre, email, celular, direccion_usu, password, rol, saldo) 
+        await pool.query(
+          `INSERT INTO usuario (cedula, apellido, nombre, email, celular, direccion, password, rol, saldo) 
           VALUES('${cedula}', '${apellido}', '${nombre}', '${email}', '${celular}', '${direccion}', 
           '${password}', ${rol}, ${saldo}) returning id_usuario`
         );
-        const { id_usuario } = response.rows[0];
-        res
-          .status(201)
-          .json({ id_usuario, mensaje: "Usuario REGISTRADO con exito" });
-        cliente.release();
+        res.status(200).json("Usuario REGISTRADO con exito");
         break;
       default:
         res.setHeader("Allow", ["GET", "POST"]);

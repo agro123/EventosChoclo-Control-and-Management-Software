@@ -1,0 +1,98 @@
+.cont-register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 3%;
+  margin: 4% 0;
+  padding: 2%;
+  background-color: #ffffff;
+  height: 560px;
+  width: 98%;
+  border: 4.0489px solid rgba(189, 187, 187, 0.8);
+  box-shadow: 5px 6px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+}
+
+.form-register {
+  padding: 2.5% 2%;
+  width: 90%;
+  height: 100%;
+  display: flex;
+}
+
+.inp-regis {
+  height: 85%;
+  width: 50%;
+}
+.h4-register {
+  margin: 0;
+  align-self: center;
+  font-weight: bold;
+}
+
+.form-reg {
+  width: 100%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cont-inp-error {
+  justify-self: flex-end;
+  width: 85%;
+}
+
+.cont-input-register {
+  display: grid;
+  padding: 1.8%;
+  width: 100%;
+  grid-template-columns: 0.7fr 1fr;
+  align-items: center;
+}
+
+.input-register {
+  padding: 2px 11px;
+  justify-self: flex-end;
+  width: 100%;
+  border: var(--input);
+  border-radius: 4px;
+  outline: 0 none;
+}
+
+.label-register {
+  display: flex;
+  align-items: center;
+}
+
+.input-register:focus {
+  border: var(--inputClick);
+}
+
+.custom-file-uploadR {
+  height: 35px;
+  margin-top: 0.5%;
+  border-radius: 4px;
+  color: #3b424894;
+  background-color: rgba(197, 192, 192, 0.274);
+  border: 1px solid #ccc;
+  font-weight: 600;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: all 0.6s;
+}
+
+.custom-file-uploadR:hover {
+  border-color: rgba(14, 83, 17, 0.541);
+  color: #3b4248c5;
+  background-color: rgba(44, 243, 160, 0.164);
+}
+
+.cont-avatar {
+  width: 85%;
+  margin-bottom: 3%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
