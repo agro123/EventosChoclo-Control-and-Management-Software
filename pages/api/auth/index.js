@@ -20,7 +20,7 @@ export default async (req, res) => {
 
         const { email, password } = req.body;
         const response = await cliente.query(
-            "select * from usuario where email = $1",
+            "select * from usuario natural join imagenes where email = $1",
             [email]
         );
         if (response.rowCount > 0) {
@@ -32,7 +32,7 @@ export default async (req, res) => {
                 nombre: usuario.nombre + ' ' + usuario.apellido,
                 email: usuario.email,
                 rol: usuario.rol,
-                id_imagen: usuario.id_imagen,
+                url_imagen: usuario.url_imagen,
             }
                 cliente.release();
             return res.send({token: crearToken(user),
