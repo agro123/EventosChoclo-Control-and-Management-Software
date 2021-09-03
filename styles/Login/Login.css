@@ -1,6 +1,6 @@
 .conteinerLogReg {
   padding: 3rem 2rem;
-  height: 760px;
+  height: 850px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -20,7 +20,6 @@
   height: 100%;
   display: block;
   padding-top: 40px;
-  
 }
 
 .h2input {
