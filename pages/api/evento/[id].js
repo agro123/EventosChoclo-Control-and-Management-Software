@@ -25,11 +25,9 @@ export default async (req, res) => {
 
     switch (method) {
       case "GET":
-        
         const evento = await cliente.query(
           `select * from evento_imagen where id_evento = ${id}`
         );
-        
         res.status(200).json(evento.rows);
         cliente.release();
         break;
@@ -44,8 +42,8 @@ export default async (req, res) => {
           anfitrion = $7, 
           tematica = $8, 
           direccion = $9,
-          aforo = $10,
-          id_imagen = $11,
+          aforo = $10
+          id_imagen = $11
           precio_boleta = $12
           WHERE id_evento = $13`,
           [

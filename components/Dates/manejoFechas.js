@@ -1,3 +1,5 @@
+
+
 const fechaActual = new Date();
 
 let fechaMas1 = new Date();
@@ -184,9 +186,10 @@ const convertDate = (date) => {
   return dates;
 };
 
-const convertirImagen = (file) => {
-  const formdata = new FormData();
-  formdata.append("image", file);
+const convertirImagen = (file,uploadPreset) => {
+  const formdata =  new FormData()
+  formdata.append('file', file);
+  formdata.append('upload_preset', uploadPreset);
   return formdata;
 };
 

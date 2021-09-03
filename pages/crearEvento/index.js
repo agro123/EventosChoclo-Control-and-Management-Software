@@ -1,6 +1,7 @@
 import { useState, useContext } from "react"; // Cristian hizo un cambio aquí
 import { useForm } from "react-hook-form";
 import { Spin, Button } from "antd";
+import {uploadPreset,cloudinaryURL} from '../../lib/keys/keys';
 //import { ReloadContext } from "../../context/reloadContext"; //Cristian añadió esta linea
 import {
   inicio,
@@ -74,7 +75,9 @@ export default function CrearEventos() {
     });
   };
 
-  //Se valida ue la fecha inicial sea menor ue la final
+  
+
+  //Se valida ue la fecha inicial sea menor que la final
   const valFecha = () => {
     const valida = validarFecha(fecha.inicio, fecha.cierre);
     if (!valida) {
@@ -98,15 +101,38 @@ export default function CrearEventos() {
     if (!valida) {
       return;
     }
-
-    const formdata = convertirImagen(formImagen);
+    
+    const formdata = convertirImagen(formImagen,uploadPreset);
     
     
     try {
       setLoading(true);
-      const idImagen = await axios.post("/api/imagen", formdata);
+      const response = await axios.post(
+        cloudinaryURL,
+        formdata,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          },
+        }
+      )
       
-      if (idImagen.status === 200) {
+      
+        console.log(response)
+      if(response.status !== 200){
+        error();
+        return;
+      }
+
+      const body = {
+        url_imagen : response.data.secure_url,
+      }
+
+      const idImagen = await axios.post("/api/imagen", body);
+
+      console.log(idImagen)
+
+      if (idImagen.status === 201) {
         const body = {
           titulo: data.titulo,
           fecha_inicial: fecha.inicioFormt,
@@ -123,7 +149,7 @@ export default function CrearEventos() {
         };
         
         const respuesta = await axios.post("/api/evento", body);
-
+        
         //onChange(); //Cristian añadió esta linea
         setLoading(false);
         resetValues(e);
