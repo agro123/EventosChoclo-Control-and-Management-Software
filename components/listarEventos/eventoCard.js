@@ -37,7 +37,7 @@ export default function EventoCard({ info=defEvento }) {
             <Skeleton loading={loading} active>
                 <div className="display">
                     <img alt="example"
-                        src={url_imagen}
+                        src={url_imagen || "https://i.pinimg.com/originals/50/f6/0a/50f60a6eb9966f0cbbfa8ef052b0d3ed.jpg"}
                         className="imagen"
                     />
                     <div className="eventoCardDescripcion">
