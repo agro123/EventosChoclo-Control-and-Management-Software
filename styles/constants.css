@@ -125,3 +125,17 @@
     font-size: 10px;
   }
 }
+
+.option-button {
+  color: var(--midGray);
+  font-weight: 700;
+  font-size: 1.5em;
+  background: none;
+  border: none;
+}
+.option-button:hover {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--midGray);
+}
