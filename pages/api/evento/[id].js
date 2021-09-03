@@ -37,13 +37,13 @@ export default async (req, res) => {
           fecha_inicial = $2, 
           fecha_final = $3, 
           num_boletas = $4, 
-          descrip = $5, 
+          descripcion = $5, 
           lugar = $6, 
           anfitrion = $7, 
           tematica = $8, 
-          direccion = $9,
-          aforo = $10
-          id_imagen = $11
+          direccion_even = $9,
+          aforo = $10,
+          id_imagen = $11,
           precio_boleta = $12
           WHERE id_evento = $13`,
           [
