@@ -17,6 +17,7 @@ export default async (req, res) => {
         direccion,
         aforo,
         id_imagen,
+        precio_boleta,
       },
     } = req;
 
@@ -43,7 +44,8 @@ export default async (req, res) => {
           direccion = $9,
           aforo = $10
           id_imagen = $11
-          WHERE id_evento = $12`,
+          precio_boleta = $12
+          WHERE id_evento = $13`,
           [
             titulo,
             fecha_inicial,
@@ -56,6 +58,7 @@ export default async (req, res) => {
             direccion,
             aforo,
             id_imagen,
+            precio_boleta,
             id,
           ]
         );
