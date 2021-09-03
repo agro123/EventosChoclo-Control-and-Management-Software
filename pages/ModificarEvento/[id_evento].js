@@ -9,6 +9,7 @@ import {
   fechaMas1,
   validarFecha,
 } from "../../components/Dates/manejoFechas";
+import {uploadPreset,cloudinaryURL} from '../../lib/keys/keys';
 import { Spin, Button } from "antd";
 import axios from "axios";
 import { useRouter } from "next/router";
@@ -69,11 +70,12 @@ const ModificarEvento = () => {
   useEffect(async () => {
     setLoading(true);
     try {
+      if(id !== null){
       const respuesta = await axios.get(`/api/evento/${id}`);
       const dataEvento = respuesta.data[0];
       setEvento(dataEvento);
-      console.log(evento)
       setLoading(false);
+      }
     } catch (e) {
       //setError(e);
       setLoading(false);
@@ -91,7 +93,7 @@ const ModificarEvento = () => {
       setValue("anfitrion", evento.anfitrion);
       setValue("descripcion", evento.descripcion);
       setValue("precioBol", evento.precio_boleta);
-      setImagen(path.join(__dirname,evento.url_imagen))
+      setImagen(evento.url_imagen)
       
       let fInicial, fFinal;
       fInicial = moment(evento.fecha_inicial, "YYYY-MM-DD hh:mm Z");
@@ -156,10 +158,53 @@ const ModificarEvento = () => {
     if (!valida) {
       return;
     }
-    
+    let bool = true;
+
+    if(formImagen == null){
+      bool = false;
+    }
+
     try {
 
-      const body = {
+      setLoading(true);
+
+      let idImagen = null;
+
+      if(bool){
+
+        const formdata = convertirImagen(formImagen,uploadPreset);
+
+        const response = await axios.post(
+          cloudinaryURL,
+          formdata,
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            },
+          }
+        )
+        
+        
+        if(response.status !== 200){
+          error();
+          return;
+        }
+
+        const body = {
+          url_imagen : response.data.secure_url,
+        }
+        if(evento.id_imagen){
+          idImagen = await axios.put(`/api/imagen/${evento.id_imagen}`, body);
+        }else{
+          idImagen = await axios.post(`/api/imagen`, body);
+        }
+        
+        console.log(idImagen)
+      }
+
+      
+
+        const body = {
           titulo : data.titulo, 
           fecha_inicial : fecha.inicioFormt, 
           fecha_final : fecha.cierreFormt, 
@@ -170,18 +215,25 @@ const ModificarEvento = () => {
           tematica : data.tematica, 
           direccion : data.direccion,
           aforo : data.aforo,
-          //id_imagen = $11,
+          id_imagen :  evento.id_imagen ? evento.id_imagen : idImagen.data.id_imagen,
           precio_boleta : data.precioBol,
 
       }
       
-      setLoading(true);
-      //await axios.put(`/api/evento/${evento.id_evento}`, body);;
-      console.log(body)
-      setLoading(false);
-      success(data.titulo);
-      //resetValues(e);
-      //router.push("/eventosAdmin");
+      
+      const response = await axios.put(`/api/evento/${evento.id_evento}`, body);;
+      
+      if(response.status === 200){
+        console.log(response)
+        success(data.titulo);
+        resetValues(e);
+        setLoading(false);
+        router.push("/eventosAdmin");
+      }else{
+        setLoading(false);
+        error();
+      }
+      
     } catch (err) {
       setLoading(false);
       error();

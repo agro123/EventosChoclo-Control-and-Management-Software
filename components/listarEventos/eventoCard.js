@@ -16,7 +16,7 @@ const defEvento = {
 }
 export default function EventoCard({ info=defEvento }) {
     const router = useRouter();
-    const { imagen, titulo, fecha_inicial, fecha_final, descrip, lugar, id_evento } = info; //problema con la imagen :"u
+    const { imagen, titulo, fecha_inicial, fecha_final, descripcion, lugar, id_evento,url_imagen } = info; //problema con la imagen :"u
     
     const soloFecha = (fecha) => fecha.slice(0, 10);// esta funcion es necesaria debido a que la fecha que se recibe de la forma aa-mm-ddT000000....
 
@@ -37,11 +37,11 @@ export default function EventoCard({ info=defEvento }) {
             <Skeleton loading={loading} active>
                 <div className="display">
                     <img alt="example"
-                        src={imagen}
+                        src={url_imagen}
                         className="imagen"
                     />
                     <div className="eventoCardDescripcion">
-                        <p>{descrip}</p>
+                        <p>{descripcion}</p>
                     </div>
                 </div>
                 <div className="titleCard">
