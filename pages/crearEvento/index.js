@@ -101,38 +101,45 @@ export default function CrearEventos() {
     if (!valida) {
       return;
     }
-    
-    const formdata = convertirImagen(formImagen,uploadPreset);
+
+    let formData = null;
+
+    if(formImagen !== null){
+      formData = convertirImagen(formImagen,uploadPreset);
+    }
     
     
     try {
       setLoading(true);
-      const response = await axios.post(
-        cloudinaryURL,
-        formdata,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          },
+
+      let idImagen = null;
+
+      if(formData !== null){
+        const response = await axios.post(
+          cloudinaryURL,
+          formData,
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            },
+          }
+        )
+        
+        
+          console.log(response)
+        if(response.status !== 200){
+          error();
+          return;
         }
-      )
-      
-      
-        console.log(response)
-      if(response.status !== 200){
-        error();
-        return;
+  
+        const body = {
+          url_imagen : response.data.secure_url,
+        }
+  
+        idImagen = await axios.post("/api/imagen", body);
       }
 
-      const body = {
-        url_imagen : response.data.secure_url,
-      }
-
-      const idImagen = await axios.post("/api/imagen", body);
-
-      console.log(idImagen)
-
-      if (idImagen.status === 201) {
+      
         const body = {
           titulo: data.titulo,
           fecha_inicial: fecha.inicioFormt,
@@ -145,7 +152,7 @@ export default function CrearEventos() {
           tematica: data.tematica,
           direccion: data.direccion,
           precio_boleta: data.precioBol,
-          id_imagen: idImagen.data.id_imagen,
+          id_imagen: idImagen !== null ? idImagen.data.id_imagen : idImagen ,
         };
         
         const respuesta = await axios.post("/api/evento", body);
@@ -154,7 +161,7 @@ export default function CrearEventos() {
         setLoading(false);
         resetValues(e);
         success(data.titulo);
-      }
+      
     } catch (err) {
       setLoading(false);
       error();

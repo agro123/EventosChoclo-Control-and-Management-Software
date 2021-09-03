@@ -1,8 +1,8 @@
 import pool from "../../../lib/bd";
 import {Cipher} from '../../../components/Encriptar'
-const keys = require("../keys/keys.js");
+import  keys   from "../../../lib/keys/keys.js"
 const jwt = require("jsonwebtoken");
-const password = keys.Crypto;
+const password = keys.crypto;
 
 
 const crearToken = (usuario) => {
@@ -11,6 +11,7 @@ const crearToken = (usuario) => {
 
 
 export default async (req, res) => {
+    
    const {method} = req;
    if(method === 'POST'){
     try {
@@ -24,8 +25,8 @@ export default async (req, res) => {
         );
         if (response.rowCount > 0) {
             const usuario = response.rows[0];
-            const decipher = Cipher.desencriptar(usuario.password);
-            if (decipher === password){
+            //const decipher = Cipher.desencriptar(usuario.password);
+            if (usuario.password === password){
             const user = {
                 id_usuario: usuario.id_usuario,
                 nombre: usuario.nombre + ' ' + usuario.apellido,

@@ -1,8 +1,10 @@
-import React from "react";
 import { Image } from "antd";
+import PropTypes from "prop-types";
 import InputRegister from "./inputRegister";
 
-const Register = () => {
+const Register = ({tipo}) => {
+  
+  
   return (
     <div className="cont-register">
       <Image
@@ -12,9 +14,13 @@ const Register = () => {
         src={"/LoginMaiz.png"}
         alt="Imagen del Evento"
       />
-      <InputRegister />
+      <InputRegister tipo={tipo} />
     </div>
   );
+};
+
+Register.propTypes = {
+  tipo: PropTypes.number.isRequired,
 };
 
 export default Register;

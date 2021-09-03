@@ -68,8 +68,39 @@
   border: var(--inputClick);
 }
 
+.inputsLoginContra {
+  display: flex;
+  justify-content: space-around;
+  padding: 4px 11px;
+  border: var(--input);
+  border-radius: 8px;
+  outline: 0 none;
+  width: 70%;
+}
+
+.inputsLoginContra:focus-within {
+  border: var(--inputClick);
+}
+
 .buttonLogin {
   display: flex;
   justify-content: center;
   align-self: flex-end;
+}
+
+.buttonChangeV {
+  border: 0;
+  width: 15%;
+  padding-right: 2%;
+  background: #fff;
+}
+
+.contraInput {
+  width: 85%;
+  border: 0;
+}
+
+.contraInput:focus {
+  border: 0;
+  outline: none;
 }

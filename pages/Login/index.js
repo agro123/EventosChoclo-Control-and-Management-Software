@@ -32,7 +32,7 @@ export default function LoginAndRegister() {
             </div>
             <div className="changeLogin">
               <div className="conteinerLR">
-                <Register />
+                <Register tipo= {2} />
               </div>
             </div>
           </Carousel>

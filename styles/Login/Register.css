@@ -60,12 +60,37 @@
   outline: 0 none;
 }
 
+.div-registerContra {
+  padding: 2px 9px;
+  justify-self: flex-end;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  border: var(--input);
+  border-radius: 4px;
+  outline: 0 none;
+}
+
 .label-register {
   display: flex;
   align-items: center;
 }
 
+.input-registerContra {
+  width: 85%;
+  border: 0;
+}
+
+.input-registerContra:focus {
+  border: 0;
+  outline: none;
+}
+
 .input-register:focus {
+  border: var(--inputClick);
+}
+
+.div-registerContra:focus-within {
   border: var(--inputClick);
 }
 

@@ -1,3 +1,4 @@
+import  keys   from "../../lib/keys/keys.js"
 const password = keys.Crypto;
 const Crypto = require("crypto");
 const algoritmo = "aes-192-cbc";

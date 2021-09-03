@@ -1,7 +1,8 @@
 import pool from "../../../lib/bd";
-const keys = require("../keys/keys.js");
-const password = keys.Crypto;
+import  keys   from "../../../lib/keys/keys.js"
+const password = keys.crypto;
 import {Cipher} from '../../../components/Encriptar'
+const jwt = require("jsonwebtoken");
 
 
 const crearToken = (usuario) => {
@@ -18,7 +19,7 @@ export default async (req, res) => {
         nombre,
         email,
         celular,
-        direccion,
+        direccion_usu,
         password,
         rol,
         saldo,
@@ -27,7 +28,7 @@ export default async (req, res) => {
     } = req;
 
     const cliente = await pool.connect();
-
+    
     switch (method) {
       case "GET":
         const usuario = await cliente.query("SELECT * FROM usuario");
@@ -36,11 +37,12 @@ export default async (req, res) => {
         cliente.release();
         break;
       case "POST":
-        const pass = Cipher.encriptar(password);
+        //const pass = Cipher.encriptar(password);
+        
         const response = await cliente.query(
           `INSERT INTO usuario (cedula, apellido, nombre, email, celular, direccion_usu, password, rol, saldo, id_imagen) 
-          VALUES('${cedula}', '${apellido}', '${nombre}', '${email}', '${celular}', '${direccion}', 
-          '${pass}', ${rol}, ${saldo}, ${id_imagen}) returning id_usuario`
+          VALUES('${cedula}', '${apellido}', '${nombre}', '${email}', '${celular}', '${direccion_usu}', 
+          '${password}', ${rol}, ${saldo}, ${id_imagen}) returning id_usuario`
         );
         const { id_usuario } = response.rows[0];
         const user = {
@@ -51,7 +53,7 @@ export default async (req, res) => {
             id_imagen: id_imagen,
         }
         res
-          .status(204)
+          .status(201)
           .send({ token: crearToken(user),
             isAuth: true,
             user });

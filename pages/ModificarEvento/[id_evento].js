@@ -199,7 +199,7 @@ const ModificarEvento = () => {
           idImagen = await axios.post(`/api/imagen`, body);
         }
         
-        console.log(idImagen)
+        
       }
 
       
