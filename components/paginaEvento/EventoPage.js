@@ -15,15 +15,16 @@ const formatter = new Intl.NumberFormat('es-CO', {
 })
 
 const EventoPage = ({ data }) => {
-    const { anfitrion, descrip, fecha_final, fecha_inicial,
-        direccion, id_imagen, lugar, nom_imagen, num_boletas,
-        tematica, tipo_imagen, titulo } = data[0];
+    const { anfitrion, descripcion, fecha_final, fecha_inicial,
+        direccion_even, lugar, num_boletas, nom_imagen,
+        tematica, url_imagen, titulo, precio_boleta } = data[0];
 
     const soloFecha = fecha => fecha.slice(0, 10);
     const soloHora = hora => hora.slice(11, 16);
 
     const { isSameDates, day, month, year, dayName } = useDate([soloFecha(fecha_inicial), soloFecha(fecha_final)]);
     const styleIcon = { fontSize: '40px' }
+    console.log(data[0])
 
     return (
         <>
@@ -32,11 +33,11 @@ const EventoPage = ({ data }) => {
             </Head>
             <div className="background-evento">
                 <div className="background-img"
-                    style={{ backgroundImage: "url(/defaultImg.jpg)" }}
+                    style={{ backgroundImage: `url(${url_imagen || '/defaultImg.jpg'})` }}
                 ></div>
-                <img alt="evento Image"
+                <img alt={nom_imagen || "evento Image"}
                     className="image"
-                    src={
+                    src={url_imagen ||
                         "/defaultImg.jpg"}
                 />
             </div>
@@ -46,7 +47,7 @@ const EventoPage = ({ data }) => {
                 <div className="descripcion-evento">
                     <div className="descripcion-text">
                         <p>
-                            {descrip}
+                            {descripcion}
                         </p>
                     </div>
                     <div className="datesEventoPage">
@@ -70,7 +71,7 @@ const EventoPage = ({ data }) => {
                             <span>Lugar:</span> {lugar}</div>
                         </div>
                         <div><EnvironmentFilled key="i2" style={styleIcon} /><div className="iconInfo">
-                            <span>Dirección:</span> {direccion}</div>
+                            <span>Dirección:</span> {direccion_even}</div>
                         </div>
                         <div><TagFilled key="i3" style={styleIcon} /><div className="iconInfo">
                             <span>Tematica:</span>{tematica}</div></div>
@@ -78,15 +79,13 @@ const EventoPage = ({ data }) => {
                             <div className="iconInfo">
                                 <span>Anfitrion:</span>{anfitrion}</div></div>
                         <div><ReconciliationFilled key="i5" style={styleIcon} /><div className="iconInfo">
-                            <span>Número de Boletas:</span>{num_boletas}</div></div>
+                            <span>Boletas disponibles:</span>{num_boletas}</div></div>
                         <div><DollarCircleFilled key="i6" style={styleIcon} /><div className="iconInfo">
-                            <span>Precio:</span>{formatter.format(10000)}</div></div>
+                            <span>Precio:</span>{formatter.format(precio_boleta)}</div></div>
                     </div>
                 </div>
                 <div className="eventosPageActions">
-                    <div className="buttons">
                         <BuyButton />
-                    </div>
                 </div>
             </div>
         </>)

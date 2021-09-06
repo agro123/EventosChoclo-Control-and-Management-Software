@@ -6,7 +6,7 @@ import { useDate } from '../../hooks/useDate';
 
 const defEvento = {
     titulo: "BIENVENIDO A EVENTOSCHOLO :D",
-    imagen: '/defaultImg.jpg',
+    url_imagen: '/defaultImg.jpg',
     fecha_inicial: "2000-02-29T02:00:00",
     fecha_final: "2000-02-29T02:00:00",
     descrip: "Eventos Choclo...",
@@ -16,7 +16,7 @@ const defEvento = {
 
 
 function SliderEventos({ info = defEvento }) {
-    const { titulo, imagen, fecha_inicial, fecha_final, descrip, lugar, id_evento } = info;
+    const { url_imagen, titulo, fecha_inicial, fecha_final, id_evento } = info;
 
     const soloFecha = fecha => fecha.slice(0, 10);
     const soloHora = hora => hora.slice(11, 16);
@@ -27,12 +27,12 @@ function SliderEventos({ info = defEvento }) {
             <div className="sliderEventos">
                 <div className="background-slider">
                     <div className="background-img"
-                        style={{ backgroundImage: `url(${imagen})` }}
+                        style={{ backgroundImage: `url(${url_imagen || '/defaultImg.jpg'})` }}
                     ></div>
                     <div className="slider-card">
                         <div
                             className="slider-img"
-                            style={{ backgroundImage: `url(${imagen})` }}
+                            style={{ backgroundImage: `url(${url_imagen || '/defaultImg.jpg'})` }}
                         ></div>
                         <div className="slider-text">
                             <h2 >{titulo}</h2>

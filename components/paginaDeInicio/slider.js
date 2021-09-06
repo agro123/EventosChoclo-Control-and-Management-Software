@@ -5,14 +5,13 @@ import { EventosContext } from '../../context/EventosContext';
 
 export default function Slider() {
     const { eventos } = useContext(EventosContext);
-    console.log("Generando eventos en Slider",eventos)
     return (
         <>
             <Carousel autoplay>
-                <SliderEventos key="S1" />
-                <SliderEventos key="S2"/>
-                <SliderEventos key="S3"/>
-                <SliderEventos key="S4"/>
+                <SliderEventos info= {eventos[0]} key="S1" />
+                <SliderEventos info= {eventos[1]} key="S2"/>
+                <SliderEventos info= {eventos[3]}key="S3"/>
+                <SliderEventos info= {eventos[4]} key="S4"/>
             </Carousel>,
         </>
     )

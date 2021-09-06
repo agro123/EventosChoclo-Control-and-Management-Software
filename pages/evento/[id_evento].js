@@ -13,7 +13,7 @@ export default function Evento() {
     const router = useRouter();
     const { id_evento } = router.query;
 
-    const { data, loading } = useGetData(`evento/${id_evento}`, true);
+    const { data, loading } = useGetData(`eventoCompleto/${id_evento}`, true);
 
     return (
         <>
