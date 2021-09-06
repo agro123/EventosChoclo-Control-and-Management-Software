@@ -10,10 +10,8 @@
 
 .listaDeEventos {
     width: 100%;
-    height: 500px;
     display: flex;
     flex-wrap: wrap;
-    overflow-y: scroll;
     justify-content: center;
 }
 .masEventos {
@@ -36,6 +34,12 @@
 }
 
 @media (max-width: 1550px) {
+    .eventos {
+        margin: 1% 2%;
+    }
+
+}
+@media (max-width: 360px) {
     .eventos {
         margin: 1% 2%;
     }

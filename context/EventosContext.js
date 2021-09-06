@@ -1,16 +1,38 @@
 import { createContext, useState } from 'react';
-import useGetData from '../hooks/useGetData'
+
 
 export const EventosContext = createContext();
 
 export const EventosProvider = ({ children }) => {
-    const { data, loading } = useGetData("evento", "3");
+    const [eventos, setEventos] = useState([]);
+    const [paymentInfo, setPaymentInfo] = useState({
+        name: '',
+        phoneNumber: '',
+        email: '',
+        nameCard: '',
+        cardNumber: '',
+        cvc: '',
+        endDate: '', 
+    })
 
+    const addEventos = (e) => {
+        setEventos(e)
+    }
+
+    const editPaymentInfo = pi => {
+        console.log(pi)// Recibe un objeto con el campo
+        setPaymentInfo({
+            ...paymentInfo,
+            ...pi
+        })
+    }
     return (
         <EventosContext.Provider value={
             {
-                data,
-                loading
+                eventos,
+                addEventos,
+                editPaymentInfo,
+                paymentInfo
             }
         }>
             {children}

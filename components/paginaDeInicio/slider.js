@@ -1,11 +1,11 @@
 import React, { useContext } from 'react'
 import { Carousel, Spin } from "antd";
-import SliderEventos from './sliderEventos';
+import SliderEventos from './SliderEventos';
 import { EventosContext } from '../../context/EventosContext';
 
 export default function Slider() {
-    const { data } = useContext(EventosContext);
-    console.log(data)
+    const { eventos } = useContext(EventosContext);
+    console.log("Generando eventos en Slider",eventos)
     return (
         <>
             <Carousel autoplay>

@@ -3,12 +3,10 @@ import { EventosContext } from '../../context/EventosContext';
 import React, { useContext } from 'react';
 import {  Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
-
 const antIcon = <LoadingOutlined style={{ fontSize: 72 }} spin />;
 
-export default function listEventos() {
+export default function listEventos({eventos, loading}) {
 
-    const { data,loading } = useContext(EventosContext);
 
     const generarEventos = (info) => {
         let cards = [];
@@ -24,7 +22,7 @@ export default function listEventos() {
     return (
         <Spin spinning={loading} indicator={antIcon}>
             <div className='listaDeEventos'>
-                {generarEventos(data)}
+                {generarEventos(eventos)}
             </div>
         </Spin>
     )

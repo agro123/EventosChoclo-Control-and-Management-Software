@@ -9,7 +9,8 @@
     padding: 0;
     display: flex;
     flex-direction: column;
-    Cursor : pointer;  
+    Cursor : pointer;
+    font-family: var(--font);  
 }
 .display {
     width: 100%;
@@ -64,6 +65,7 @@
     height: 64px;
     color: var(--gray);
     margin: 8px 20px;
+    font-family: var(--font);
   }
   .fecha {
     display: flex;
@@ -87,8 +89,8 @@
   .eventoCardDescripcion {
     border-radius: 10px 10px 0 0;
     font-size: 14px;
-    line-height: 15px;
-    font-weight: 600;
+    line-height: 20px;
+    font-weight: 400;
     flex: auto;
     padding: 8px;
     position: relative;
@@ -100,10 +102,13 @@
     text-align: justify;
     text-overflow: ellipsis;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .eventoCardDescripcion:hover {
     color: var(--white);
-    background-color: rgba(34, 40, 49, 0.349);
+    background-color: rgba(34, 40, 49, 0.808);
   }
 
 .buttons {

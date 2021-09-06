@@ -1,47 +1,32 @@
 import React from 'react';
+import useGetData from '../../hooks/useGetData';
 import { useRouter } from 'next/router';
+import EventoPage from '../../components/paginaEvento/EventoPage';
+import { Spin } from "antd"
+import { LoadingOutlined } from "@ant-design/icons";
+import { EventosProvider } from '../../context/EventosContext';
+
+const antIcon = <LoadingOutlined style={{ fontSize: 72 }} spin />;
 
 export default function Evento() {
+
     const router = useRouter();
-    const {id_evento} = router.query;
-    
+    const { id_evento } = router.query;
+
+    const { data, loading } = useGetData(`evento/${id_evento}`, true);
+
     return (
         <>
-            <div className="background-evento">
-                <div className="background-img"
-                    style={{ backgroundImage: "url(https://valledelpacifico.co/wp-content/uploads/2019/12/cevp-home2.jpg)" }}
-                ></div>
-                <img alt="example"
-                    className="image"
-                    src={
-                        "https://valledelpacifico.co/wp-content/uploads/2019/12/cevp-home2.jpg"}
-                />
-                <h1>name</h1>
-            </div>
-            <div className="eventos">
-                <div className="descripcion-evento">
-                    <div className="descripcion-text">
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                            when an unknown printer took a galley of type and scrambled it to make a type
-                            specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
-                            remaining essentially unchanged. It was popularised in the 1960s with the
-                            release of Letraset sheets containing Lorem Ipsum passages,
-                            and more recently with desktop publishing software like Aldus PageMaker
-                            including versions of Lorem Ipsum
-                        </p>
-                    </div>
-                    <div>
-                        aqui van las fechas
-                    </div>
-                    <div className="informacion">
-                        aqui va el resto de cosas
-                    </div>  
-                </div>
-                <div>
-                    Aca van los botones    
-                </div>
-            </div>
+            <EventosProvider>
+                <Spin spinning={loading} indicator={antIcon}>
+                    {
+                        data[0] ?
+                            <EventoPage data={data} />
+                            :
+                            <div className="eventoNotFound"><h1>Evento no encontrado</h1></div>
+                    }
+                </Spin>
+            </EventosProvider>
         </>
     )
 }

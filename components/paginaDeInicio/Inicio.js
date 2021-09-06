@@ -1,11 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Slider from './slider';
 import ListEventos from './listEventos';
 import EventoHomeCard from './eventoHomeCard';
 import { Divider } from 'antd';
-
+import useGetData from '../../hooks/useGetData';
+import { EventosContext } from '../../context/EventosContext';
 
 export default function Inicio() {
+    const { data, loading } = useGetData("evento", "3");
+
+    const { eventos, addEventos } = useContext(EventosContext);
+
+    addEventos(data);
+
     return (
         <>
             <Slider />
@@ -23,7 +30,7 @@ export default function Inicio() {
                 </div>
                 <div className="masEventos">
                     <h2 className="title-home">Mas Eventos</h2>
-                    <ListEventos />
+                    <ListEventos eventos={data} loading={loading} />
                 </div>
             </div>
         </>
