@@ -1,43 +1,64 @@
-import React from 'react'
-import { Layout } from 'antd';
-import Link from 'next/link';
-import Logo from './logo'
-import Option from './menuOption'
-import { Image } from 'antd';
+import { useContext,useEffect, useState } from "react";
+import { Layout } from "antd";
+import Link from "next/link";
+import Logo from "./logo";
+import Option from "./menuOption";
+import { Image } from "antd";
 import {
   CopyrightOutlined, QrcodeOutlined, TwitterOutlined,
   InstagramOutlined, FacebookOutlined,
   WhatsAppOutlined, MailOutlined
 } from '@ant-design/icons';
-import Head from 'next/head'
-export default function MyLayout({ children }) {
+import UserContext from "../../context/User/userContext";
+import Logout from "./logout";
 
+
+
+export default function MyLayout({ children }) {
+  const {user} = useContext(UserContext);
   const styleIcon = { fontSize: '40px', color: '#979A9C' }
+  const [imageP,setImageP] = useState(null);
+
+  useEffect(()=>{
+    if(user.user){
+      setImageP(user.user.url_imagen)
+    }
+  },[user])
+
   return (
     <>
       <Layout>
-        <div className='container'>
-          <header className='header'>
+        <div className="container">
+          <header className="header">
             <Logo />
             <div className="menu-header">
               <Option label="Inicio" url="/" />
               <Option label="Destacados" url="/" />
               <Option label="Cerca de mí" url="/" />
             </div>
-            <Link href="https://www.youtube.com/">
+            {user.isAuth ? (
               <div className="login-header">
                 <Image preview={false}
                   width="40px"
                   height="40px"
-                  src="https://img.icons8.com/cotton/2x/login-rounded-right--v2.png"
+                  src={imageP || "https://img.icons8.com/cotton/2x/login-rounded-right--v2.png"}
                 />
-                <Option label="Ingresar" url="https://www.youtube.com/" />
+                <Logout />
               </div>
-            </Link>
+            ) : (
+              <Link href="/Login">
+                <div className="login-header">
+                  <Image preview={false}
+                    width="40px"
+                    height="40px"
+                    src="https://img.icons8.com/cotton/2x/login-rounded-right--v2.png"
+                  />
+                  <Option label="Login" url="/Login" />
+                </div>
+              </Link>
+            )}
           </header>
-          <main className='main'>
-            <div>{children}</div>
-          </main>
+          <main className="main">{children}</main>
           <footer className='footer'>
             <div className="informacion-footer">
               <p>EventosChoclo S.A.</p>
@@ -46,7 +67,7 @@ export default function MyLayout({ children }) {
             </div>
             <div>
               <div>
-              Desarrollado por el Equipo Dinamita c:
+                Desarrollado por el Equipo Dinamita c:
               </div>
               Santiago - Victor - Leonardo - Cristian
             </div>
@@ -63,5 +84,5 @@ export default function MyLayout({ children }) {
         </div>
       </Layout>
     </>
-  )
+  );
 }

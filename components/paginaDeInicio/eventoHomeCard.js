@@ -16,7 +16,8 @@ const defEvento = {
 }
 
 function eventoHomeCard({ info = defEvento }) {
-    const { imagen, titulo, fecha_inicial, fecha_final, descrip, lugar, id_evento } = info;
+    const { url_imagen, titulo, fecha_inicial, fecha_final, descripcion, lugar, id_evento, aforo } = info;
+    
 
     const [loading, setLoading] = useState(true);
     const onChange = () => { setLoading(false); }
@@ -33,11 +34,11 @@ function eventoHomeCard({ info = defEvento }) {
                 <Skeleton loading={loading} active>
                     <div className="display">
                         <img alt="example"
-                            src={imagen || '/defaultImg.jpg'}
+                            src={url_imagen || '/defaultImg.jpg'}
                             className="imagen"
                         />
                         <div className="eventoCardDescripcion">
-                            <p>{descrip}</p>
+                            <p>{descripcion}</p>
                         </div>
                     </div>
                     <div className="descripHC">
@@ -50,7 +51,7 @@ function eventoHomeCard({ info = defEvento }) {
                         <div className="boletasDisponibles">
                             Boletas disponibles
                             <div className="boletas">
-                                {boletas}
+                                {aforo || boletas }
                             </div>
                         </div>
                     </div>
