@@ -85,9 +85,7 @@ const EventoPage = ({ data }) => {
                     </div>
                 </div>
                 <div className="eventosPageActions">
-                    <div className="buttons">
                         <BuyButton />
-                    </div>
                 </div>
             </div>
         </>)

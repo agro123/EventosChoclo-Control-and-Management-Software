@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Modal, Button, } from 'antd';
+import { Modal, Button } from 'antd';
 import PropTypes from 'prop-types';
 import PaySteps from './PaySteps';
 
@@ -21,13 +21,15 @@ function BuyButton(props) {
                     </Button>,
                 ]}
                 destroyOnClose={true}
-                style={{heigth:"500px"}}
+                style={{ heigth: "500px" }}
             >
-                <PaySteps />              
+                <PaySteps />
             </Modal>
-            <div className="buyButton" onClick={onClick}>
+            <Button className="button-crearEv"
+                block size="small"
+                onClick={onClick}>
                 Adquirir Boletas
-            </div>
+            </Button>
         </>
     )
 }

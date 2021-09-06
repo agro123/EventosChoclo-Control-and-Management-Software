@@ -18,13 +18,12 @@
     margin-top: 2%;
 }
 /*----------------------*/
-
-
 .title-home {
     font-family: var(--font);
     font-size: 24px;
     font-weight: 700;
     color: var(--black);
+    margin-top: 0;
 }
 .destacado {
     width: 100%;

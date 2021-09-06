@@ -42,7 +42,6 @@
     font-size: 46px;
     font-weight: 900;
     margin: 0;
-    margin-top: 5%;
     line-height: 46px;
 }
 
@@ -100,18 +99,7 @@
     margin: 5% 0;
     height: 100px;
 }
-.eventosPageActions .buttons {
-    width: 330px;
-}
-.buyButton {
-    margin: 5px;
-    width: 300px;
-    color: var(--black);
-    font-family: var(--font);
-    font-size: 16px;
-    font-weight: 600;
-    Cursor : pointer; 
-}
+
 
 .eventoNotFound {
     display: flex;

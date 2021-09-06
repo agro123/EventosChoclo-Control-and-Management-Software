@@ -47,7 +47,7 @@ export default function DeleteButton({ id }) {
                 onConfirm={handleOk}
                 onCancel={handleCancel}
             >
-                <div>
+                <div className='buttons' >
                     <DeleteOutlined className="deleteButton" onClick={showPopconfirm}/>
                 </div>
             </Popconfirm>
