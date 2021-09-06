@@ -7,7 +7,7 @@ import useGetData from '../../hooks/useGetData';
 import { EventosContext } from '../../context/EventosContext';
 
 export default function Inicio() {
-    const { data, loading } = useGetData("evento", "3");
+    const { data, loading } = useGetData("evento", true);
 
     const { eventos, addEventos } = useContext(EventosContext);
 
