@@ -1,3 +1,6 @@
+import axios from "axios";
+import { message } from "antd";
+
 export const validarEmail = (email) => {
   if (
     !/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(
@@ -26,3 +29,26 @@ export const validarContra = (contra, confContra) => {
     return false;
   }
 };
+
+
+export const validaExisten = async (email,cedula) => {
+  const body = {
+    email: email,
+    cedula: cedula,
+  }
+  try{
+  const response = await axios.get('/api/usuario/getuser',body);
+    
+  if(response.data.length !== 0){
+    return 1;
+  }else{
+    return 2;
+  }
+
+  }catch(error){
+    message.error(`Ha ocurrido un error: ` +error ,3);
+    return 3;
+  }
+
+  
+}

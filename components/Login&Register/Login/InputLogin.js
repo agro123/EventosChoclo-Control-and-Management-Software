@@ -1,16 +1,20 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Button } from "antd";
 import { useForm } from "react-hook-form";
 import { validarEmail } from "../validador";
 import UserContext from "../../../context/User/userContext";
 import { useRouter } from "next/router";
 import { message } from "antd";
+import axios from "axios";
+import {EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons'
 
 const InputLogin = () => {
   const router = useRouter();
   const { dispatch } = useContext(UserContext);
   const [errorEmail, setErrorEmail] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [verificado, setVerificado] = useState(false);
+  const [verContra, setVerContra] = useState("password");
   const {
     register,
     handleSubmit,
@@ -18,42 +22,82 @@ const InputLogin = () => {
     formState: { errors },
   } = useForm();
 
+
+  const cambio = () => {
+    verContra === "text" ? setVerContra("password") : setVerContra("text");
+  };
+
   const onSubmit = async (data, e) => {
+    
     setLoading(true);
-    if (validarEmail(data.email)) {
+    if (validarEmail(data.emailLg)) {
       setErrorEmail(true);
+      setLoading(false);
       return;
     }
-    const payload = {
-      user: { email: data.email, contraseña: data.contra },
-      token: "jashaskddj123",
-      isAuth: true,
-    };
-    dispatch({
-      type: "LOGIN",
-      payload: payload,
-    });
     setErrorEmail(false);
-    console.log(data);
-    setLoading(false);
-    message.success(`Bienvenido: ${data.email}`);
-    reset(e);
-    router.push("/");
+
+
+    try {
+      const body = {
+        email: data.emailLg,
+        password: data.contraLg,
+      };
+    
+      
+      await axios
+          .post(`/api/auth`, body)
+          .then((response) => {
+            
+            if (response.status === 200) {
+              const data = response.data;
+              if (response.data.isAuth) {
+                dispatch({type:'LOGIN',payload: data});
+                const nombre = data.user.nombre;
+                setVerificado(true);
+                
+                message.success(`Bienvenido: ${data.nombre}`, 3);
+                if(data.user.rol == 1){
+                  router.push('/');
+                }else{
+                  router.push('/');
+                }
+                reset(e);
+
+              }else {
+                message.error(`El email o la contraseña es invalido`,4);
+                setVerificado(false);
+                document.getElementById("email").focus()
+              }
+            }
+            setLoading(false);
+            });
+            
+      } catch (error) {
+        setLoading(false);
+        message.error("Ha susedido un problema intente mas tarde, error: " + error, 4);
+        
+        document.getElementById("emailLg").focus()
+      }
+
   };
+
+  
+
   return (
     <form className="form-login" onSubmit={handleSubmit(onSubmit)}>
       <div className="inputsFormLogin">
-        <label htmlFor="email">
+        <label htmlFor="emailLg">
           <h2 className="h2input">{"Correo Electronico"}</h2>
         </label>
         <input
           className="inputsLogin"
-          name="email"
-          id="email"
+          name="emailLg"
+          id="emailLg"
           type="text"
-          {...register("email", { required: true })}
+          {...register("emailLg", { required: true })}
         />
-        {errors.email && (
+        {errors.emailLg && (
           <span className="spanError">Este campo es obligatorio</span>
         )}
         {errorEmail && (
@@ -63,17 +107,23 @@ const InputLogin = () => {
         )}
       </div>
       <div className="inputsFormLogin">
-        <label htmlFor="contra">
+        <label htmlFor="contraLg">
           <h2 className="h2input">{"Contraseña"}</h2>
         </label>
+
+        <div class="inputsLoginContra">
         <input
-          className="inputsLogin"
-          name="contra"
-          id="contra"
-          type="password"
-          {...register("contra", { required: true })}
+          className="contraInput"
+          name="contraLg"
+          id="contraLg"
+          type={verContra}
+          {...register("contraLg", { required: true })}
         />
-        {errors.contra && (
+        <button className='buttonChangeV' type='button' onClick={()=>cambio()}>
+        {verContra === 'password' ? <EyeOutlined /> : <EyeInvisibleOutlined /> }
+        </button>
+        </div>
+        {errors.contraLg && (
           <span className="spanError">Este campo es obligatorio</span>
         )}
       </div>

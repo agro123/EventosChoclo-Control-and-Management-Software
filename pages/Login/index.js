@@ -14,7 +14,7 @@ export default function LoginAndRegister() {
     }
   }, [user]);
   return (
-    <div className="carrusel-container">
+    
       <div className="conteinerLogReg">
         <div className="carruselEventoAdmin">
           <div className="carruselHeader">
@@ -32,13 +32,13 @@ export default function LoginAndRegister() {
             </div>
             <div className="changeLogin">
               <div className="conteinerLR">
-                <Register />
+                <Register tipo= {2} />
               </div>
             </div>
           </Carousel>
         </div>
       </div>
-    </div>
+    
 
   );
 }
