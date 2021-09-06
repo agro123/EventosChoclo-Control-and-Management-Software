@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
-import DateDisplay from './DateDisplay';
+import DateDisplay from './dateDisplay';
 import { useDate } from '../../hooks/useDate';
 
 const defEvento = {

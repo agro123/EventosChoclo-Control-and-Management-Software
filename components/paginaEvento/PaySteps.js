@@ -12,14 +12,15 @@ const { Step } = Steps;
 const FormStep1 = () => {
     const { paymentInfo, editPaymentInfo } = useContext(EventosContext);
 
-    const selectBefore = (
+    /* const selectBefore = (
         <Select disabled defaultValue="+57" className="select-before">
             <Select.Option value="+57">+57</Select.Option>
         </Select>
-    );
+    ); */
     const onChange = e => {
         editPaymentInfo({ [e.target.name]: e.target.value });
     };
+    const onSelectTickets = e => { editPaymentInfo({ tickets: e }); };
     return (
         <>
             <h2>Informacion de contacto:</h2>
@@ -49,13 +50,19 @@ const FormStep1 = () => {
                     />
                 </Form.Item> */}
                 <Form.Item label="Número de boletas">
-                    <InputNumber type='number' style={{ width: '70px' }} min={1} max={100000} defaultValue={1} />
+                    <InputNumber type='number' style={{ width: '70px' }}
+                        onChange={onSelectTickets}
+                        min={1} max={100000} defaultValue={paymentInfo.tickets} />
                 </Form.Item>
             </Form>
         </>
     )
 }
 const FormStep2 = () => {
+    const { paymentInfo, editPaymentInfo } = useContext(EventosContext);
+    const onChange = e => {
+        editPaymentInfo({ [e.target.name]: e.target.value });
+    };
     return (
         <>
             <h2>Tarjeta Debito/Credito:</h2>
@@ -64,38 +71,49 @@ const FormStep2 = () => {
                 layout="horizontal"
             >
                 <Form.Item label="Nombre en la tarjeta" required>
-                    <Input allowClear />
+                    <Input
+                        allowClear
+                        name="nameCard" onChange={onChange}
+                        value={paymentInfo.nameCard} />
                 </Form.Item>
                 <Form.Item label="Número de la tarjeta" required>
-                    <Input allowClear />
+                    <Input allowClear
+                        name="cardNumber" onChange={onChange}
+                        value={paymentInfo.cardNumber} /> {/*Solo número y maximo 16num*/}
                 </Form.Item>
                 <Form.Item label="CVC" required>
-                    <Input allowClear />
+                    <Input allowClear
+                        name="cvc" onChange={onChange}
+                        value={paymentInfo.cvc} />{/*Solo número y maximo 3num*/}
                 </Form.Item>
                 <Form.Item label="Fecha de vencimiento" required>
-                    <Input allowClear />
+                    <Input allowClear
+                        name="endDate" onChange={onChange}
+                        value={paymentInfo.endDate} />{/*date*/}
                 </Form.Item>
             </Form>
         </>
     )
 }
 const FormStep3 = () => {
+    const { paymentInfo } = useContext(EventosContext);
+
     return (
         <>
             <h2>CheckOut:</h2>
             <Divider>Información del evento</Divider>
             <p>Nombre del evento:</p>
             <p>Fecha:</p>
-            <p>Número de entradas:</p>
+            <p>Entradas adquiridas: {paymentInfo.tickets}</p>
             <p>Costo por entrada:</p>
             <p>Costo Total:</p>
             <Divider>Tarjeta de credito/debito</Divider>
-            <p>Nombre:</p>
-            <p>Número:</p>
+            <p>Nombre: {paymentInfo.nameCard}</p>
+            <p>Número: {paymentInfo.cardNumber}</p>
             <Divider>Información de contacto</Divider>
-            <p>Nombre:</p>
-            <p>Celular:</p>
-            <p>E-mail:</p>
+            <p>Nombre: {paymentInfo.name}</p>
+            <p>Celular: {paymentInfo.phoneNumber}</p>
+            <p>E-mail: {paymentInfo.email}</p>
         </>
     )
 }
@@ -137,6 +155,8 @@ const steps = [
 export default function PaySteps() {
     const [current, setCurrent] = useState(0);
 
+    const { paymentInfo } = useContext(EventosContext);
+
     const next = () => {
         setCurrent(current + 1);
     };
@@ -146,9 +166,20 @@ export default function PaySteps() {
     };
 
     const onHecho = () => {
-        message.success('Boletas Adquiridas!')
-        next()
+        let isOk = true;
+        for (const property in paymentInfo) {
+            if(paymentInfo[property] == ''){
+                isOk = false;
+                break;
+            };
+        }
+        if (isOk) {
+            message.success('Boletas Adquiridas!');
+            next();
+        }
+        else message.error('Por favor complete todos los campos')
     }
+
 
     return (
         <>
