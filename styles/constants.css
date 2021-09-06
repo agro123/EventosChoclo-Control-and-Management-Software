@@ -2,16 +2,22 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
+
+.carrusel-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1% 0;
+}
+
 .header {
   width: 100%;
   height: 80px;
   background-color: var(--black);
   display: flex;
   justify-content: space-between;
-  padding: 0 30px 0 30px;
+  padding: 0 3%;
 }
 
 .login-header {
@@ -34,19 +40,9 @@
 }
 
 .main {
-  padding: 5rem 0;
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.footer {
-  width: 100%;
-  height: 100px;
-  background-color: var(--black);
-  display: flex;
-  padding: 10px 30px;
 }
 
 .app-logo {
@@ -87,18 +83,16 @@
   -webkit-text-fill-color: transparent;
   color: var(--midGray);
 }
-.redesS-footer {
-  margin-left: auto;
-}
-.informacion-footer p {
+.footer {
+  width: 100%;
+  height: 100px;
+  background-color: var(--black);
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 30px;
   color: var(--midGray);
   font-weight: 600;
-}
-
-.redesS-footer p {
-  color: var(--midGray);
-  font-weight: 600;
-  font-size: 1.5em;
+  font-size: 14px;
 }
 
 .redesS-footer div {
@@ -107,4 +101,41 @@
 }
 .footer p {
   margin-bottom: 5px;
+}
+
+@media (max-width: 1024px) {
+  .header {
+    padding: 0 1%;
+  }
+  .logo-title {
+    font-size: 18px;
+  }
+  .option-menu {
+    font-size: 14px;
+  }
+}
+@media (max-width: 400px) {
+  .header {
+    padding: 0 0;
+  }
+  .logo-title {
+    font-size: 12px;
+  }
+  .option-menu {
+    font-size: 10px;
+  }
+}
+
+.option-button {
+  color: var(--midGray);
+  font-weight: 700;
+  font-size: 1.5em;
+  background: none;
+  border: none;
+}
+.option-button:hover {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--midGray);
 }

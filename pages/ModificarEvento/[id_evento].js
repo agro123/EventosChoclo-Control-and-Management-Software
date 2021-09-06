@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import {
   inicio,
   cierre,
@@ -9,6 +9,7 @@ import {
   fechaMas1,
   validarFecha,
 } from "../../components/Dates/manejoFechas";
+import {uploadPreset,cloudinaryURL} from '../../lib/keys/keys';
 import { Spin, Button } from "antd";
 import axios from "axios";
 import { useRouter } from "next/router";
@@ -18,14 +19,16 @@ import FormularioEventos from "../../components/Dates/inputs";
 import ImagenEvento from "../../components/Dates/imagen";
 import FechasEvento from "../../components/Dates/fechasEvento";
 
-const ModificarEvento = ({ id_evento = 2 }) => {
+const ModificarEvento = () => {
   //Estado de la imagen como URL para mostrarla
   const [imagen, setImagen] = useState(null);
   const [evento, setEvento] = useState(null);
+  const [id,setId] = useState(null);
   //Estado de la imagen formateada para enviarla
   const [formImagen, setFormImagen] = useState(null);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
+  const path = require('path')
   //Estado de fecha tanto formateada como para las Cards
   const [fecha, setFecha] = useState({
     inicio: { ...inicio },
@@ -35,6 +38,9 @@ const ModificarEvento = ({ id_evento = 2 }) => {
     error: false,
   });
 
+  useEffect(()=>{
+     router && router.query && setId(router.query.id_evento);
+  },[router])
   //Estado del input de fecha solo para mostrarlo
   const [inputFecha, setInputFecha] = useState({
     inicio: null,
@@ -64,16 +70,17 @@ const ModificarEvento = ({ id_evento = 2 }) => {
   useEffect(async () => {
     setLoading(true);
     try {
-      const respuesta = await axios.get(`/api/evento/${id_evento}`);
+      if(id !== null){
+      const respuesta = await axios.get(`/api/evento/${id}`);
       const dataEvento = respuesta.data[0];
       setEvento(dataEvento);
-
       setLoading(false);
+      }
     } catch (e) {
-      setError(e);
+      //setError(e);
       setLoading(false);
     }
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     if (evento) {
@@ -84,12 +91,15 @@ const ModificarEvento = ({ id_evento = 2 }) => {
       setValue("aforo", evento.aforo);
       setValue("boletas", evento.num_boletas);
       setValue("anfitrion", evento.anfitrion);
-      setValue("descripcion", evento.descrip);
+      setValue("descripcion", evento.descripcion);
+      setValue("precioBol", evento.precio_boleta);
+      setImagen(evento.url_imagen)
+      
       let fInicial, fFinal;
       fInicial = moment(evento.fecha_inicial, "YYYY-MM-DD hh:mm Z");
-      fInicial.add(1, "days");
+      
       fFinal = moment(evento.fecha_final, "YYYY-MM-DD HH:mm Z");
-      fFinal.add(1, "days");
+      
       setInputFecha({
         inicio: fInicial,
         cierre: fFinal,
@@ -143,18 +153,87 @@ const ModificarEvento = ({ id_evento = 2 }) => {
     }
   };
 
-  const onSubmit = (data, e) => {
+  const onSubmit = async (data, e) => {
     const valida = valFecha();
     if (!valida) {
       return;
     }
+    let bool = true;
+
+    if(formImagen == null){
+      bool = false;
+    }
+
     try {
+
       setLoading(true);
-      console.log(data);
-      setLoading(false);
-      success(data.titulo);
-      resetValues(e);
-      router.push("/eventosAdmin");
+
+      let idImagen = null;
+
+      if(bool){
+
+        const formdata = convertirImagen(formImagen,uploadPreset);
+
+        const response = await axios.post(
+          cloudinaryURL,
+          formdata,
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            },
+          }
+        )
+        
+        
+        if(response.status !== 200){
+          error();
+          return;
+        }
+
+        const body = {
+          url_imagen : response.data.secure_url,
+        }
+        if(evento.id_imagen){
+          idImagen = await axios.put(`/api/imagen/${evento.id_imagen}`, body);
+        }else{
+          idImagen = await axios.post(`/api/imagen`, body);
+        }
+        
+        
+      }
+
+      
+
+        const body = {
+          titulo : data.titulo, 
+          fecha_inicial : fecha.inicioFormt, 
+          fecha_final : fecha.cierreFormt, 
+          num_boletas : data.boletas, 
+          descripcion : data.descripcion, 
+          lugar : data.lugar, 
+          anfitrion : data.anfitrion, 
+          tematica : data.tematica, 
+          direccion : data.direccion,
+          aforo : data.aforo,
+          id_imagen :  evento.id_imagen ? evento.id_imagen : idImagen.data.id_imagen,
+          precio_boleta : data.precioBol,
+
+      }
+      
+      
+      const response = await axios.put(`/api/evento/${evento.id_evento}`, body);;
+      
+      if(response.status === 200){
+        console.log(response)
+        success(data.titulo);
+        resetValues(e);
+        setLoading(false);
+        router.push("/eventosAdmin");
+      }else{
+        setLoading(false);
+        error();
+      }
+      
     } catch (err) {
       setLoading(false);
       error();

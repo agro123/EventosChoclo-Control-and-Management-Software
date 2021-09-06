@@ -5,7 +5,8 @@ export default async (req, res) => {
     const {
       query: { id },
       method,
-      body: { titulo,
+      body: {
+        titulo,
         fecha_inicial,
         fecha_final,
         num_boletas,
@@ -14,40 +15,63 @@ export default async (req, res) => {
         anfitrion,
         tematica,
         direccion,
-        aforo },
-    } = req
+        aforo,
+        id_imagen,
+        precio_boleta,
+      },
+    } = req;
+
+    const cliente = await pool.connect();
 
     switch (method) {
-      case 'GET':
-        const evento = await pool.query(`select * from evento natural join imagenes where id_evento = ${id}`);
+      case "GET":
+        const evento = await cliente.query(
+          `select * from evento_imagen where id_evento = ${id}`
+        );
         res.status(200).json(evento.rows);
-        break
-      case 'PUT':
-        await pool.query(
+        cliente.release();
+        break;
+      case "PUT":
+        await cliente.query(
           `UPDATE evento SET titulo = $1, 
           fecha_inicial = $2, 
           fecha_final = $3, 
           num_boletas = $4, 
-          descrip = $5, 
+          descripcion = $5, 
           lugar = $6, 
           anfitrion = $7, 
           tematica = $8, 
-          direccion = $9,
-          aforo = $10
-          WHERE id_evento = $11`,
-          [titulo, fecha_inicial, fecha_final, num_boletas, descripcion,
-            lugar, anfitrion, tematica, direccion, aforo, id]
+          direccion_even = $9,
+          aforo = $10,
+          id_imagen = $11,
+          precio_boleta = $12
+          WHERE id_evento = $13`,
+          [
+            titulo,
+            fecha_inicial,
+            fecha_final,
+            num_boletas,
+            descripcion,
+            lugar,
+            anfitrion,
+            tematica,
+            direccion,
+            aforo,
+            id_imagen,
+            precio_boleta,
+            id,
+          ]
         );
-        res.status(200).json('Evento ACTUALIZADO');
-        break
-      case 'DELETE':
-        await pool.query(
-          `DELETE FROM evento WHERE id_evento = ${id}`
-        );
-        res.status(200).json('Evento ELIMINADO');
-        break
+        res.status(200).json("Evento ACTUALIZADO");
+        cliente.release();
+        break;
+      case "DELETE":
+        await cliente.query(`DELETE FROM evento WHERE id_evento = ${id}`);
+        res.status(200).json("Evento ELIMINADO");
+        cliente.release();
+        break;
     }
   } catch (e) {
-    res.status(e.status || 500).end(e.message)
+    res.status(e.status || 500).end(e.message);
   }
-}
+};
