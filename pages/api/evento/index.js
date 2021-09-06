@@ -16,6 +16,7 @@ export default async (req, res) => {
         direccion,
         aforo,
         id_imagen,
+        num_boletas,
       },
     } = req;
 
@@ -30,8 +31,8 @@ export default async (req, res) => {
       case "POST":
         await cliente.query(
           `INSERT INTO evento (titulo, fecha_inicial, fecha_final, precio_boleta, descripcion,
-            lugar, anfitrion, tematica, direccion_even, aforo, id_imagen)
-            VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
+            lugar, anfitrion, tematica, direccion_even, aforo, id_imagen, num_boletas)
+            VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`,
           [
             titulo,
             fecha_inicial,
@@ -44,6 +45,7 @@ export default async (req, res) => {
             direccion,
             aforo,
             id_imagen,
+            num_boletas,
           ]
         );
         res.status(201).json(`Se REGISTRO el evento ${titulo}`);
