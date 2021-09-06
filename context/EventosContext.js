@@ -7,12 +7,11 @@ export const EventosProvider = ({ children }) => {
     const [eventos, setEventos] = useState([]);
     const [paymentInfo, setPaymentInfo] = useState({
         name: '',
-        phoneNumber: '',
-        email: '',
         nameCard: '',
+        tickets: '1',
         cardNumber: '',
         cvc: '',
-        endDate: '', 
+        endDate: ''
     })
 
     const addEventos = (e) => {
@@ -20,7 +19,7 @@ export const EventosProvider = ({ children }) => {
     }
 
     const editPaymentInfo = pi => {
-        console.log(pi)// Recibe un objeto con el campo
+        // Recibe un objeto con el campo
         setPaymentInfo({
             ...paymentInfo,
             ...pi
