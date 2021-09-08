@@ -39,5 +39,6 @@
     "jest-dom": "^4.0.0",
     "jsdom": "^16.5.3",
     "jsdom-global": "^3.0.2"
-  }
+  },
+  "cacheDirectories": [".next/cache"]
 }
