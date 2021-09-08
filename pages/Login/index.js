@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { Carousel } from "antd";
-import Login from "../../components/Login&Register/Login";
-import Register from "../../components/Login&Register/Register";
+import Login from "../../components/LoginRegister/Login";
+import Register from "../../components/LoginRegister/Register";
 import UserContext from "../../context/User/userContext";
 import { useRouter } from "next/router";
 
