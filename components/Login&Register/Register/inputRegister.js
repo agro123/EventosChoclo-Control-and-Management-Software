@@ -144,7 +144,7 @@ const InputRegister = ({tipo}) => {
         setLoading(false);
     }catch(error){
         setLoading(false);
-        message.error("Ha susedido un problema intente mas tarde, error: " + error, 4);
+        message.error("Ha sucedido un problema intente mas tarde, error: " + error, 4);
           
         document.getElementById("nombre").focus()
       }
