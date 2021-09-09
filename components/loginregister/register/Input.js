@@ -1,5 +1,5 @@
 import {useState} from "react";
-import { type } from "./arraysNameInputs";
+import { type } from "./arraysnameinputs";
 import {EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons'
 const Input = ({
   register,

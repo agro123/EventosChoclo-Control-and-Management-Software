@@ -1,6 +1,6 @@
 import Head from 'next/head';
-import Inicio from '../components/paginaDeInicio/Inicio';
-import { EventosProvider } from '../context/EventosContext';
+import Inicio from '../components/paginadeinicio/inicio';
+import { EventosProvider } from '../context/eventoscontext';
 
 export default function Home() {
   return (

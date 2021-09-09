@@ -3,7 +3,7 @@ import { Popconfirm, message } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 import propTypes from 'prop-types';
 import axios from 'axios';
-import { ReloadContext } from '../../context/reloadContext';
+import { ReloadContext } from '../../context/reloadcontext';
 
 const config = { key: 'deleteEvent', style: { marginTop: '15vh' } }
 
@@ -47,8 +47,8 @@ export default function DeleteButton({ id }) {
                 onConfirm={handleOk}
                 onCancel={handleCancel}
             >
-                <div className='buttons' >
-                    <DeleteOutlined className="deleteButton" onClick={showPopconfirm}/>
+                <div className='buttons' onClick={showPopconfirm}>
+                    <DeleteOutlined className="deleteButton" />
                 </div>
             </Popconfirm>
         </>

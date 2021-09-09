@@ -1,5 +1,5 @@
 import { Image } from "antd";
-import InputLogin from "./InputLogin";
+import InputLogin from "./inputlogin";
 
 const Login = () => {
   return (

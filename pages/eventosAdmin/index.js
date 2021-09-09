@@ -1,6 +1,6 @@
 import React from 'react';
-import Carrusel from '../../components/listarEventos/carrusel'
-import { ReloadProvider } from '../../context/reloadContext'
+import Carrusel from '../../components/listareventos/carrusel'
+import { ReloadProvider } from '../../context/reloadcontext'
 
 export default function listarEventos() {
     return (

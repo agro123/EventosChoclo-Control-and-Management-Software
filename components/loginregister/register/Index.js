@@ -1,6 +1,6 @@
 import { Image } from "antd";
 import PropTypes from "prop-types";
-import InputRegister from "./inputRegister";
+import InputRegister from "./inputregister";
 
 const Register = ({tipo}) => {
   

@@ -17,7 +17,7 @@ import "../styles/eventoCard.css";
 import "../styles/paginaEvento/paginaEvento.css";
 import "../styles/paginaInicio/slider.css";
 
-import UserState from "../context/User/userState";
+import UserState from "../context/user/userstate";
 import Layout from "../components/constants/layout";
 import { ConfigProvider } from "antd";
 import es_ES from "antd/lib/locale/es_ES";

@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
-import DateDisplay from './dateDisplay';
-import { useDate } from '../../hooks/useDate';
+import DateDisplay from './datedisplay';
+import { useDate } from '../../hooks/usedate';
 
 const defEvento = {
     titulo: "BIENVENIDO A EVENTOSCHOLO :D",

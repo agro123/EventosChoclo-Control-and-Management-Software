@@ -1,7 +1,7 @@
 import pool from "../../../lib/bd";
 import  keys   from "../../../lib/keys/keys.js"
 const password = keys.crypto;
-import {Cipher} from '../../../components/Encriptar'
+import {Cipher} from '../../../components/encriptar'
 const jwt = require("jsonwebtoken");
 
 

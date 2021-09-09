@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
 import Slider from './slider';
-import ListEventos from './listEventos';
-import EventoHomeCard from './eventoHomeCard';
+import ListEventos from './listeventos';
+import EventoHomeCard from './eventohomecard';
 import { Divider,Spin } from 'antd';
-import useGetData from '../../hooks/useGetData';
-import { EventosContext } from '../../context/EventosContext';
+import useGetData from '../../hooks/usegetdata';
+import { EventosContext } from '../../context/eventoscontext';
 import { LoadingOutlined } from "@ant-design/icons";
 
 const antIcon = <LoadingOutlined style={{ fontSize: 72 }} spin />;

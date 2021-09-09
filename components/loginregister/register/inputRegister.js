@@ -1,18 +1,18 @@
 import { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
-import { arrayInputs, arrayInputsDerecha } from "./arraysNameInputs";
-import Input from "./Input";
+import { arrayInputs, arrayInputsDerecha } from "./arraysnameinputs";
+import Input from "./input";
 import { Button, Image } from "antd";
 import { useRouter } from "next/router";
 import { message } from "antd";
 import { validarEmail, validarTel, validarContra, validaExisten } from "../validador";
-import UserContext from "../../../context/User/userContext";
-import InputImage from "./inputImage";
+import UserContext from "../../../context/user/usercontext";
+import InputImage from "./inputimage";
 import {uploadPreset,cloudinaryURL} from '../../../lib/keys/keys';
 import axios from "axios";
 import {
   convertirImagen,
-} from "../../Dates/manejoFechas";
+} from "../../dates/manejofechas";
 
 
 const InputRegister = ({tipo}) => {

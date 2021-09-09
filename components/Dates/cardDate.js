@@ -1,5 +1,5 @@
 import React from "react";
-import { inicio } from "./manejoFechas";
+import { inicio } from "./manejofechas";
 import PropTypes from "prop-types";
 
 const CardDate = ({

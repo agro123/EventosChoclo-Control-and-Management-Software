@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { Carousel, Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
-import CrearEventos from "../../pages/crearEvento";
-import useGetData from '../../hooks/useGetData';
-import EventoCard from './eventoCard';
-import { ReloadContext } from '../../context/reloadContext';
+import CrearEventos from "../../pages/crearevento";
+import useGetData from '../../hooks/usegetdata';
+import EventoCard from './eventocard';
+import { ReloadContext } from '../../context/reloadcontext';
 
 const antIcon = <LoadingOutlined style={{ fontSize: 72 }} spin />;
 

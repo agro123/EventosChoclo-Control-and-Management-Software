@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { Skeleton } from 'antd';
 import { EditOutlined } from '@ant-design/icons';
-import DeleteButton from './deleteButton';
+import DeleteButton from './deletebutton';
 import { useRouter } from "next/router";
 /* import propTypes from 'prop-types'; */
-import { useDate } from '../../hooks/useDate';
+import { useDate } from '../../hooks/usedate';
 const defEvento = {
     titulo: "BIENVENIDO A EVENTOSCHOLO :D",
     imagen: '/defaultImg.jpg',
@@ -28,7 +28,7 @@ export default function EventoCard({ info = defEvento }) {
 
     const onClick = () => {
         setLoading(true);
-        router.push(`/ModificarEvento/${info.id_evento}`);
+        router.push(`/modificarevento/${info.id_evento}`);
         setLoading(false);
     }
     setTimeout(onChange, 500);

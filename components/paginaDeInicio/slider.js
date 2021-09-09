@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Carousel, Spin } from "antd";
-import SliderEventos from './SliderEventos';
-import { EventosContext } from '../../context/EventosContext';
+import SliderEventos from './slidereventos';
+import { EventosContext } from '../../context/eventoscontext';
 
 export default function Slider() {
     const { eventos } = useContext(EventosContext);

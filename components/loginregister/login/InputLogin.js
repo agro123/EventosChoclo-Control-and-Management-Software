@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import { Button } from "antd";
 import { useForm } from "react-hook-form";
 import { validarEmail } from "../validador";
-import UserContext from "../../../context/User/userContext";
+import UserContext from "../../../context/user/usercontext";
 import { useRouter } from "next/router";
 import { message } from "antd";
 import axios from "axios";

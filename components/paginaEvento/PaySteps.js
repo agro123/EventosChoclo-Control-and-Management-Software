@@ -5,7 +5,7 @@ import {
     InputNumber
 } from 'antd';
 import { CheckCircleTwoTone } from '@ant-design/icons';
-import { EventosContext } from '../../context/EventosContext';
+import { EventosContext } from '../../context/eventoscontext';
 const { Step } = Steps;
 
 //--------------------Componentes Steps

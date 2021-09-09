@@ -1,10 +1,10 @@
 import React from 'react';
-import useGetData from '../../hooks/useGetData';
+import useGetData from '../../hooks/usegetdata';
 import { useRouter } from 'next/router';
-import EventoPage from '../../components/paginaEvento/EventoPage';
+import EventoPage from '../../components/paginaevento/eventopage';
 import { Spin } from "antd"
 import { LoadingOutlined } from "@ant-design/icons";
-import { EventosProvider } from '../../context/EventosContext';
+import { EventosProvider } from '../../context/eventoscontext';
 
 const antIcon = <LoadingOutlined style={{ fontSize: 72 }} spin />;
 

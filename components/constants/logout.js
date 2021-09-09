@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import UserContext from "../../context/User/userContext";
+import UserContext from "../../context/user/usercontext";
 import { message } from "antd";
 
 const Logout = () => {

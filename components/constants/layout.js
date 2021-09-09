@@ -9,7 +9,7 @@ import {
   InstagramOutlined, FacebookOutlined,
   WhatsAppOutlined, MailOutlined
 } from '@ant-design/icons';
-import UserContext from "../../context/User/userContext";
+import UserContext from "../../context/user/usercontext";
 import Logout from "./logout";
 
 
@@ -46,14 +46,14 @@ export default function MyLayout({ children }) {
                 <Logout />
               </div>
             ) : (
-              <Link href="/Login">
+              <Link href="/login">
                 <div className="login-header">
                   <Image preview={false}
                     width="40px"
                     height="40px"
                     src="https://img.icons8.com/cotton/2x/login-rounded-right--v2.png"
                   />
-                  <Option label="Login" url="/Login" />
+                  <Option label="Login" url="/login" />
                 </div>
               </Link>
             )}

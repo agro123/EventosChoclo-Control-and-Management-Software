@@ -2,7 +2,7 @@ import { useState, useContext } from "react"; // Cristian hizo un cambio aquí
 import { useForm } from "react-hook-form";
 import { Spin, Button } from "antd";
 import {uploadPreset,cloudinaryURL} from '../../lib/keys/keys';
-//import { ReloadContext } from "../../context/reloadContext"; //Cristian añadió esta linea
+//import { ReloadContext } from "../../context/reloadcontext"; //Cristian añadió esta linea
 import {
   inicio,
   cierre,
@@ -11,12 +11,12 @@ import {
   fechaActual,
   fechaMas1,
   validarFecha,
-} from "../../components/Dates/manejoFechas";
+} from "../../components/dates/manejofechas";
 import axios from "axios";
 import { success, error, antIcon } from "../../components/alert/alert";
-import FormularioEventos from "../../components/Dates/inputs";
-import ImagenEvento from "../../components/Dates/imagen";
-import FechasEvento from "../../components/Dates/fechasEvento";
+import FormularioEventos from "../../components/dates/inputs";
+import ImagenEvento from "../../components/dates/imagen";
+import FechasEvento from "../../components/dates/fechasevento";
 
 export default function CrearEventos() {
   const [loading, setLoading] = useState(false);

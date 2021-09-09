@@ -1,12 +1,12 @@
 import Head from 'next/head';
-import DateDisplay from '../paginaDeInicio/dateDisplay';
-import { useDate } from '../../hooks/useDate';
+import DateDisplay from '../paginadeinicio/datedisplay';
+import { useDate } from '../../hooks/usedate';
 import { Divider } from 'antd';
 import {
     DollarCircleFilled, EnvironmentFilled,
     NotificationFilled, ReconciliationFilled, TagFilled
 } from '@ant-design/icons'
-import BuyButton from './BuyButton'
+import BuyButton from './buybutton'
 
 const formatter = new Intl.NumberFormat('es-CO', {
     style: 'currency',

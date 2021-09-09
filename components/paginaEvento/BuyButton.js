@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Modal, Button } from 'antd';
 import PropTypes from 'prop-types';
-import PaySteps from './PaySteps';
+import PaySteps from './paysteps';
 
 function BuyButton(props) {
     const [visible, setVisible] = useState(false)

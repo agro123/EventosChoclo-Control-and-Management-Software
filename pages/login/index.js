@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { Carousel } from "antd";
 import Login from "../../components/loginregister/login";
 import Register from "../../components/loginregister/register";
-import UserContext from "../../context/User/userContext";
+import UserContext from "../../context/user/usercontext";
 import { useRouter } from "next/router";
 
 export default function LoginAndRegister() {

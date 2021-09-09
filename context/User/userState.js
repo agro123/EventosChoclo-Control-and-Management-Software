@@ -1,6 +1,6 @@
 import { useReducer, useState, useEffect } from "react";
-import UserContext from "./userContext";
-import reducer from "./userReducer";
+import UserContext from "./usercontext";
+import reducer from "./userreducer";
 
 const UserState = ({ children }) => {
   const [initialState, setInitialState] = useState({

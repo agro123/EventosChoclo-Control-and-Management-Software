@@ -1,6 +1,6 @@
 import React from "react";
 import { DatePicker } from "antd";
-import CardDate from "./cardDate";
+import CardDate from "./carddate";
 import { Typography } from "antd";
 
 const FechasEvento = ({

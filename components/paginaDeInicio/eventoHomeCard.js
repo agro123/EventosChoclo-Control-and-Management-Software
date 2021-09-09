@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { Skeleton } from 'antd';
-import { useDate } from '../../hooks/useDate';
+import { useDate } from '../../hooks/usedate';
 
 const defEvento = {
     titulo: "BIENVENIDO A EVENTOSCHOLO :D",

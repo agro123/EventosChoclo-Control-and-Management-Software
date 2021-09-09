@@ -8,16 +8,16 @@ import {
   fechaActual,
   fechaMas1,
   validarFecha,
-} from "../../components/Dates/manejoFechas";
+} from "../../components/dates/manejofechas";
 import {uploadPreset,cloudinaryURL} from '../../lib/keys/keys';
 import { Spin, Button } from "antd";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { success, error, antIcon } from "../../components/alert/alert";
 import moment from "moment";
-import FormularioEventos from "../../components/Dates/inputs";
-import ImagenEvento from "../../components/Dates/imagen";
-import FechasEvento from "../../components/Dates/fechasEvento";
+import FormularioEventos from "../../components/dates/inputs";
+import ImagenEvento from "../../components/dates/imagen";
+import FechasEvento from "../../components/dates/fechasevento";
 
 const ModificarEvento = () => {
   //Estado de la imagen como URL para mostrarla
