@@ -97,6 +97,7 @@ export default function CrearEventos() {
 
   //Envio de datos del evento
   const onSubmit = async (data, e) => {
+    console.log("--------------->",cloudinaryURL)
     const valida = valFecha();
     if (!valida) {
       return;
@@ -139,7 +140,7 @@ export default function CrearEventos() {
         idImagen = await axios.post("/api/imagen", body);
       }
 
-      console.log("--------------->",cloudinaryURL)
+      
         const body = {
           titulo: data.titulo,
           fecha_inicial: fecha.inicioFormt,
