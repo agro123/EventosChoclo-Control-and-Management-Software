@@ -7,6 +7,7 @@ import '../styles/constants.css';
 import '../styles/listarEventosAdmin.css';
 import "../styles/Login/Login.css";
 import "../styles/Login/Register.css";
+import "../styles/modalperfil/modalperfil.css";
 import '../styles/antdMod.css';
 import 'antd/dist/antd.css';
 /* import "../styles/crearEventos/eventos.css"; */

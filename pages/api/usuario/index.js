@@ -1,12 +1,12 @@
 import pool from "../../../lib/bd";
-import  keys   from "../../../lib/keys/keys.js"
+import keys from "../../../lib/keys/keys.js"
 const password = keys.crypto;
-import {Cipher} from '../../../components/encriptar'
+import { Cipher } from '../../../components/encriptar'
 const jwt = require("jsonwebtoken");
 
 
 const crearToken = (usuario) => {
-  return jwt.sign(usuario, password, {expiresIn: '6h' })
+  return jwt.sign(usuario, password, { expiresIn: '6h' })
 };
 
 export default async (req, res) => {
@@ -28,24 +28,24 @@ export default async (req, res) => {
     } = req;
 
     const cliente = await pool.connect();
-    
+
     switch (method) {
       case "GET":
         const usuario = await cliente.query("SELECT * FROM usuario");
-        usuario.rows.forEach(elemento => elemento.password = Cipher.desencriptar(elemento.password) );
+        usuario.rows.forEach(elemento => elemento.password = Cipher.desencriptar(elemento.password));
         res.status(200).json(usuario.rows);
         cliente.release();
         break;
       case "POST":
-        //const pass = Cipher.encriptar(password);
-        
+        const pass = Cipher.encriptar(password);
+
         const response = await cliente.query(
           `INSERT INTO usuario (cedula, apellido, nombre, email, celular, direccion_usu, password, rol, saldo, id_imagen) 
           VALUES('${cedula}', '${apellido}', '${nombre}', '${email}', '${celular}', '${direccion_usu}', 
-          '${password}', ${rol}, ${saldo}, ${id_imagen}) returning id_usuario`
+          '${pass}', ${rol}, ${saldo}, ${id_imagen}) returning id_usuario`
         );
         let url_imagen = null;
-        if(id_imagen){
+        if (id_imagen) {
           const responseUrl = await cliente.query(
             `SELECT url_imagen FROM imagenes where id_imagen = ${id_imagen}`
           );
@@ -53,17 +53,19 @@ export default async (req, res) => {
         }
         const { id_usuario } = response.rows[0];
         const user = {
-            id_usuario: id_usuario,
-            nombre: nombre + ' ' + apellido,
-            email: email,
-            rol: rol,
-            url_imagen: url_imagen,
+          id_usuario: id_usuario,
+          nombre: nombre + ' ' + apellido,
+          email: email,
+          rol: rol,
+          url_imagen: url_imagen,
         }
         res
           .status(201)
-          .send({ token: crearToken(user),
+          .send({
+            token: crearToken(user),
             isAuth: true,
-            user });
+            user
+          });
         cliente.release();
         break;
       default:
