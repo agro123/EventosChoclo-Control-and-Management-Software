@@ -125,7 +125,7 @@ export default function CrearEventos() {
           }
         )
         
-        
+          
           console.log(response)
         if(response.status !== 200){
           error();
@@ -139,7 +139,7 @@ export default function CrearEventos() {
         idImagen = await axios.post("/api/imagen", body);
       }
 
-      
+      console.log("--------------->",cloudinaryURL)
         const body = {
           titulo: data.titulo,
           fecha_inicial: fecha.inicioFormt,
