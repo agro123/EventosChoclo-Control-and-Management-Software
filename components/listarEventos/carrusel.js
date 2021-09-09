@@ -5,7 +5,7 @@ import CrearEventos from "../../pages/crearevento";
 import useGetData from '../../hooks/usegetdata';
 import EventoCard from './eventocard';
 import { ReloadContext } from '../../context/reloadcontext';
-
+/* hola */
 const antIcon = <LoadingOutlined style={{ fontSize: 72 }} spin />;
 
 export default function Carrusel() {
