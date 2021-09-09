@@ -13,6 +13,13 @@
   border-radius: 20px;
 }
 
+.contRegiType1 {
+  width: 100%;
+  padding: 3%;
+  display: flex;
+  justify-content: center;
+}
+
 .form-register {
   padding: 2.5% 2%;
   width: 90%;

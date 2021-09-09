@@ -1,4 +1,4 @@
-import { useContext,useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Layout } from "antd";
 import Link from "next/link";
 import Logo from "./logo";
@@ -10,20 +10,14 @@ import {
   WhatsAppOutlined, MailOutlined
 } from '@ant-design/icons';
 import UserContext from "../../context/user/usercontext";
-import Logout from "./logout";
+import ModalPerfil from '../modalperfil';
 
 
 
 export default function MyLayout({ children }) {
-  const {user} = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const styleIcon = { fontSize: '40px', color: '#979A9C' }
-  const [imageP,setImageP] = useState(null);
 
-  useEffect(()=>{
-    if(user.user){
-      setImageP(user.user.url_imagen)
-    }
-  },[user])
 
   return (
     <>
@@ -37,14 +31,16 @@ export default function MyLayout({ children }) {
               <Option label="Cerca de mí" url="/" />
             </div>
             {user.isAuth ? (
-              <div className="login-header">
-                <Image preview={false}
-                  width="40px"
-                  height="40px"
-                  src={imageP || "https://img.icons8.com/cotton/2x/login-rounded-right--v2.png"}
-                />
-                <Logout />
-              </div>
+
+
+              <ModalPerfil >
+                <div className='cont-perfil'>
+
+                  <h4 className='option-menu'>Perfil</h4>
+                </div>
+              </ModalPerfil>
+
+
             ) : (
               <Link href="/login">
                 <div className="login-header">

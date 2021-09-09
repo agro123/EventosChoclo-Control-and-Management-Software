@@ -1,4 +1,5 @@
 import pool from "../../../lib/bd";
+import { Cipher } from '../../../components/encriptar'
 
 export default async (req, res) => {
   try {
@@ -22,17 +23,21 @@ export default async (req, res) => {
 
     switch (method) {
       case "GET":
-        const evento = await cliente.query(
-          `SELECT * FROM usuario where id_usuario = ${id}`
+        let evento = await cliente.query(
+          `SELECT * FROM usuario  natural join imagenes where id_usuario = ${id}`
         );
+        const decipher = Cipher.desencriptar(evento.rows[0].password);
+        evento.rows[0] = {...evento.rows[0],password:decipher}
         res.status(200).json(evento.rows);
         cliente.release();
         break;
       case "PUT":
+        
+        const pass = Cipher.encriptar(password);
         await cliente.query(
-          `UPDATE usuario SET nombre = '${nombre}', apellido= '${apellido}', cedula = '${cedula}',
-          email='${email}' , celular='${celular}', direccion_usu='${direccion}', password='${password}',
-          rol=${rol}, saldo=${saldo} WHERE id_usuario = ${id}`
+          `UPDATE usuario SET nombre = '${nombre}', apellido = '${apellido}', cedula = '${cedula}',
+          email ='${email}' , celular ='${celular}', direccion_usu ='${direccion}', password ='${pass}',
+          rol =${rol}, saldo = ${saldo} WHERE id_usuario = ${id}`
         );
         res.status(200).json("Usuario ACTUALIZADO con exito");
         cliente.release();

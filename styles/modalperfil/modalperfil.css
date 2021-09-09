@@ -1,0 +1,133 @@
+.contentP {
+  width: 40vw;
+  height: 100%;
+  display: grid;
+  padding: 2% 2.5%;
+  grid-template-rows: 85% 15%;
+}
+
+.contentP-sup {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  padding: 2%;
+  grid-template-columns: 20% 80%;
+}
+
+.contentP-logout {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.cont-label {
+  display: flex;
+  height: 80%;
+  width: 90%;
+  padding: 2%;
+  margin-bottom: 1%;
+}
+
+.contentP-der {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  padding: 2%;
+}
+
+.contentP-izq {
+  padding: 1%;
+  margin-right: 6%;
+  display: grid;
+  grid-template-rows: 25% 75%;
+}
+
+.contLinksPer {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+
+.labelP {
+  width: 100%;
+}
+
+.editButton {
+  cursor: pointer;
+  margin-right: 3%;
+  border: none;
+  padding: 5%;
+  background-color: white;
+  border-radius: 40%;
+}
+
+.editButton:hover {
+  background-color: rgb(224, 224, 224);
+}
+
+.label-p {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.label-p > p {
+  overflow: hidden;
+  width: 80%;
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+}
+
+.editarBotons {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  margin-top: 6%;
+  padding: 1%;
+}
+
+.contEditPer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.perfilInput {
+  width: 100%;
+}
+
+.buttonsPerfilEdit {
+  color: var(--midGray);
+  font-weight: 700;
+  font-size: 16px;
+  background: none;
+  border: none;
+}
+
+.buttonsPerfilEdit:hover {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--midGray);
+}
+
+.buttonsPerfilEditAll {
+  margin-right: 5%;
+  color: var(--midGray);
+  font-weight: 700;
+  font-size: 1.5em;
+  background: none;
+  border: none;
+}
+
+.buttonsPerfilEditAll:hover {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--midGray);
+}
+
+.aLinksP {
+  font-size: 1.1em;
+  margin-bottom: 25%;
+}
