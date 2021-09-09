@@ -44,13 +44,20 @@ export default async (req, res) => {
           VALUES('${cedula}', '${apellido}', '${nombre}', '${email}', '${celular}', '${direccion_usu}', 
           '${password}', ${rol}, ${saldo}, ${id_imagen}) returning id_usuario`
         );
+        let url_imagen = null;
+        if(id_imagen){
+          const responseUrl = await cliente.query(
+            `SELECT url_imagen FROM imagenes where id_imagen = ${id_imagen}`
+          );
+          url_imagen = responseUrl.rows[0].url_imagen;
+        }
         const { id_usuario } = response.rows[0];
         const user = {
             id_usuario: id_usuario,
             nombre: nombre + ' ' + apellido,
             email: email,
             rol: rol,
-            id_imagen: id_imagen,
+            url_imagen: url_imagen,
         }
         res
           .status(201)
