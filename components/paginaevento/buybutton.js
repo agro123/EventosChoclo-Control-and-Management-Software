@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Modal, Button } from 'antd';
-import PropTypes from 'prop-types';
+import UserContext from "../../context/user/usercontext";
 import PaySteps from './paysteps';
 
-function BuyButton(props) {
+function BuyButton() {
     const [visible, setVisible] = useState(false)
+
+    const { user } = useContext(UserContext);
 
     const onClick = e => {
         e.preventDefault();
@@ -27,15 +29,14 @@ function BuyButton(props) {
             </Modal>
             <Button className="button-crearEv"
                 block size="small"
-                onClick={onClick}>
+                onClick={onClick}
+            >
                 Adquirir Boletas
             </Button>
+
+
         </>
     )
-}
-
-BuyButton.propTypes = {
-
 }
 
 export default BuyButton

@@ -60,8 +60,6 @@ export const useDate = (date) => { //recibe un arreglo strings que contienen fec
         return u;
     }
 
-
-
     return {
         month,
         day,

@@ -4,8 +4,6 @@ import { useRouter } from 'next/router';
 import EventoPage from '../../components/paginaevento/eventopage';
 import { Spin } from "antd"
 import { LoadingOutlined } from "@ant-design/icons";
-import { EventosProvider } from '../../context/eventoscontext';
-
 const antIcon = <LoadingOutlined style={{ fontSize: 72 }} spin />;
 
 export default function Evento() {
@@ -17,7 +15,6 @@ export default function Evento() {
 
     return (
         <>
-            <EventosProvider>
                 <Spin spinning={loading} indicator={antIcon}>
                     {
                         data[0] ?
@@ -26,7 +23,6 @@ export default function Evento() {
                             <div className="eventoNotFound"><h1>Evento no encontrado</h1></div>
                     }
                 </Spin>
-            </EventosProvider>
         </>
     )
 }

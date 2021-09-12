@@ -25,7 +25,8 @@
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-hook-form": "^7.2.1"
+    "react-hook-form": "^7.2.1",
+    "validator": "^13.6.0"
   },
   "devDependencies": {
     "@testing-library/dom": "^7.30.3",
@@ -36,14 +37,14 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-17-updated": "^1.0.2",
     "enzyme-to-json": "^3.6.2",
-    "jest": "^26.6.3",
-    "jest-dom": "^4.0.0",
     "jsdom": "^16.5.3",
     "jsdom-global": "^3.0.2"
   },
-  "cacheDirectories": [".next/cache"],
+  "cacheDirectories": [
+    ".next/cache"
+  ],
   "engines": {
     "node": ">=12.0.0",
-    "npm":">=6.0.0"
+    "npm": ">=6.0.0"
   }
 }

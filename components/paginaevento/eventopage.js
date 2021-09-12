@@ -1,3 +1,5 @@
+import React, { useContext } from 'react'
+import { EventosContext } from '../../context/eventoscontext';
 import Head from 'next/head';
 import DateDisplay from '../paginadeinicio/datedisplay';
 import { useDate } from '../../hooks/usedate';
@@ -6,15 +8,14 @@ import {
     DollarCircleFilled, EnvironmentFilled,
     NotificationFilled, ReconciliationFilled, TagFilled
 } from '@ant-design/icons'
-import BuyButton from './buybutton'
+import BuyButton from './buybutton';
+import { formatter } from './auxfunctions';
 
-const formatter = new Intl.NumberFormat('es-CO', {
-    style: 'currency',
-    currency: 'COP',
-    minimumFractionDigits: 0
-})
+
 
 const EventoPage = ({ data }) => {
+    const { addEvento } = useContext(EventosContext);
+    addEvento(data[0]);
     const { anfitrion, descripcion, fecha_final, fecha_inicial,
         direccion_even, lugar, num_boletas, nom_imagen,
         tematica, url_imagen, titulo, precio_boleta } = data[0];
@@ -24,7 +25,6 @@ const EventoPage = ({ data }) => {
 
     const { isSameDates, day, month, year, dayName } = useDate([soloFecha(fecha_inicial), soloFecha(fecha_final)]);
     const styleIcon = { fontSize: '40px' }
-    console.log(data[0])
 
     return (
         <>
@@ -85,7 +85,7 @@ const EventoPage = ({ data }) => {
                     </div>
                 </div>
                 <div className="eventosPageActions">
-                        <BuyButton />
+                    <BuyButton />
                 </div>
             </div>
         </>)
