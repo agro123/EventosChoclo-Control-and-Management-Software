@@ -17,7 +17,7 @@ export const FormStep1 = () => {
         editPaymentInfo({ [e.target.name]: e.target.value });
     };
     const onSelectTickets = e => { editPaymentInfo({ tickets: e }); };
-    console.log(num_boletas)
+
     return (
         <>
             <h2>Informacion de contacto:</h2>
@@ -93,9 +93,10 @@ export const FormStep3 = () => {
 
     const soloFecha = fecha => fecha.slice(0, 10);
     const soloHora = hora => hora.slice(11, 16);
-    const { isSameDates, day, month, year, dayName } = useDate([soloFecha(fecha_inicial), soloFecha(fecha_final)]);
+    const { isSameDates, day, month, year } = useDate([soloFecha(fecha_inicial), soloFecha(fecha_final)]);
     const initialDate = <p>Fecha: {day(0) + ' de ' + month(0) + ' del ' + year(0) + ' a las ' + soloHora(fecha_inicial)}</p>
     const finalDate = <p>Fecha final: {day(1) + ' de ' + month(1) + ' del ' + year(1) + ' a las ' + soloHora(fecha_inicial)}</p>;
+    
     return (
         <>
             <h2>CheckOut:</h2>
@@ -113,8 +114,8 @@ export const FormStep3 = () => {
             <p>Número: {cardNumber}</p>
             <Divider>Información de contacto</Divider>
             <p>Nombre: {name + ' ' + lastName}</p>
-            <p>Celular: { }</p>
-            <p>E-mail: { }</p>
+            <p>Celular: {'3243145858' }</p>
+            <p>E-mail: {'victor@victor.com'}</p>
         </>
     )
 }
@@ -125,7 +126,7 @@ export const FormStep4 = () => {
             <Result
                 status="success"
                 title="Compra Exitosa!"
-                subTitle="Te enviamos un correo con el código QR el cual debes presentar al momento de entrar al evento"
+                subTitle="Te enviamos un correo con el código QR, el cual debes presentar al momento de ingresar al evento"
             />,
         </>
     )

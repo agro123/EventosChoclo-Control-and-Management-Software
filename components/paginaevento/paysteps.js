@@ -4,7 +4,8 @@ import {
 } from 'antd';
 import { EventosContext } from '../../context/eventoscontext';
 import { FormStep1, FormStep2, FormStep3, FormStep4 } from './steps';
-import { isValidCvC, isValidCCNumber, isValidEndDate, isFormComplete } from './auxfunctions';
+import { isValidCvC, isValidCCNumber, isValidEndDate, isFormComplete, dateToTimeStamp } from './auxfunctions';
+import axios from "axios";
 
 const { Step } = Steps;
 //-----------Arreglo de steps
@@ -34,8 +35,34 @@ const steps = [
 //--------------------------Componente Principal
 export default function PaySteps() {
     const [current, setCurrent] = useState(0);
-    const { paymentInfo } = useContext(EventosContext);
+    const { paymentInfo, evento } = useContext(EventosContext);
     const { endDate, cardNumber, cvc } = paymentInfo;
+
+    const now = new Date();
+    const hoy = dateToTimeStamp(now);
+
+    const buyBoleta = async () => {
+        try {
+            message.loading('Procesando compra...')
+            const body = {
+                id_usuario: '18',//envia a usuario victor por defecto falta cambiar
+                id_evento: evento.id_evento,
+                fecha_compra: hoy,
+                num_boletas: paymentInfo.tickets,
+                total_compra: (paymentInfo.tickets * evento.precio_boleta),
+                nombre_cli: paymentInfo.name,
+                apellido_cli: paymentInfo.lastName,
+            }
+            const res = await axios.post("/api/compra", body);
+            if (res.status === 201) {
+                next();
+                message.success('¡Boletas Adquiridas!');
+            }
+        } catch (e) {
+            message.error('Ha sucedido un problema intente mas tarde');
+        }
+
+    }
 
     const next = () => {
         setCurrent(current + 1);
@@ -48,8 +75,7 @@ export default function PaySteps() {
     const onHecho = () => {
         if (isFormComplete(paymentInfo) && isValidCvC(cvc)
             && isValidEndDate(endDate) && isValidCCNumber(cardNumber)) {
-            message.success('Boletas Adquiridas!');
-            next();
+            buyBoleta();
         }
     }
 

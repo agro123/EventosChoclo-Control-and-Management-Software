@@ -27,20 +27,19 @@ import { EventosProvider } from '../context/eventoscontext';
 function MyApp({ Component, pageProps }) {
   return (
     <>
-
-      <UserState>
-        <EventosProvider>
-          <Head>
-            <link rel="shortcut icon" href="/logocon.ico" />
-            <title > EventosChoclo </title>
-          </Head>
-          <ConfigProvider locale={es_ES}>
+      <ConfigProvider locale={es_ES}>
+        <UserState>
+          <EventosProvider>
+            <Head>
+              <link rel="shortcut icon" href="/logocon.ico" />
+              <title > EventosChoclo </title>
+            </Head>
             <Layout>
               <Component {...pageProps} />
             </Layout>
-          </ConfigProvider>
-        </EventosProvider>
-      </UserState>
+          </EventosProvider>
+        </UserState>
+      </ConfigProvider>
     </>
   );
 }

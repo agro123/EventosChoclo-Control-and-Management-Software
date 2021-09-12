@@ -9,6 +9,7 @@
   display: flex;
   flex-wrap: wrap;
   overflow-y: scroll;
+  justify-content: space-around;
 }
 .carruselHeader {
   display: flex;

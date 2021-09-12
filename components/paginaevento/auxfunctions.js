@@ -55,3 +55,9 @@ export const isFormComplete = obj => {
     }
     return isOk;
 }
+
+export const dateToTimeStamp = date => {
+    const hora = (date+' ').slice(16,21);
+    const timeStampFormat = date.toISOString().slice(0,10)+`T${hora}:00`
+    return timeStampFormat;
+}

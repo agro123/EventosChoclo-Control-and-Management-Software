@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import Inicio from '../components/paginadeinicio/inicio';
-import { EventosProvider } from '../context/eventoscontext';
 
 export default function Home() {
   return (
@@ -12,9 +11,7 @@ export default function Home() {
       <Head>
         <title > EventosChoclo - inicio </title>
       </Head>
-      <EventosProvider>
         <Inicio />
-      </EventosProvider>
     </>
   )
 }
