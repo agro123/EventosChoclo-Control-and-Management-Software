@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { Modal, Button } from 'antd';
+import { Modal, Button, Popover } from 'antd';
 import UserContext from "../../context/user/usercontext";
 import PaySteps from './paysteps';
 
@@ -12,11 +12,13 @@ function BuyButton() {
         e.preventDefault();
         setVisible(!visible);
     }
+
     return (
         <>
             <Modal
                 visible={visible}
                 title="Adquirir Boletas"
+                onCancel={onClick}
                 footer={[
                     <Button key="back" onClick={onClick}>
                         Volver
@@ -27,12 +29,17 @@ function BuyButton() {
             >
                 <PaySteps />
             </Modal>
+
             <Button className="button-crearEv"
                 block size="small"
                 onClick={onClick}
+                disabled={!user.isAuth}
             >
-                Adquirir Boletas
+                <Popover visible={!user.isAuth} placement="right" content="¡Inicie sesión para adquirir sus boletas!">
+                    Adquirir Boletas
+                </Popover>
             </Button>
+
 
 
         </>

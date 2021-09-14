@@ -6,9 +6,10 @@ import {
 } from 'antd';
 import Image from 'next/image';
 import { EventosContext } from '../../context/eventoscontext';
+import UserContext from "../../context/user/usercontext";
 import { formatter } from './auxfunctions';
 import { useDate } from '../../hooks/usedate';
-
+import { useGetData } from '../../hooks/usegetdata'
 //--------------------Componentes Steps
 export const FormStep1 = () => {
     const { paymentInfo, editPaymentInfo, evento } = useContext(EventosContext);
@@ -48,6 +49,8 @@ export const FormStep2 = () => {
         editPaymentInfo({ [e.target.name]: e.target.value });
     };
 
+    
+
     return (
         <>
             <h2>Tarjeta de Crédito:</h2>
@@ -86,9 +89,13 @@ export const FormStep2 = () => {
 }
 
 export const FormStep3 = () => {
+    const { user } = useContext(UserContext);
+    
     const { paymentInfo, evento } = useContext(EventosContext);
+    
     const { fecha_final, fecha_inicial,
         titulo, precio_boleta } = evento;
+
     const { tickets, name, nameCard, cardNumber, lastName } = paymentInfo;
 
     const soloFecha = fecha => fecha.slice(0, 10);
@@ -96,7 +103,7 @@ export const FormStep3 = () => {
     const { isSameDates, day, month, year } = useDate([soloFecha(fecha_inicial), soloFecha(fecha_final)]);
     const initialDate = <p>Fecha: {day(0) + ' de ' + month(0) + ' del ' + year(0) + ' a las ' + soloHora(fecha_inicial)}</p>
     const finalDate = <p>Fecha final: {day(1) + ' de ' + month(1) + ' del ' + year(1) + ' a las ' + soloHora(fecha_inicial)}</p>;
-    
+
     return (
         <>
             <h2>CheckOut:</h2>
@@ -114,8 +121,9 @@ export const FormStep3 = () => {
             <p>Número: {cardNumber}</p>
             <Divider>Información de contacto</Divider>
             <p>Nombre: {name + ' ' + lastName}</p>
-            <p>Celular: {'3243145858' }</p>
-            <p>E-mail: {'victor@victor.com'}</p>
+            {/* <p>Celular: {'3243145858' }</p> */}
+            <p>E-mail: {user.user.email}</p>
+            
         </>
     )
 }

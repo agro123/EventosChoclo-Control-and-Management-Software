@@ -6,6 +6,7 @@ import { EventosContext } from '../../context/eventoscontext';
 import { FormStep1, FormStep2, FormStep3, FormStep4 } from './steps';
 import { isValidCvC, isValidCCNumber, isValidEndDate, isFormComplete, dateToTimeStamp } from './auxfunctions';
 import axios from "axios";
+import UserContext from "../../context/user/usercontext";
 
 const { Step } = Steps;
 //-----------Arreglo de steps
@@ -34,6 +35,7 @@ const steps = [
 
 //--------------------------Componente Principal
 export default function PaySteps() {
+    const { user } = useContext(UserContext);
     const [current, setCurrent] = useState(0);
     const { paymentInfo, evento } = useContext(EventosContext);
     const { endDate, cardNumber, cvc } = paymentInfo;
@@ -45,7 +47,7 @@ export default function PaySteps() {
         try {
             message.loading('Procesando compra...')
             const body = {
-                id_usuario: '18',//envia a usuario victor por defecto falta cambiar
+                id_usuario: user.user.id_usuario,
                 id_evento: evento.id_evento,
                 fecha_compra: hoy,
                 num_boletas: paymentInfo.tickets,
