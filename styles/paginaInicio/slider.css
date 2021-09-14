@@ -114,10 +114,7 @@
 }
 
 @media (max-width: 1550px) {
-    .eventos {
-        margin: 1% 2%;
-    }
     .slider-card {
-        width: 70%;
+        width: 60%;
     }
 }

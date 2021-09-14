@@ -1,20 +1,24 @@
-import React, { useState } from 'react'
-import { Modal, Button } from 'antd';
-import PropTypes from 'prop-types';
+import React, { useState, useContext } from 'react'
+import { Modal, Button, Popover } from 'antd';
+import UserContext from "../../context/user/usercontext";
 import PaySteps from './paysteps';
 
-function BuyButton(props) {
+function BuyButton() {
     const [visible, setVisible] = useState(false)
+
+    const { user } = useContext(UserContext);
 
     const onClick = e => {
         e.preventDefault();
         setVisible(!visible);
     }
+
     return (
         <>
             <Modal
                 visible={visible}
                 title="Adquirir Boletas"
+                onCancel={onClick}
                 footer={[
                     <Button key="back" onClick={onClick}>
                         Volver
@@ -25,17 +29,21 @@ function BuyButton(props) {
             >
                 <PaySteps />
             </Modal>
+
             <Button className="button-crearEv"
                 block size="small"
-                onClick={onClick}>
-                Adquirir Boletas
+                onClick={onClick}
+                disabled={!user.isAuth}
+            >
+                <Popover visible={!user.isAuth} placement="right" content="¡Inicie sesión para adquirir sus boletas!">
+                    Adquirir Boletas
+                </Popover>
             </Button>
+
+
+
         </>
     )
-}
-
-BuyButton.propTypes = {
-
 }
 
 export default BuyButton
