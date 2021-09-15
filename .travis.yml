@@ -7,9 +7,12 @@ cache:
     - node_modules
     - .next/cache
 script:
-  - npm i next
-  - npm run build
+  - npm i -g npm
+  - nvm install v14.15.5
+  - npm install
+  - npm i -g jest-cli@26.6.3
+  - npm run test
 deploy:
   provider: heroku
   api_key: $APIKEYHEROKU
-  app: EventosChoclo
+  app: eventoschoclo

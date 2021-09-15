@@ -12,8 +12,7 @@ const UserState = ({ children }) => {
   useEffect(async () => {
     const userI = await JSON.parse(window.localStorage.getItem("user"));
     const tokenI = await JSON.parse(window.localStorage.getItem("token"));
-    console.log(tokenI);
-    console.log(tokenI !== null);
+
     if (tokenI !== null) {
       setInitialState({
         user: userI,

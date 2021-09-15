@@ -34,9 +34,9 @@ export default function EventoCard({ info = defEvento }) {
     setTimeout(onChange, 500);
 
     return (
-        <Link href={`/evento/${id_evento}`}>
-            <div className="eventoHomeCard">
-                <Skeleton loading={loading} active>
+        <div className="eventoHomeCard">
+            <Skeleton loading={loading} active>
+                <Link href={`/evento/${id_evento}`}>
                     <div className="display">
                         <img alt="example"
                             src={url_imagen || '/defaultImg.jpg'}
@@ -46,23 +46,23 @@ export default function EventoCard({ info = defEvento }) {
                             <p>{descripcion}</p>
                         </div>
                     </div>
-                    <div className="descripHC">
-                        <div className="titleCard">
-                            {titulo || "Titulo del evento"}
-                        </div>
-                        <div className="eventoCardFecha">
-                            {sameDates()}
-                        </div>
-                        <div className="eventoCard-action">
-                            <DeleteButton id={id_evento} key="delete" />
-                            <div className='buttons'>
-                                <EditOutlined key="edit" onClick={onClick} />
-                            </div>
+                </Link>
+                <div className="descripHC">
+                    <div className="titleCard">
+                        {titulo}
+                    </div>
+                    <div className="eventoCardFecha">
+                        {sameDates()}
+                    </div>
+                    <div className="eventoCard-action">
+                        <DeleteButton id={id_evento} key="delete" />
+                        <div className='buttons'>
+                            <EditOutlined key="edit" onClick={onClick} />
                         </div>
                     </div>
-                </Skeleton>
-            </div>
-        </Link>
+                </div>
+            </Skeleton>
+        </div>
     )
 }
 /* EventoCard.propTypes = {

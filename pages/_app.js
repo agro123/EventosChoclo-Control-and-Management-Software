@@ -7,6 +7,7 @@ import '../styles/constants.css';
 import '../styles/listarEventosAdmin.css';
 import "../styles/Login/Login.css";
 import "../styles/Login/Register.css";
+import "../styles/modalperfil/modalperfil.css";
 import '../styles/antdMod.css';
 import 'antd/dist/antd.css';
 /* import "../styles/crearEventos/eventos.css"; */
@@ -22,23 +23,24 @@ import Layout from "../components/constants/layout";
 import { ConfigProvider } from "antd";
 import es_ES from "antd/lib/locale/es_ES";
 import Head from "next/head";
-
+import { EventosProvider } from '../context/eventoscontext';
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
-
-      <UserState>
-        <Head>
-          <link rel="shortcut icon" href="/logocon.ico" />
-          <title > EventosChoclo </title>
-        </Head>
-        <ConfigProvider locale={es_ES}>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </ConfigProvider>
-      </UserState>
+      <ConfigProvider locale={es_ES}>
+        <UserState>
+          <EventosProvider>
+            <Head>
+              <link rel="shortcut icon" href="/logocon.ico" />
+              <title > EventosChoclo </title>
+            </Head>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </EventosProvider>
+        </UserState>
+      </ConfigProvider>
     </>
   );
 }

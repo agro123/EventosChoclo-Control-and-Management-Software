@@ -8,7 +8,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1% 0;
+}
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .header {
@@ -127,6 +131,7 @@
 }
 
 .option-button {
+  margin-right: 6%;
   color: var(--midGray);
   font-weight: 700;
   font-size: 1.5em;
@@ -138,4 +143,14 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   color: var(--midGray);
+}
+
+.cont-perfil {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cont-perfil > h4 {
+  margin-bottom: 0;
 }

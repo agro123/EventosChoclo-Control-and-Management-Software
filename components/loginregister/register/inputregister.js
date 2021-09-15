@@ -13,6 +13,7 @@ import axios from "axios";
 import {
   convertirImagen,
 } from "../../dates/manejofechas";
+import PropTypes from "prop-types";
 
 
 const InputRegister = ({tipo}) => {
@@ -124,21 +125,25 @@ const InputRegister = ({tipo}) => {
 
           const datos = respuesta.data;
           console.log({datos:datos})
-          if (datos.isAuth) {
-            dispatch({type:'LOGIN',payload: datos});
-            setVerificado(true);
-            message.success(`Se ha creado el usuario: ${data.email}`);
-            reset(e);
-            if(datos.user.rol == 1){
+          if(tipo === 2){
+            if (datos.isAuth) {
+              dispatch({type:'LOGIN',payload: datos});
+              setVerificado(true);
+              message.success(`Se ha creado el usuario: ${data.email}`);
+              reset(e);
               router.push('/');
             }else{
-              router.push('/');
+              message.error(`El email o la contraseña es invalido`,4);
+              setVerificado(false);
+              document.getElementById("nombre").focus()
             }
           }else{
-            message.error(`El email o la contraseña es invalido`,4);
-            setVerificado(false);
-            document.getElementById("nombre").focus()
+            setVerificado(true);
+            message.success(`Se ha creado el usuario Admin: ${data.email}`);
+            reset(e);
+            router.push('/');
           }
+          
          
         }
         setLoading(false);
@@ -215,6 +220,11 @@ const InputRegister = ({tipo}) => {
       </div>
     </form>
   );
+};
+
+
+InputRegister.propTypes = {
+  tipo: PropTypes.number.isRequired,
 };
 
 export default InputRegister;

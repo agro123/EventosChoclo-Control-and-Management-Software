@@ -3,9 +3,7 @@ import React from 'react';
 import { LoadingOutlined } from "@ant-design/icons";
 const antIcon = <LoadingOutlined style={{ fontSize: 72 }} spin />;
 
-export default function listEventos({eventos, loading}) {
-
-
+export default function listEventos({eventos}) {
     const generarEventos = (info) => {
         let cards = [];
         info.map((v, i) => {

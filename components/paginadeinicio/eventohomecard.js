@@ -16,7 +16,7 @@ const defEvento = {
 }
 
 function eventoHomeCard({ info = defEvento }) {
-    const { url_imagen, titulo, fecha_inicial, fecha_final, descripcion, lugar, id_evento, aforo } = info;
+    const { url_imagen, titulo, fecha_inicial, fecha_final, descripcion, lugar, id_evento, num_boletas } = info;
     
 
     const [loading, setLoading] = useState(true);
@@ -51,7 +51,7 @@ function eventoHomeCard({ info = defEvento }) {
                         <div className="boletasDisponibles">
                             Boletas disponibles
                             <div className="boletas">
-                                {aforo || boletas }
+                                {num_boletas || boletas }
                             </div>
                         </div>
                     </div>

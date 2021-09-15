@@ -20,11 +20,11 @@ export default function Inicio() {
         <>
             <Spin spinning={loading} indicator={antIcon}>
                 <Slider />
-                <div className="eventos">
+                <div className="page-container">
                     <h1 className="title-home">¡En EventosChoclo tenemos los mejores eventos!</h1>
-                    <div>
+                    <div className="masEventos">
                         <h2 className="title-home">Destacado</h2>
-                        <div className="destacado">
+                        <div className="listaDeEventos">
                             <EventoHomeCard info={eventos[1]} key='EH1' />
                             <EventoHomeCard info={eventos[2]} key='EH2' />
                             <EventoHomeCard info={eventos[3]} key='EH3' />
