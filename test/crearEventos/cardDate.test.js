@@ -1,5 +1,5 @@
 import { shallow } from "enzyme";
-import CardDate from "../../components/Dates/cardDate";
+import CardDate from "../../components/dates/carddate";
 import { date } from "./data";
 
 let wrapper = shallow(<CardDate {...date} />);

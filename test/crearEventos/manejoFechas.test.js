@@ -3,7 +3,7 @@ import {
   semanaAc,
   convertirMes,
   validarFecha,
-} from "../../components/Dates/manejoFechas";
+} from "../../components/dates/manejofechas";
 import { dateF, dateI } from "./data";
 
 describe("Test Funciones manejo de fechas", () => {
