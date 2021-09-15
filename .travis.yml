@@ -9,7 +9,6 @@ cache:
 script:
   - npm i -g npm
   - nvm install v14.15.5
-  - npm install -g jest-cli 
   - npm run test
 deploy:
   provider: heroku
