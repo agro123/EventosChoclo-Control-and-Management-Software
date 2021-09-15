@@ -2,6 +2,7 @@ import { useState, useContext } from 'react'
 import { Popover } from 'antd';
 import ContenidoModal from './contenidomodal'
 import UserContext from '../../context/user/usercontext';
+import PropTypes from "prop-types";
 
 const ModalPerfil = ({ children }) => {
     const { user, dispatch } = useContext(UserContext);
@@ -29,5 +30,9 @@ const ModalPerfil = ({ children }) => {
 
     )
 }
+
+ModalPerfil.propTypes = {
+    children: PropTypes.element.isRequired,
+  };
 
 export default ModalPerfil;

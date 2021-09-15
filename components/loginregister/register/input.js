@@ -1,6 +1,7 @@
 import {useState} from "react";
 import { type } from "./arraysnameinputs";
 import {EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons'
+import PropTypes from "prop-types";
 const Input = ({
   register,
   input,
@@ -70,6 +71,12 @@ const Input = ({
       </div>
     </div>
   );
+};
+
+
+Input.propTypes = {
+  input: PropTypes.string.isRequired,
+  titulo: PropTypes.string.isRequired,
 };
 
 export default Input;

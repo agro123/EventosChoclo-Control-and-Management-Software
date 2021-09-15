@@ -5,6 +5,7 @@ import Logout from '../constants/logout';
 import LabelsCont from './labelscont'
 import { message } from "antd";
 import Link from 'next/link';
+import PropTypes from "prop-types";
 
 const ContenidoModal = ({ id, imageP, rol,setVisible, dispatch, userCont }) => {
 
@@ -140,4 +141,11 @@ const ContenidoModal = ({ id, imageP, rol,setVisible, dispatch, userCont }) => {
     )
 }
 
-export default ContenidoModal
+
+ContenidoModal.propTypes = {
+    id: PropTypes.number.isRequired,
+    imageP: PropTypes.string.isRequired,
+    rol: PropTypes.number.isRequired
+  };
+
+export default ContenidoModal;

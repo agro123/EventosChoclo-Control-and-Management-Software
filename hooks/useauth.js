@@ -22,6 +22,8 @@ const useAuth = () => {
                 case '/register':
                     user.user.rol === 2 && router.push('/');
                     break;
+                case '/login':
+                    user.isAuth && router.push('/');
                 default:
                     break;
             }

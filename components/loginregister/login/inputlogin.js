@@ -45,10 +45,8 @@ const InputLogin = () => {
       };
 
 
-      await axios
-        .post(`/api/auth`, body)
-        .then((response) => {
-
+      const response = await axios.post(`/api/auth`, body);
+       
           if (response.status === 200) {
             const data = response.data;
             if (response.data.isAuth) {
@@ -71,7 +69,7 @@ const InputLogin = () => {
             }
           }
           setLoading(false);
-        });
+      
 
     } catch (error) {
       setLoading(false);
@@ -111,7 +109,7 @@ const InputLogin = () => {
           <h2 className="h2input">{"Contraseña"}</h2>
         </label>
 
-        <div class="inputsLoginContra">
+        <div className="inputsLoginContra">
           <input
             className="contraInput"
             name="contraLg"

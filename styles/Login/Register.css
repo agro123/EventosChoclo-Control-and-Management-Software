@@ -15,9 +15,11 @@
 
 .contRegiType1 {
   width: 100%;
-  padding: 3%;
+  margin: 3% auto;
   display: flex;
   justify-content: center;
+  align-items: center;
+  max-width: 1200px;
 }
 
 .form-register {
