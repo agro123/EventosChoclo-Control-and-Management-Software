@@ -7,8 +7,7 @@ cache:
     - node_modules
     - .next/cache
 script:
-  - npm i next
-  - npm run build
+  - npm i react react-dom jest enzyme enzyme-adapter-react-17-updated enzyme-to-json
   - npm run test
 deploy:
   provider: heroku
