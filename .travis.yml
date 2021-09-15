@@ -6,9 +6,6 @@ cache:
     - $HOME/.cache/yarn
     - node_modules
     - .next/cache
-install:
-  - npm install
-  - npm install -g jest-cli
 script:
   - npm i next
   - npm run build
