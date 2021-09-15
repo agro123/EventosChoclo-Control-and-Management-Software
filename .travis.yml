@@ -8,7 +8,8 @@ cache:
     - .next/cache
 script:
   - node -v
-  - npm i -g npm 
+  - npm i -g npm
+  - npm install -g npm@latest 
   - npm run test
 deploy:
   provider: heroku
