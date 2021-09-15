@@ -1,5 +1,5 @@
 import { shallow } from "enzyme";
-import CrearEventos from "../../pages/CrearEventos/index";
+import CrearEventos from "../../pages/crearevento/index";
 
 let wrapper = shallow(<CrearEventos />);
 

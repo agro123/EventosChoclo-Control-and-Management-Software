@@ -9,6 +9,7 @@ cache:
 script:
   - npm i next
   - npm run build
+  - npm run test
 deploy:
   provider: heroku
   api_key: $APIKEYHEROKU
