@@ -9,8 +9,8 @@ cache:
 script:
   - npm i -g npm
   - nvm install v14.15.5
-  - npm install jest enzyme enzyme-adapter-react-17-updated jsdom jsdom-global babel-jest @testing-library/dom @testing-library/jest-dom @testing-library/react @testing-library/react-hooks
-  - npm i -g jest-cli
+  - npm install jest@26.6.3 enzyme enzyme-adapter-react-17-updated jsdom jsdom-global babel-jest @testing-library/dom @testing-library/jest-dom @testing-library/react @testing-library/react-hooks
+  - npm i -g jest-cli@26.6.3
   - npm run test
 deploy:
   provider: heroku
