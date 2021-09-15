@@ -2,6 +2,7 @@ import {useState} from 'react'
 import { EditOutlined } from '@ant-design/icons'
 import { Popover } from 'antd';
 import EditInput from './editinput';
+import PropTypes from "prop-types";
 
 const LabelsCont = ({ label, value, setUser, user }) => {
     const [visible,setVisible] = useState(false)
@@ -31,4 +32,10 @@ const LabelsCont = ({ label, value, setUser, user }) => {
     )
 }
 
-export default LabelsCont
+LabelsCont.propTypes = {
+    label: PropTypes.string.isRequired,
+    value: PropTypes.any.isRequired,
+    user: PropTypes.object.isRequired
+  };
+
+export default LabelsCont;
