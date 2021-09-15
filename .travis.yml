@@ -6,8 +6,10 @@ cache:
     - $HOME/.cache/yarn
     - node_modules
     - .next/cache
-before_deploy: "npm run test"
-
+script:
+  - npm i next
+  - npm i jest@26.1.1
+  - npm run test
 deploy:
   provider: heroku
   api_key: $APIKEYHEROKU
