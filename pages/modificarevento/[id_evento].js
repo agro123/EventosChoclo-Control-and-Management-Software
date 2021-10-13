@@ -228,7 +228,7 @@ const ModificarEvento = () => {
         success(data.titulo);
         resetValues(e);
         setLoading(false);
-        router.push("/eventosAdmin");
+        router.push("/eventosadmin");
       }else{
         setLoading(false);
         error();
