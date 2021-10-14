@@ -45,16 +45,6 @@ export default async (req, res) => {
         );
         const { id_compra } = compra.rows[0];
         res.status(201).json({ id_compra, mensage: `Compra exitosa` });
-          // ENVIO DEL EMAIL
-        fetch('/api/boleta/mailer', {
-          method: 'POST',
-        }).then((res) => {
-            console.log('Response received')
-            if (res.status === 200) {
-                console.log('Response succeeded!')
-            }
-        })
-          //
         cliente.release();
         break;
       default:
