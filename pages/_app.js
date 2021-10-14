@@ -17,6 +17,7 @@ import "../styles/paginaInicio/inicio.css";
 import "../styles/eventoCard.css";
 import "../styles/paginaEvento/paginaEvento.css";
 import "../styles/paginaInicio/slider.css";
+import "../styles/boleta/paginaboleta.css";
 
 import UserState from "../context/user/userstate";
 import Layout from "../components/constants/layout";
