@@ -19,7 +19,7 @@ const useGetData = (url, change ) => { //retorna la informacion de una lista
             setResult({data:[], loading:false});
             message.error({ content: 'Ocurrio un error', duration: 2, style: { marginTop: '15vh' } });
         }
-    }, [change])
+    }, [url])
 
     return result;
 }
