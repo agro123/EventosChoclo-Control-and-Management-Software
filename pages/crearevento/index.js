@@ -2,7 +2,7 @@ import { useState, useContext } from "react"; // Cristian hizo un cambio aquí
 import { useForm } from "react-hook-form";
 import { Spin, Button } from "antd";
 import {uploadPreset,cloudinaryURL} from '../../lib/keys/keys';
-//import { ReloadContext } from "../../context/reloadcontext"; //Cristian añadió esta linea
+import { ReloadContext } from "../../context/reloadcontext"; //Cristian añadió esta linea
 import {
   inicio,
   cierre,
@@ -20,7 +20,7 @@ import FechasEvento from "../../components/dates/fechasevento";
 
 export default function CrearEventos() {
   const [loading, setLoading] = useState(false);
-  //const { onChange } = useContext(ReloadContext); // Cristian añadió esta linea
+  const { onChange } = useContext(ReloadContext); // Cristian añadió esta linea
 
   //Estado de la imagen como URL para mostrarla
   const [imagen, setImagen] = useState(null);
@@ -158,7 +158,7 @@ export default function CrearEventos() {
         
         const respuesta = await axios.post("/api/evento", body);
         
-        //onChange(); //Cristian añadió esta linea
+        onChange(); //Cristian añadió esta linea
         setLoading(false);
         resetValues(e);
         success(data.titulo);
