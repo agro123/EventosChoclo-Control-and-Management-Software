@@ -56,7 +56,7 @@ export default async (req, res) => {
 
         // ENVIO DEL EMAIL /*
         console.log('Está llegando aqui');
-        fetch('http://localhost:3000/api/boleta/mailer', {
+        fetch('https://eventoschoclo.herokuapp.com/api/boleta/mailer', {
           method: 'POST',
           headers: {
             'Accept': 'application/json, text/plain, */*',
