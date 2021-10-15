@@ -26,9 +26,9 @@ export default function MyLayout({ children }) {
           <header className="header">
             <Logo />
             <div className="menu-header">
-              <Option label="Inicio" url="/" />
+           {/*    <Option label="Inicio" url="/" />
               <Option label="Destacados" url="/" />
-              <Option label="Cerca de mí" url="/" />
+              <Option label="Cerca de mí" url="/" /> */}
             </div>
             {user.isAuth ? (
 

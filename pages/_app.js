@@ -25,6 +25,7 @@ import { ConfigProvider } from "antd";
 import es_ES from "antd/lib/locale/es_ES";
 import Head from "next/head";
 import { EventosProvider } from '../context/eventoscontext';
+import { ReloadProvider } from '../context/reloadcontext'
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -32,13 +33,15 @@ function MyApp({ Component, pageProps }) {
       <ConfigProvider locale={es_ES}>
         <UserState>
           <EventosProvider>
-            <Head>
-              <link rel="shortcut icon" href="/logocon.ico" />
-              <title > EventosChoclo </title>
-            </Head>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
+            <ReloadProvider>
+              <Head>
+                <link rel="shortcut icon" href="/logocon.ico" />
+                <title > EventosChoclo </title>
+              </Head>
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            </ReloadProvider>
           </EventosProvider>
         </UserState>
       </ConfigProvider>

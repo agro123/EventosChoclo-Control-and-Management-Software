@@ -6,10 +6,9 @@ import useAuth from '../../hooks/useauth';
 export default function listarEventos() {
     const auth = useAuth();
     return (
-        <ReloadProvider>
+        
             <div className='carrusel'>
                 <Carrusel />
             </div>
-        </ReloadProvider>
     )
 }
