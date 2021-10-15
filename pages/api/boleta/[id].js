@@ -13,7 +13,7 @@ export default async (req, res) => {
     if(method == "GET")
     {
       const boleta = await cliente.query(
-        `SELECT * FROM boleta_completa WHERE id_boleta = ${id}`
+        `SELECT * FROM boleta_completa WHERE id_compra = ${id}`
       );
       res.status(200).json(boleta.rows);
     }

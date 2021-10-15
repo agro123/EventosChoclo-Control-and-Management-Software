@@ -44,7 +44,35 @@ export default async (req, res) => {
           ]
         );
         const { id_compra } = compra.rows[0];
+
+        const email = await cliente.query(
+          `select * from usuario where id_usuario = ${id_usuario}`
+        );
+        
+        const enviar = {
+          id_compra: id_compra,
+          email : email.rows[0].email
+        }
+
+        // ENVIO DEL EMAIL /*
+        console.log('Está llegando aqui');
+        fetch('http://localhost:3000/api/boleta/mailer', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(enviar)
+        }).then((res) => {
+            console.log('Response received')
+            if (res.status === 200) {
+                console.log('Response succeeded!')
+            }
+        })
+        console.log('ya salió');
+        // ENVIO DEL EMAIL */
         res.status(201).json({ id_compra, mensage: `Compra exitosa` });
+        
         cliente.release();
         break;
       default:
