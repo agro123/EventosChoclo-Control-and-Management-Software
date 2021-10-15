@@ -25,10 +25,10 @@ export default function Inicio() {
                     <div className="masEventos">
                         <h2 className="title-home">Destacado</h2>
                         <div className="listaDeEventos">
-                            <EventoHomeCard info={eventos[1]} key='EH1' />
-                            <EventoHomeCard info={eventos[2]} key='EH2' />
-                            <EventoHomeCard info={eventos[3]} key='EH3' />
-                            <EventoHomeCard info={eventos[4]} key='EH4' />
+                            <EventoHomeCard info={eventos[0]} key='EH1' />
+                            <EventoHomeCard info={eventos[1]} key='EH2' />
+                            <EventoHomeCard info={eventos[2]} key='EH3' />
+                            <EventoHomeCard info={eventos[3]} key='EH4' />
                         </div>
                         <Divider orientation="left" plain />
                     </div>
